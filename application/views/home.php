@@ -30,6 +30,18 @@
     <!-- Main Stylesheet File -->
     <link href=<?php echo base_url('assets/css/style.css')?> rel="stylesheet">
 
+    <!-- Custom fonts for this template -->
+    <link href=<?php echo base_url('assets/vendor/fontawesome-free/css/all.min.css')?> rel="stylesheet" type="text/css">
+    <link
+        href=<?php echo base_url('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i')?>
+        rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href=<?php echo base_url('assets/css/sb-admin-2.css')?> rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href=<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.min.css')?> rel="stylesheet">
+
     <!-- =======================================================
     Theme Name: Rapid
     Theme URL: https://bootstrapmade.com/rapid-multipurpose-bootstrap-business-template/
@@ -42,58 +54,13 @@
     <!--==========================
   Header
   ============================-->
-    <header id="header">
-        <div class="container">
-
-            <div class="logo float-left">
-                <!-- Uncomment below if you prefer to use an image logo -->
-                <h1 class="text-light"><a href="home" class="scrollto"><span>KOLEKTIVA</span></a></h1>
-                <!-- <a href="#header" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid"></a> -->
-            </div>
-
-            <nav class="main-nav float-right d-none d-lg-block">
-                <ul>
-                    <li><a href="home">Home</a></li>
-                    <li><a href="dashboard">Dashboard</a></li>
-                    <li><a href="contact">Contact</a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
-                    <li class="drop-down"><a href="">Account</a>
-                        <ul>
-                            <li><a href="#">Drop Down 3</a></li>
-                            <li><a href="#">Drop Down 4</a></li>
-                            <li><a href="#">Drop Down 5</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav><!-- .main-nav -->
-
-        </div>
-    </header><!-- #header -->
+    <?php include 'topbar.php' ?>
 
     <!--==========================
-    Intro Section
-                        <div class="owl-carousel testimonials-carousel wow fadeInUp">
-
-                            <div class="testimonial-item">
+    Banner Section
   ============================-->
-    <section id="intro" class="clearfix">
-        <div class="container d-flex h-100">
-            <div class="row justify-content-center align-self-center">
-                <div class="col-md-12 intro-info order-md-first order-last">
-                    <h2>An online crowdfunding platfrom to make your event comes true by collectively</h2>
-                    <div class="row-btn">
-                        <a href="#about" class="btn-get-started scrollto">Sign Up</a>
-                        <a href="#about" class="btn-get-started scrollto">Make Your Campaign</a>
-                    </div>
-                </div>
 
-                <div class="col-md-6 intro-img order-md-last order-first">
-                    <!-- <img src=<?php echo base_url('assets/img/intro-img.svg')?> alt="" class="img-fluid"> -->
-                </div>
-            </div>
-
-        </div>
-    </section><!-- #intro -->
+    <?php include 'banner.php' ?>
 
     <main id="main">
 
@@ -102,45 +69,102 @@
     ============================-->
         <section id="services" class="section-bg">
             <div class="container">
+                <?php if(isset($_SESSION['login'])){ ?>
+                <!-- Page Wrapper -->
+                <div id="wrapper">
 
-                <header class="section-header">
-                    <h3>ABOUT KOLEKTIVA</h3>
-                    <p>We are constantly in search for innovative solutions that makes the event organizer easier while
-                        increasing their opportunities
-                        to make you event comes true by crowdfunding system. We provide We also provide registration
-                        for participants who wish to attend the event.</p>
-                </header>
+                    <!-- Content Wrapper -->
+                    <div id="content-wrapper" class="d-flex flex-column">
 
-                <div class="row">
+                        <!-- Main Content -->
+                        <div id="content">
 
-                    <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
-                        <div class="box" style="min-height: 227.6px; background: #FF7065">
-                            <div class="icon" style="background: #fceef3;"><i class="ion-log-in"
-                                    style="color: #ff689b;"></i></div>
-                            <h4 class="title"><a href="register">REGISTER</a></h4>
-                            <p class="description">Be a participant to enjoy the event.</p>
+                            <!-- Begin Page Content -->
+                            <div class="container-fluid">
+
+                                <!-- Page Heading -->
+                                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                    <h1 class="h3 mb-2 text-gray-800">Event</h1>
+                                </div>
+                                <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
+
+                                <!-- DataTales Example -->
+                                <div class="card shadow mb-4">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="dataTable" width="100%"
+                                                cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Event Category</th>
+                                                        <th>Event Name</th>
+                                                        <th>Due Date</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Event Category</th>
+                                                        <th>Event Name</th>
+                                                        <th>Due Date</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </tfoot>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- End of Main Content -->
+
+                        </div>
+                        <!-- End of Content Wrapper -->
+
+                    </div>
+                    <!-- End of Page Wrapper -->
+                    <?php } else { ?>
+                    <header class="section-header">
+                        <h3>ABOUT KOLEKTIVA</h3>
+                        <p>We are constantly in search for innovative solutions that makes the event organizer easier
+                            while
+                            increasing their opportunities
+                            to make you event comes true by crowdfunding system. We provide We also provide registration
+                            for participants who wish to attend the event.</p>
+                    </header>
+                    <div class="row">
+
+                        <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
+                            <div class="box" style="min-height: 227.6px; background: #FF7065">
+                                <div class="icon" style="background: #fceef3;"><i class="ion-log-in"
+                                        style="color: #ff689b;"></i></div>
+                                <h4 class="title"><a href="register">REGISTER</a></h4>
+                                <p class="description">Be a participant to enjoy the event.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
+                            <div class="box" style="min-height: 227.6px; background: #FF7065">
+                                <div class="icon" style="background: #fff0da;"><i class="ion-cash"
+                                        style="color: #e98e06;"></i></div>
+                                <h4 class="title"><a href="">MAKE A CAMPAIGN</a></h4>
+                                <p class="description">Make your event comes true by make a campaign for crowdfunding.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+                            <div class="box" style="min-height: 227.6px; background: #FF7065">
+                                <div class="icon" style="background: #e6fdfc;"><i class="ion-ios-rose"
+                                        style="color: #3fcdc7;"></i></div>
+                                <h4 class="title"><a href="">REWARDS</a></h4>
+                                <p class="description">Get a rewards by support the event with join crowdfunding</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
-                        <div class="box" style="min-height: 227.6px; background: #FF7065">
-                            <div class="icon" style="background: #fff0da;"><i class="ion-cash"
-                                    style="color: #e98e06;"></i></div>
-                            <h4 class="title"><a href="">MAKE A CAMPAIGN</a></h4>
-                            <p class="description">Make your event comes true by make a campaign for crowdfunding.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-                        <div class="box" style="min-height: 227.6px; background: #FF7065">
-                            <div class="icon" style="background: #e6fdfc;"><i class="ion-ios-rose"
-                                    style="color: #3fcdc7;"></i></div>
-                            <h4 class="title"><a href="">REWARDS</a></h4>
-                            <p class="description">Get a rewards by support the event with join crowdfunding</p>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
-
-            </div>
         </section><!-- #services -->
 
         <!--==========================
@@ -185,44 +209,28 @@
         <!-- Template Main Javascript File -->
         <script src=<?php echo base_url('assets/js/main.js')?>></script>
 
-        
-        <!-- Modal -->
 
-        <div class="modal fade" id="myModal" role="dialog">
-          <div class="modal-dialog">
+        <!-- Bootstrap core JavaScript-->
+        <script src=<?php echo base_url('assets/vendor/jquery/jquery.min.js')?>></script>
+        <script src=<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>></script>
 
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">LOGIN</h4>
-              </div>
-              <div class="modal-body">
-                <form class="user" method="post" action="<?php echo base_url('action_login');?>">
-                    <div class="form-group">
-                      <div class="row">
-                        <input type="text" class="form-control form-control-user" id="username" name="username"
-                          aria-describedby="emailHelp" placeholder="Masukkan Username">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="row">
-                        <input type="password" class="form-control form-control-user" name="password" id="password"
-                          placeholder="Masukkan Password">
-                      </div>
-                    </div>
-                    <hr>
-                    <button type="submit" name="login" value="login" class="btn btn-primary btn-user btn-block">
-                      Login
-                    </button>
-                    <hr>
-                    <p>Don’t have an account? <a href="register">Sign up here</a></p>
-                  </form>
-              </div>
-            </div>
+        <!-- Core plugin JavaScript-->
+        <script src=<?php echo base_url('assets/vendor/jquery-easing/jquery.easing.min.js')?>></script>
 
-          </div>
-        </div>
+        <!-- Custom scripts for all pages-->
+        <script src=<?php echo base_url('assets/js/sb-admin-2.js')?>></script>
 
+        <!-- Page level plugins -->
+        <script src=<?php echo base_url('assets/vendor/datatables/jquery.dataTables.min.js')?>></script>
+        <script src=<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.min.js')?>></script>
+
+        <!-- Page level custom scripts -->
+        <script src=<?php echo base_url('assets/js/demo/datatables-demo.js')?>></script>
+
+        <!--==========================
+    Login Section
+  ============================-->
+        <?php include 'login.php' ?>
 </body>
 
 </html>

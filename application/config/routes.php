@@ -54,6 +54,8 @@ $route['home'] = 'CUser/home';
 $route['contact'] = 'CUser/contact';
 $route['register'] = 'CUser/register';
 $route['action_login'] = 'CUser/action_login';
+$route['action_register'] = 'CUser/register';
+$route['login'] = 'CUser/action_login';
 $route['logout'] = 'CUser/logout';
 
 $route['404_override'] = 'controllererror';

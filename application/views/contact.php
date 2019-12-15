@@ -42,59 +42,14 @@
     <!--==========================
   Header
   ============================-->
-    <header id="header">
-        <div class="container">
-
-            <div class="logo float-left">
-                <!-- Uncomment below if you prefer to use an image logo -->
-                <h1 class="text-light"><a href="home" class="scrollto"><span>KOLEKTIVA</span></a></h1>
-                <!-- <a href="#header" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid"></a> -->
-            </div>
-
-            <nav class="main-nav float-right d-none d-lg-block">
-                <ul>
-                    <li><a href="home">Home</a></li>
-                    <li><a href="dashboard">Dashboard</a></li>
-                    <li><a href="contact">Contact</a></li>
-                    <li><a href="login">Login</a></li>
-                    <li class="drop-down"><a href="">Account</a>
-                        <ul>
-                            <li><a href="#">Drop Down 3</a></li>
-                            <li><a href="#">Drop Down 4</a></li>
-                            <li><a href="#">Drop Down 5</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav><!-- .main-nav -->
-
-        </div>
-    </header><!-- #header -->
+    <?php include 'topbar.php' ?>
 
     <!--==========================
-    Intro Section
-                        <div class="owl-carousel testimonials-carousel wow fadeInUp">
-
-                            <div class="testimonial-item">
+    Banner Section
   ============================-->
-    <section id="intro" class="clearfix">
-        <div class="container d-flex h-100">
-            <div class="row justify-content-center align-self-center">
-                <div class="col-md-12 intro-info order-md-first order-last">
-                    <h2>An online crowdfunding platfrom to make your event comes true by collectively</h2>
-                    <div class="row-btn">
-                        <a href="#about" class="btn-get-started scrollto">Sign Up</a>
-                        <a href="#about" class="btn-get-started scrollto">Make Your Campaign</a>
-                    </div>
-                </div>
 
-                <div class="col-md-6 intro-img order-md-last order-first">
-                    <!-- <img src=<?php echo base_url('assets/img/intro-img.svg')?> alt="" class="img-fluid"> -->
-                </div>
-            </div>
-
-        </div>
-    </section><!-- #intro -->
-
+    <?php include 'banner.php' ?>
+    
     <main id="main">
 
         <!--==========================
@@ -176,6 +131,12 @@
 
         <!-- Template Main Javascript File -->
         <script src=<?php echo base_url('assets/js/main.js')?>></script>
+
+
+        <!--==========================
+    Login Section
+  ============================-->
+        <?php include 'login.php' ?>
 
 </body>
 

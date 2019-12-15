@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Perpustakaan dan Arsip Kota Malang</title>
+  <title>KOLEKTIVA</title>
 
   <!-- Custom fonts for this template-->
   <link href=<?php echo base_url('assets/vendor/fontawesome-free/css/all.min.css')?> rel="stylesheet" type="text/css">
@@ -19,10 +19,30 @@
 
   <!-- Custom styles for this template-->
   <link href=<?php echo base_url('assets/css/sb-admin-2.min.css')?> rel="stylesheet">
+
+  
+    <!-- Bootstrap CSS File -->
+    <link href=<?php echo base_url('assets/lib/bootstrap/css/bootstrap.min.css')?> rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href=<?php echo base_url('assets/lib/font-awesome/css/font-awesome.min.css')?> rel="stylesheet">
+    <link href=<?php echo base_url('assets/lib/animate/animate.min.css')?> rel="stylesheet">
+    <link href=<?php echo base_url('assets/lib/ionicons/css/ionicons.min.css')?> rel="stylesheet">
+    <link href=<?php echo base_url('assets/lib/owlcarousel/assets/owl.carousel.min.css')?> rel="stylesheet">
+    <link href=<?php echo base_url('assets/lib/lightbox/css/lightbox.min.css')?> rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href=<?php echo base_url('assets/css/style.css')?> rel="stylesheet">
+
 </head>
 
 <body class="bg-gradient-primary">
 
+    <!--==========================
+  Header
+  ============================-->
+  <?php include 'topbar.php' ?>
+  
   <div class="container">
 
     <!-- Outer Row -->
@@ -41,26 +61,38 @@
                 <div class="p-5">
                   <hr>
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Selamat Datang
+                    <h1 class="h4 text-gray-900 mb-4">Sign Up
                     </h1>
                   </div>
                   <hr>
-                  <form class="user" method="post" action="<?php echo base_url('action_login');?>">
+                  <form class="user" method="post" action="<?php echo base_url();?>CUser/action_register">
                     <div class="form-group">
                       <div class="row">
-                        <input type="text" class="form-control form-control-user" id="username" name="username"
-                          aria-describedby="emailHelp" placeholder="Masukkan Username">
+                        <input type="text" class="form-control form-control-user" id="fullName" name="fullName"
+                        placeholder="Full Name">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <input type="text" class="form-control form-control-user" id="email" name="email"
+                          aria-describedby="emailHelp" placeholder="E-mail">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <input type="text" class="form-control form-control-user" 
+                        onkeypress="return isNumberKey(event)" id="phoneNumber" name="phoneNumber" placeholder="Phone Number">
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="row">
                         <input type="password" class="form-control form-control-user" name="password" id="password"
-                          placeholder="Masukkan Password">
+                          placeholder="Password">
                       </div>
                     </div>
                     <hr>
-                    <button type="submit" name="login" value="login" class="btn btn-primary btn-user btn-block">
-                      Login
+                    <button type="submit" name="register" value="register" class="btn btn-primary btn-user btn-block">
+                      Create Account
                     </button>
                     <hr>
                   </form>
@@ -86,6 +118,19 @@
   <!-- Custom scripts for all pages-->
   <script src=<?php echo base_url('assets/js/sb-admin-2.min.js')?>></script>
 
+        <!--==========================
+    Login Section
+  ============================-->
+        <?php include 'login.php' ?>
+
 </body>
 
+<script>
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+    </script>
 </html>
