@@ -195,13 +195,14 @@
                                         <div class="row">
                                             <label class="col-sm-2 col-sm-2 control-label">Biaya Pendaftaran</label>
                                             <div class="col-sm-10">
-                                            
                                                 <div class="input-group mb-2 mr-sm-2">
                                                     <div class="input-group-prepend">
-                                                    <div class="input-group-text">Rp.</div>
+                                                        <div class="input-group-text">Rp.</div>
                                                     </div>
-                                                <input required type="text" placeholder="1500000" onkeypress="return isNumberKey(event)"
-                                                    class="form-control round-form" name="biaya_pendaftaran" id="biaya_pendaftaran">
+                                                    <input required type="text" placeholder="1500000"
+                                                        onkeypress="return isNumberKey(event)"
+                                                        class="form-control round-form" name="biaya_pendaftaran"
+                                                        id="biaya_pendaftaran">
                                                 </div>
                                             </div>
                                         </div>
@@ -230,9 +231,9 @@
 
                                     <div class="form-group">
                                         <div class="row">
-                                        <label class="col-sm-2 col-sm-2 control-label">Form Pendaftaran</label>
+                                            <label class="col-sm-2 col-sm-2 control-label">Form Pendaftaran</label>
                                             <div class="col-sm-10">
-                                                    <input type="checkbox" />
+                                                <input type="checkbox" />
                                             </div>
                                         </div>
                                     </div>

@@ -25,6 +25,7 @@ class MSign extends CI_Model {
                         $_SESSION['password'] = $password; 
                         $_SESSION['login']='login';
                         $_SESSION['fullName'] = $row->fullName;  
+                        $_SESSION['idUser'] = $row->id;  
                     } 
                     $data['content']=$this->db->get('user');
                     $this->load->view('home',$data);

@@ -48,4 +48,16 @@ class CUser extends CI_Controller
 	{
         $this->load->view('contribute');
     }
+
+    public function add_campaign()
+	{
+        $this->load->model('MUser');
+        $this->MUser->add_campaign();
+    }    
+
+	public function action_add_campaign()
+	{
+        $this->load->model('MUser');
+        $this->MUser->action_add_campaign();
+    }
 }

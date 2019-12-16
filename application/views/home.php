@@ -116,7 +116,7 @@
                                                         <td>Event Name</td>
                                                         <td>Due Date</td>
                                                         <td>
-                                                            <button onclick="window.location.href = '<?php echo base_url() ?>/contribute'" class="btn btn-primary btn-user btn-block">Go</butt>
+                                                            <button onclick="window.location.href = '<?php echo base_url() ?>contribute'" class="btn btn-primary btn-user btn-block">Go</butt>
                                                         </td>
                                                     </tr>
                                                 </tbody>

@@ -59,6 +59,7 @@ $route['login'] = 'CUser/action_login';
 $route['logout'] = 'CUser/logout';
 $route['dashboard'] = 'CUser/dashboard';
 $route['contribute'] = 'CUser/contribute';
+$route['add-campaign'] = 'CUser/add_campaign';
 
 $route['404_override'] = 'controllererror';
 $route['translate_uri_dashes'] = FALSE;
