@@ -38,4 +38,14 @@ class CUser extends CI_Controller
         session_destroy();
         redirect('home', 'refresh');
     }
+
+    public function dashboard()
+	{
+        $this->load->view('dashboard');
+    }
+    
+    public function contribute()
+	{
+        $this->load->view('contribute');
+    }
 }

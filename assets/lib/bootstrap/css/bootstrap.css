@@ -4560,6 +4560,7 @@ input[type="button"].btn-block {
 
 .card {
   position: relative;
+  margin: 20px;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -4570,6 +4571,8 @@ input[type="button"].btn-block {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
+  text-align: center;
+  align-content: center;
 }
 
 .card > hr {

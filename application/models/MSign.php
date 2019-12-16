@@ -46,6 +46,7 @@ class MSign extends CI_Model {
                 $email = $_POST['email'];
                 $phoneHumber = $_POST['phoneNumber'];
                 $password = md5($_POST['password']);
+                $today = date("F j, Y"); 
                 
                 $this->db->where('email', $email);
                 $this->db->from('user');
@@ -62,9 +63,10 @@ class MSign extends CI_Model {
                             'email' => $this->input->post('email'),
                             'phoneNumber' => $this->input->post('phoneNumber'),
                             'password' => $password,
-                            'role' => 2
+                            'role' => 2,
+                            'memberSince' => $today
                         );
-    
+
                         $this->db->insert('user', $data);
     
                         redirect('home','refresh');
