@@ -60,6 +60,7 @@ $route['logout'] = 'CUser/logout';
 $route['dashboard'] = 'CUser/dashboard';
 $route['contribute'] = 'CUser/contribute';
 $route['add-campaign'] = 'CUser/add_campaign';
+$route['add-gift'] = 'CUser/add_gift';
 
 $route['404_override'] = 'controllererror';
 $route['translate_uri_dashes'] = FALSE;

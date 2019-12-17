@@ -76,7 +76,7 @@
           <?php foreach ($content->result_array() as $key): ?>
           <div class="col-lg-6 col-md-6">
             <div class="about-img">
-              <img src=<?php echo base_url('assets/uploads/'.$key['image'])?> alt="">
+              <img src=<?php echo base_url('assets/uploads/campaign/'.$key['image'])?> alt="">
             </div>
           </div>
 

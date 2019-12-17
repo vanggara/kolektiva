@@ -10592,6 +10592,7 @@ if ( !noGlobal ) {
 }
 return jQuery;
 } );
+
 $(document).ready( function() {
 	$(document).on('change', '.btn-file :file', function() {
 	var input = $(this),
@@ -10611,6 +10612,7 @@ $(document).ready( function() {
 		}
 	
 	});
+
 	function readURL(input) {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
@@ -10622,8 +10624,24 @@ $(document).ready( function() {
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
+	
+	function readURL2(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			
+			reader.onload = function (e) {
+				$('#img-ktp').attr('src', e.target.result);
+			}
+			
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
 
 	$("#imgInp").change(function(){
 		readURL(this);
-	}); 	
+	}); 
+	
+	$("#imgKtp").change(function(){
+		readURL2(this);
+	}); 
 });

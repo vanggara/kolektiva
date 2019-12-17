@@ -94,13 +94,14 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
-                                                <label>Upload Image</label>
+                                                <label>Upload Poster</label>
                                                 <div class="input-group my-3">
                                                     <input required type="text" name="image" accept="image/*"
                                                         class="file form-control" disabled placeholder="Upload File" />
                                                     <span class="input-group-btn">
                                                         <span class="btn btn-primary btn-file">
-                                                            Browse… <input type="file" id="imgInp" name="imgInp" />
+                                                            Browse… <input required type="file" id="imgInp"
+                                                                name="imgInp" />
                                                             <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
                                                         </span>
                                                     </span>
@@ -108,6 +109,18 @@
                                                 <img src="https://placehold.it/80x80"
                                                     style="height: 150px; width: 150px;" id="img-upload"
                                                     class="img-thumbnail">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label for="ticket">Ticket Price</label>
+                                                <div class="input-group mb-2 mr-sm-2">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">Rp.</div>
+                                                    </div>
+                                                    <input required type="text" onkeypress="return isNumberKey(event)"
+                                                        class="form-control round-form" name="ticket" id="ticket">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -165,10 +178,56 @@
                                             </div>
                                         </div>
                                         <hr>
-                                        <button type="submit" name="submit" value="Add Campaign"
-                                            class="btn btn-primary btn-user btn-block">
-                                            Save
-                                        </button>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label>Upload KTP</label>
+                                                <div class="input-group my-3">
+                                                    <input required type="text" name="image" accept="image/*"
+                                                        class="file form-control" disabled placeholder="Upload File" />
+                                                    <span class="input-group-btn">
+                                                        <span class="btn btn-primary btn-file">
+                                                            Browse… <input required type="file" id="imgKtp"
+                                                                name="imgKtp" />
+                                                            <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <img src="https://placehold.it/80x80"
+                                                    style="height: 150px; width: 150px;" id="img-ktp"
+                                                    class="img-thumbnail">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label>Upload Proposal</label>
+                                                <div class="input-group my-3">
+                                                    <input required type="text" name="image"
+                                                        class="file form-control" disabled placeholder="Upload File" />
+                                                    <span class="input-group-btn">
+                                                        <span class="btn btn-primary btn-file">
+                                                            Browse… <input required type="file" id="pdfProposal"
+                                                                name="pdfProposal" size="50"/>
+                                                            <input type="hidden" />
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <button type="submit" name="submit" value="Add Campaign"
+                                                    class="btn btn-primary btn-user btn-block">
+                                                    Save
+                                                </button>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <button type="submit" name="addGift" value="Add Gift"
+                                                    class="btn btn-secondary btn-user btn-block">
+                                                    Save and Add Gift
+                                                </button>
+                                            </div>
+                                        </div>
                                         <hr>
                                     </form>
                                 </div>

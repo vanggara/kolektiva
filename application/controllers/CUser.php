@@ -63,4 +63,16 @@ class CUser extends CI_Controller
         $this->load->model('MUser');
         $this->MUser->action_add_campaign();
     }
+    
+	public function add_gift()
+	{
+        $this->load->model('MUser');
+        $this->MUser->add_gift();
+    }
+    
+	public function action_add_gift()
+	{
+        $this->load->model('MUser');
+        $this->MUser->action_add_gift();
+    }
 }
