@@ -3,9 +3,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MUser extends CI_Model {
 
-    
+    public function contribute($id=""){
+        error_reporting(0);
+        $query = "SELECT * FROM campaign where id='".$id."';";
+        $data['content'] = $this->db->query($query);
+        $this->load->view('contribute', $data);
+    }
+
+    public function event_list(){
+        error_reporting(0);
+        $query = "SELECT * FROM campaign WHERE approval=1";
+        $data['content'] = $this->db->query($query);
+        $this->load->view('home', $data);
+    }
+
     public function add_campaign(){
-        // session_start();
         error_reporting(0);
         $query = "SELECT * FROM category";
         $data['content'] = $this->db->query($query);
@@ -13,7 +25,6 @@ class MUser extends CI_Model {
     }
 
     public function action_add_campaign(){
-        // session_start();
         error_reporting(0);
         // $_SESSION['login']='login';
         if(isset($_POST['submit']))

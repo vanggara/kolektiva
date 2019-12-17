@@ -111,14 +111,16 @@
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
+                                                    <?php foreach ($content->result_array() as $key): ?>
                                                     <tr>
-                                                        <td>Event Category</td>
-                                                        <td>Event Name</td>
-                                                        <td>Due Date</td>
+                                                        <td><?php echo $key['category'] ?></td>
+                                                        <td><?php echo $key['eventName'] ?></td>
+                                                        <td><?php echo $key['dueDate'] ?></td>
                                                         <td>
-                                                            <button onclick="window.location.href = '<?php echo base_url() ?>contribute'" class="btn btn-primary btn-user btn-block">Go</butt>
+                                                            <button onclick="window.location.href = '<?php echo base_url() ?>CUser/contribute/<?php echo $key['id'] ?>'" class="btn btn-primary btn-user btn-block">Go</butt>
                                                         </td>
                                                     </tr>
+                                                    <?php endforeach ?>
                                                 </tbody>
                                             </table>
                                         </div>

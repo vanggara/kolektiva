@@ -26,9 +26,9 @@ class MSign extends CI_Model {
                         $_SESSION['login']='login';
                         $_SESSION['fullName'] = $row->fullName;  
                         $_SESSION['idUser'] = $row->id;  
-                    } 
-                    $data['content']=$this->db->get('user');
-                    $this->load->view('home',$data);
+                    }
+                    $this->load->model('MUser');
+                    $this->MUser->event_list();
                 } 
                 else{
                     echo "<script>alert('Invalid Details!');</script>";

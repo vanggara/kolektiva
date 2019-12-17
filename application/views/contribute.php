@@ -46,7 +46,6 @@
       text-align: center;
     }
   </style>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -74,18 +73,29 @@
       <div class="container">
         <div class="row">
 
+          <?php foreach ($content->result_array() as $key): ?>
           <div class="col-lg-6 col-md-6">
             <div class="about-img">
-              <img src="assets/img/about-img.jpg" alt="">
+              <img src=<?php echo base_url('assets/uploads/'.$key['image'])?> alt="">
             </div>
           </div>
 
           <div class="col-lg-6 col-md-6">
             <div class="about-content">
-              <h5 class="bg-text-red">Category</h5>
-              <h2>Acara A</h2>
-              <p>Will be held on Friday, 21-06-2019<br>Follow us on Instagram: @musicevent</p>
-              <p>Follow us on Instagram: @musicevent</p>
+              <h5 class="bg-text-red"><?php echo $key['category'] ?></h5>
+              <div class="row">
+                <div class="col-lg-4 col-4">
+                  <h2><?php echo $key['eventName'] ?></h2>
+                </div>
+                <div class="col-lg-4 col-4">
+                </div>
+                <div class="col-lg-4 col-4">
+                  <button class="btn btn-primary btn-user btn-block">
+                  <a href="#" data-toggle="modal" data-target="#getTicket" style="color: black;">Get a ticket</a></button>
+                </div>
+              </div>
+              <p>Will be held on Friday, <?php echo $key['eventDate'] ?><br>Follow us on Instagram:
+                @<?php echo $key['instagram'] ?></p>
               <table>
                 <tr>
                   <th>Campaigner</th>
@@ -93,34 +103,41 @@
                   <th>Venue</th>
                 </tr>
                 <tr>
-                  <td>Syaifuddin</td>
-                  <td>14 June 2019</td>
-                  <td>Samantha Krida</td>
+                  <th><?php echo $key['campaigner'] ?></th>
+                  <th><?php echo $key['dueDate'] ?></th>
+                  <th><?php echo $key['venue'] ?></th>
                 </tr>
               </table>
               <p>
-                <p> Ullamco laboris nisi ut aliquip ex ea commodo
-                  consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore
-                  eu fugiat nulla pariatur.</p>
+                <p><?php echo $key['detail'] ?></p>
               </p>
               <hr>
+              <?php $datetime1 = new DateTime("now");
+                $datetime2 = new DateTime($key['dueDate']);
+                $interval = $datetime1->diff($datetime2);?>
               <div class="row counters">
                 <div class="col-lg-4 col-4 text-center">
-                  <p><span style="color: #FF7065;font-size: 30px;font-weight:bold" data-toggle="counter-up">274</span>
-                    More Days</>
+                  <?php if ($interval->format('%R%a') < 0) {?>
+                  <p><span style="color: #FF7065;font-size: 30px;font-weight:bold">
+                      Finish</p>
+                  <?php } else{?>
+                  <p><span style="color: #FF7065;font-size: 30px;font-weight:bold"
+                      data-toggle="counter-up"><?php echo $interval->format('%R%a') ?></span>
+                    More Days</p>
+                  <?php } ?>
                 </div>
                 <div class="col-lg-2 col-2 text-center">
                 </div>
                 <div class="col-lg-6 col-6 text-center">
                   <p><span style="color: #FF7065;font-size: 30px;font-weight:bold" data-toggle="counter-up">60</span>%
-                    to Rp.1000000</h4>
+                    to Rp.<?php echo $key['target'] ?></h4>
                 </div>
               </div>
             </div>
           </div>
+          <?php endforeach ?>
         </div>
       </div>
-
     </section><!-- #about -->
 
 
@@ -229,6 +246,7 @@
     Login Section
   ============================-->
     <?php include 'login.php' ?>
+    <?php include 'get_a_ticket.php' ?>
 
 </body>
 

@@ -7,7 +7,9 @@ class CUser extends CI_Controller
 {
 	public function home()
 	{
-        $this->load->view('home');
+        $query = "SELECT * FROM campaign WHERE approval=1";
+        $data['content'] = $this->db->query($query);
+        $this->load->view('home', $data);
     }
 
 	public function contact()
@@ -44,9 +46,10 @@ class CUser extends CI_Controller
         $this->load->view('dashboard');
     }
     
-    public function contribute()
+    public function contribute($id="")
 	{
-        $this->load->view('contribute');
+        $this->load->model('MUser');
+        $this->MUser->contribute($id);
     }
 
     public function add_campaign()

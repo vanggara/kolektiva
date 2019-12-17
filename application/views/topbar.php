@@ -3,24 +3,24 @@
 
         <div class="logo float-left">
             <!-- Uncomment below if you prefer to use an image logo -->
-            <h1 class="text-light"><a href="home" class="scrollto"><span>KOLEKTIVA</span></a></h1>
+            <h1 class="text-light"><a href=<?php echo base_url('home')?> class="scrollto"><span>KOLEKTIVA</span></a></h1>
             <!-- <a href="#header" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid"></a> -->
         </div>
 
         <nav class="main-nav float-right d-none d-lg-block">
             <ul>
-                <li><a href="home">Home</a></li>
+                <li><a href=<?php echo base_url('home')?>>Home</a></li>
                 <?php if(isset($_SESSION['login']) && $_SESSION['fullName']){?>
-                <li><a href="dashboard">Dashboard</a></li>
+                <li><a href=<?php echo base_url('dashboard')?>>Dashboard</a></li>
                 <?php } else{?>
                 <li><a data-toggle="modal" href="#" data-target="#dashboard">Dashboard</a></li>
                 <?php } ?>
-                <li><a href="contact">Contact</a></li>
+                <li><a href=<?php echo base_url('contact')?>>Contact</a></li>
                 <?php if(isset($_SESSION['login']) && $_SESSION['fullName']){?>
                 <li class="drop-down btn btn-primary"><a href=""
                         style="color:white;"><?php echo $_SESSION['fullName'] ?></a>
                     <ul>
-                        <li><a href="logout">Logout</a></li>
+                        <li><a href=<?php echo base_url('logout')?>>Logout</a></li>
                     </ul>
                 </li>
                 <?php } else{?>
