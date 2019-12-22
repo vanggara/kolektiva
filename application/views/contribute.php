@@ -91,7 +91,8 @@
                 </div>
                 <div class="col-lg-4 col-4">
                   <button class="btn btn-primary btn-user btn-block">
-                  <a href="#" data-toggle="modal" data-target="#getTicket" style="color: black;">Get a ticket</a></button>
+                    <a href="#" data-toggle="modal" data-target="#getTicket" style="color: black;">Get a
+                      ticket</a></button>
                 </div>
               </div>
               <p>Will be held on Friday, <?php echo $key['eventDate'] ?><br>Follow us on Instagram:
@@ -148,53 +149,34 @@
       <div class="container">
 
         <div class="owl-carousel clients-carousel">
+          <?php foreach ($content2->result_array() as $key): ?>
           <div class="row flex-items-xs-middle flex-items-xs-center">
             <div class="card">
-              <img src="assets/img/about-img.jpg" alt="">
-              <p>Rp100.000</p>
-              <p>Package 1<br>
-                With package 1 you will get our
-                merchandise T-Shirt.
+              <img style="height: 238px; width: 300px" src=<?php echo base_url('assets/uploads/gift/')?><?php echo $key['image'] ?> alt="">
+              <p><?php echo $key['price'] ?></p>
+              <p><?php echo $key['package_name'] ?><br>
+                <?php echo $key['detail'] ?>
               </p>
               <hr>
               <div class="row counters">
                 <div class="col-lg-4 col-4 text-center">
-                  <p><span style="color: #FF7065;font-size: 20px;font-weight:bold" data-toggle="counter-up">274</span>
+                  <p><span style="color: #FF7065;font-size: 20px;font-weight:bold"
+                      data-toggle="counter-up"><?php echo $key['gift_stock'] ?></span>
                     Left</p>
                 </div>
                 <div class="col-lg-2 col-2 text-center">
                 </div>
                 <div class="col-lg-6 col-6 text-center">
-                  <div class="btn bg-text-red">Pick This</h5>
-                  </div>
+                  <button class="btn btn-primary btn-user btn-block">
+                    <a href="#" data-toggle="modal" data-target="#pickThis" class="btn bg-text-red">Pick
+                      This</a></button>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row flex-items-xs-middle flex-items-xs-center">
-            <div class="card">
-              <img src="assets/img/about-img.jpg" alt="">
-              <p>Rp100.000</p>
-              <p>Package 1<br>
-                With package 1 you will get our
-                merchandise T-Shirt.
-              </p>
-              <hr>
-              <div class="row counters">
-                <div class="col-lg-4 col-4 text-center">
-                  <p><span style="color: #FF7065;font-size: 20px;font-weight:bold" data-toggle="counter-up">274</span>
-                    Left</p>
-                </div>
-                <div class="col-lg-2 col-2 text-center">
-                </div>
-                <div class="col-lg-6 col-6 text-center">
-                  <div class="btn bg-text-red">Pick This</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <?php endforeach ?>
         </div>
+      </div>
 
       </div>
     </section><!-- #clients -->
@@ -247,6 +229,7 @@
   ============================-->
     <?php include 'login.php' ?>
     <?php include 'get_a_ticket.php' ?>
+    <?php include 'pick_this.php' ?>
 
 </body>
 

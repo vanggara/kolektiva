@@ -16,14 +16,14 @@
 <link href=<?php echo base_url('assets/css/style.css')?> rel="stylesheet">
 
 <!-- Modal -->
-<?php foreach ($content->result_array() as $key): ?>
-<div class="modal fade" id="getTicket" role="dialog">
+<?php foreach ($content2->result_array() as $key): ?>
+<div class="modal fade" id="pickThis" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">RSVP</h4>
+                <h4 class="modal-title"><?php echo $key['package_name'] ?></h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -31,14 +31,14 @@
                     <div class="col-lg-9 col-9 text-left">
                         <div class="col-lg-9 col-9 text-left row">
                             <p class="modal-title">Rp. </p>
-                            <p class="modal-title" id="price"><?php echo $key['price'] ?></p>
+                            <p class="modal-title" id="price2"><?php echo $key['price'] ?></p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-3 text-center">
                         <div class="form-group">
                             <div class="row">
                                 <!-- <label for="total_ticket">Category</label> -->
-                                <select class="form-control " id="total_ticket" name="total_ticket">
+                                <select class="form-control " id="total_ticket2" name="total_ticket2">
                                     <option value='1' onclick="cek()">1</option>
                                     <option value='2' onclick="cek()">2</option>
                                     <option value='3' onclick="cek()">3</option>
@@ -54,12 +54,12 @@
                 <p>Order Summary</p>
                 <div class="col-lg-9 col-9 text-left row">
                     <p class="modal-title">Rp. </p>
-                    <p id="penjumlahan"><?php echo $key['price'] ?></p>
+                    <p id="penjumlahan2"><?php echo $key['price'] ?></p>
                 </div>
                 <hr>
             </div>
             <div class="modal-body text-center">
-                <button id="pay-button" type="button" class="bg-text-red" data-dismiss="modal">Buy Now</button>
+                <button id="pay-button2" type="button" class="bg-text-red" data-dismiss="modal">Buy Now</button>
             </div>
         </div>
 
@@ -70,19 +70,19 @@
 <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-_hdan0rRy8sHtwJM"></script>
 <script type="text/javascript">
     function cek() {
-        var total_ticket = document.getElementById("total_ticket");
-        var price = document.getElementById('price').innerHTML;
+        var total_ticket = document.getElementById("total_ticket2");
+        var price = document.getElementById('price2').innerHTML;
         var strUser = total_ticket.options[total_ticket.selectedIndex].value;
         var summary = price * strUser;
 
-        document.getElementById("penjumlahan").innerHTML = summary;
+        document.getElementById("penjumlahan2").innerHTML = summary;
     }
     
     var bilangan1 = 6;
     var bilangan2 = 2;
     var penjumlahan = bilangan1;
 
-  document.getElementById('pay-button').onclick = function(){
+  document.getElementById('pay-button2').onclick = function(){
     // This is minimal request body as example.
     // Please refer to docs for all available options: https://snap-docs.midtrans.com/#json-parameter-request-body
     // TODO: you should change this gross_amount and order_id to your desire. 
