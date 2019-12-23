@@ -6,7 +6,9 @@ class MUser extends CI_Model {
     public function contribute($id=""){
         error_reporting(0);
         $query = "SELECT * FROM campaign where id='".$id."';";
-        $query2 = "SELECT * FROM gift;";
+        $query2 = "SELECT gift.image, gift.price, gift.package_name, 
+        campaign.dueDate, gift.detail, gift.gift_stock FROM gift 
+        JOIN campaign ON gift.id_campaign = campaign.id WHERE gift.id_campaign = '".$id."';";
         $data['content'] = $this->db->query($query);
         $data['content2'] = $this->db->query($query2);
         $this->load->view('contribute', $data);

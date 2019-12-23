@@ -16,21 +16,26 @@
 <link href=<?php echo base_url('assets/css/style.css')?> rel="stylesheet">
 
 <!-- Modal -->
-<?php foreach ($content2->result_array() as $key): ?>
-<div class="modal fade" id="pickThis" role="dialog">
+<?php foreach ($content->result_array() as $key): ?>
+<div class="modal fade" id="getTicket2" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title"><?php echo $key['package_name'] ?></h4>
+                <h4 class="modal-title">RSVP &nbsp</h4>
+                <h4 class="modal-title" id="event_name2"><?php echo $key['eventName'] ?></h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-lg-9 col-9 text-left">
                         <div class="col-lg-9 col-9 text-left row">
-                            <p class="modal-title">Rp. </p>
+                            <p class="modal-title">Name: </p>
+                            <p class="modal-title" id="fullName2"><?php echo $_SESSION['fullName'] ?></p>
+                        </div>
+                        <div class="col-lg-9 col-9 text-left row">
+                            <p class="modal-title">Price: Rp. </p>
                             <p class="modal-title" id="price2"><?php echo $key['price'] ?></p>
                         </div>
                     </div>
@@ -38,23 +43,17 @@
                         <div class="form-group">
                             <div class="row">
                                 <!-- <label for="total_ticket">Category</label> -->
-                                <select class="form-control " id="total_ticket2" name="total_ticket2">
-                                    <option value='1' onclick="cek()">1</option>
-                                    <option value='2' onclick="cek()">2</option>
-                                    <option value='3' onclick="cek()">3</option>
-                                    <option value='4' onclick="cek()">4</option>
-                                    <option value='5' onclick="cek()">5</option>
+                                <select class="form-control" id="total_ticket2" name="total_ticket">
+                                    <option value='1' onclick="cek2()">1</option>
+                                    <option value='2' onclick="cek2()">2</option>
+                                    <option value='3' onclick="cek2()">3</option>
+                                    <option value='4' onclick="cek2()">4</option>
+                                    <option value='5' onclick="cek2()">5</option>
                                 </select>
                                 <br>
                             </div>
                         </div>
                     </div>
-                </div>
-                <hr>
-                <p>Order Summary</p>
-                <div class="col-lg-9 col-9 text-left row">
-                    <p class="modal-title">Rp. </p>
-                    <p id="penjumlahan2"><?php echo $key['price'] ?></p>
                 </div>
                 <hr>
             </div>
@@ -69,29 +68,41 @@
 <!-- TODO: Remove ".sandbox" from script src URL for production environment. Also input your client key in "data-client-key" -->
 <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-_hdan0rRy8sHtwJM"></script>
 <script type="text/javascript">
-    function cek() {
-        var total_ticket = document.getElementById("total_ticket2");
-        var price = document.getElementById('price2').innerHTML;
-        var strUser = total_ticket.options[total_ticket.selectedIndex].value;
-        var summary = price * strUser;
-
-        document.getElementById("penjumlahan2").innerHTML = summary;
-    }
     
-    var bilangan1 = 6;
-    var bilangan2 = 2;
-    var penjumlahan = bilangan1;
+    var total_ticket2 = document.getElementById("total_ticket2");
+        window.price2 = document.getElementById('price2').innerHTML;
+        window.strUser2 = total_ticket2.options[total_ticket2.selectedIndex].value;
+        window.summary2 = price * strUser;
+        window.eventName2 = document.getElementById('event_name2').innerHTML;
+        window.fullName2 = document.getElementById('fullName2').innerHTML;
+        
+    function cek2() {
+        var total_ticket2 = document.getElementById("total_ticket2");
+        window.price2 = document.getElementById('price2').innerHTML;
+        window.strUser2 = total_ticket2.options[total_ticket2.selectedIndex].value;
+        window.summary2 = price * strUser;
+        window.eventName2 = document.getElementById('event_name2').innerHTML;
+        window.fullName2 = document.getElementById('fullName2').innerHTML;
+    }
 
-  document.getElementById('pay-button2').onclick = function(){
+    document.getElementById('pay-button2').onclick = function(){
     // This is minimal request body as example.
     // Please refer to docs for all available options: https://snap-docs.midtrans.com/#json-parameter-request-body
     // TODO: you should change this gross_amount and order_id to your desire. 
     var requestBody = 
     {
       transaction_details: {
-        gross_amount: penjumlahan,
+        gross_amount: window.summary2,
         // as example we use timestamp as order ID
         order_id: 'T-'+Math.round((new Date()).getTime() / 1000) 
+      },
+      item_details: {
+        name: 'Package '+window.eventName2,
+        quantity: window.strUser2,
+        price: window.price2
+      },
+      customer_details: {
+        first_name: window.fullName2
       }
     }
     
@@ -99,7 +110,7 @@
       var response = JSON.parse(response);
       console.log("new token response", response);
       // Open SNAP payment popup, please refer to docs for all available options: https://snap-docs.midtrans.com/#snap-js
-      snap.pay(response.token);
+      snap.pay(response.token, {skipOrderSummary : false});
     })
   };
   /**

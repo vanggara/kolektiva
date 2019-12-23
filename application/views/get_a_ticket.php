@@ -23,14 +23,19 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">RSVP</h4>
+                <h4 class="modal-title">RSVP &nbsp</h4>
+                <h4 class="modal-title" id="event_name"><?php echo $key['eventName'] ?></h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-lg-9 col-9 text-left">
                         <div class="col-lg-9 col-9 text-left row">
-                            <p class="modal-title">Rp. </p>
+                            <p class="modal-title">Name: </p>
+                            <p class="modal-title" id="fullName"><?php echo $_SESSION['fullName'] ?></p>
+                        </div>
+                        <div class="col-lg-9 col-9 text-left row">
+                            <p class="modal-title">Price: Rp. </p>
                             <p class="modal-title" id="price"><?php echo $key['price'] ?></p>
                         </div>
                     </div>
@@ -38,7 +43,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <!-- <label for="total_ticket">Category</label> -->
-                                <select class="form-control " id="total_ticket" name="total_ticket">
+                                <select class="form-control" id="total_ticket" name="total_ticket">
                                     <option value='1' onclick="cek()">1</option>
                                     <option value='2' onclick="cek()">2</option>
                                     <option value='3' onclick="cek()">3</option>
@@ -49,12 +54,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <hr>
-                <p>Order Summary</p>
-                <div class="col-lg-9 col-9 text-left row">
-                    <p class="modal-title">Rp. </p>
-                    <p id="penjumlahan"><?php echo $key['price'] ?></p>
                 </div>
                 <hr>
             </div>
@@ -69,29 +68,41 @@
 <!-- TODO: Remove ".sandbox" from script src URL for production environment. Also input your client key in "data-client-key" -->
 <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-_hdan0rRy8sHtwJM"></script>
 <script type="text/javascript">
+    
+    var total_ticket = document.getElementById("total_ticket");
+        window.price = document.getElementById('price').innerHTML;
+        window.strUser = total_ticket.options[total_ticket.selectedIndex].value;
+        window.summary = price * strUser;
+        window.eventName = document.getElementById('event_name').innerHTML;
+        window.fullName = document.getElementById('fullName').innerHTML;
+        
     function cek() {
         var total_ticket = document.getElementById("total_ticket");
-        var price = document.getElementById('price').innerHTML;
-        var strUser = total_ticket.options[total_ticket.selectedIndex].value;
-        var summary = price * strUser;
-
-        document.getElementById("penjumlahan").innerHTML = summary;
+        window.price = document.getElementById('price').innerHTML;
+        window.strUser = total_ticket.options[total_ticket.selectedIndex].value;
+        window.summary = price * strUser;
+        window.eventName = document.getElementById('event_name').innerHTML;
+        window.fullName = document.getElementById('fullName').innerHTML;
     }
-    
-    var bilangan1 = 6;
-    var bilangan2 = 2;
-    var penjumlahan = bilangan1;
 
-  document.getElementById('pay-button').onclick = function(){
+    document.getElementById('pay-button').onclick = function(){
     // This is minimal request body as example.
     // Please refer to docs for all available options: https://snap-docs.midtrans.com/#json-parameter-request-body
     // TODO: you should change this gross_amount and order_id to your desire. 
     var requestBody = 
     {
       transaction_details: {
-        gross_amount: penjumlahan,
+        gross_amount: window.summary,
         // as example we use timestamp as order ID
         order_id: 'T-'+Math.round((new Date()).getTime() / 1000) 
+      },
+      item_details: {
+        name: 'Ticket '+window.eventName,
+        quantity: window.strUser,
+        price: window.price
+      },
+      customer_details: {
+        first_name: window.fullName
       }
     }
     
@@ -99,7 +110,7 @@
       var response = JSON.parse(response);
       console.log("new token response", response);
       // Open SNAP payment popup, please refer to docs for all available options: https://snap-docs.midtrans.com/#snap-js
-      snap.pay(response.token);
+      snap.pay(response.token, {skipOrderSummary : false});
     })
   };
   /**

@@ -89,10 +89,18 @@
                 </div>
                 <div class="col-lg-4 col-4">
                 </div>
+              <?php $datetime1 = new DateTime("now");
+                $datetime2 = new DateTime($key['dueDate']);
+                $interval = $datetime2->diff($datetime1);?>
                 <div class="col-lg-4 col-4">
+                  <?php if ($interval->format('%R%a') < 0) {?>
+                  <button disabled class="btn btn-primary btn-user btn-block">
+                    <a style="color: black;">Too Late</a></button>
+                  <?php } else{?>
                   <button class="btn btn-primary btn-user btn-block">
                     <a href="#" data-toggle="modal" data-target="#getTicket" style="color: black;">Get a
                       ticket</a></button>
+                  <?php } ?>
                 </div>
               </div>
               <p>Will be held on Friday, <?php echo $key['eventDate'] ?><br>Follow us on Instagram:
@@ -115,7 +123,7 @@
               <hr>
               <?php $datetime1 = new DateTime("now");
                 $datetime2 = new DateTime($key['dueDate']);
-                $interval = $datetime1->diff($datetime2);?>
+                $interval = $datetime2->diff($datetime1);?>
               <div class="row counters">
                 <div class="col-lg-4 col-4 text-center">
                   <?php if ($interval->format('%R%a') < 0) {?>
@@ -152,24 +160,37 @@
           <?php foreach ($content2->result_array() as $key): ?>
           <div class="row flex-items-xs-middle flex-items-xs-center">
             <div class="card">
-              <img style="height: 238px; width: 300px" src=<?php echo base_url('assets/uploads/gift/')?><?php echo $key['image'] ?> alt="">
+              <img style="height: 238px; width: 300px"
+                src=<?php echo base_url('assets/uploads/gift/')?><?php echo $key['image'] ?> alt="">
               <p><?php echo $key['price'] ?></p>
               <p><?php echo $key['package_name'] ?><br>
                 <?php echo $key['detail'] ?>
               </p>
               <hr>
+              <?php $datetime1 = new DateTime("now");
+                $datetime2 = new DateTime($key['dueDate']);
+                $interval = $datetime2->diff($datetime1);?>
               <div class="row counters">
                 <div class="col-lg-4 col-4 text-center">
+                  <?php if ($interval->format('%R%a') < 0) {?>
+                  <p><span style="color: #FF7065;font-size: 20px;font-weight:bold"
+                      data-toggle="counter-up">0</span>
+                    Left</p>
+                  <?php } else{?>
                   <p><span style="color: #FF7065;font-size: 20px;font-weight:bold"
                       data-toggle="counter-up"><?php echo $key['gift_stock'] ?></span>
                     Left</p>
+                  <?php } ?>
                 </div>
-                <div class="col-lg-2 col-2 text-center">
-                </div>
-                <div class="col-lg-6 col-6 text-center">
+                <div class="col-lg-8 col-8 text-center">
+                  <?php if ($interval->format('%R%a') < 0) {?>
+                  <button disabled class="btn btn-primary btn-user btn-block">
+                    <a style="color: white;">Too Late</a></button>
+                  <?php } else{?>
                   <button class="btn btn-primary btn-user btn-block">
-                    <a href="#" data-toggle="modal" data-target="#pickThis" class="btn bg-text-red">Pick
-                      This</a></button>
+                    <a href="#" data-toggle="modal" data-target="#getTicket" style="color: white;">Pick This</a>
+                    </button>
+                  <?php } ?>
                 </div>
               </div>
             </div>
