@@ -42,6 +42,7 @@
     <!-- Custom styles for this page -->
     <link href=<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.min.css')?> rel="stylesheet">
 
+    <?php require 'convertRupiahs.php' ?>
 
     <!-- =======================================================
     Theme Name: Rapid
@@ -121,6 +122,18 @@
                                                                 </tr>
                                                             </tfoot>
                                                             <tbody>
+                                                                <?php 
+                                                                $no = 1;
+                                                                foreach ($campaign->result_array() as $key): ?>
+                                                                <tr>
+                                                                    <td><?php echo $no++?></td>
+                                                                    <td><?php echo $key['category'] ?></td>
+                                                                    <td><?php echo $key['eventName'] ?></td>
+                                                                    <td><?php echo $key['dueDate'] ?></td>
+                                                                    <td><?php echo $key['dueDate'] ?></td>
+                                                                    <td><?php echo rupiah($key['target']) ?></td>
+                                                                </tr>
+                                                                <?php endforeach ?>
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -219,8 +232,8 @@
                                             <div class="shadow mb-4">
                                                 <div class="card-body">
                                                     <div class="table-responsive">
-                                                        <table class="table table-bordered" id="dtTicket"
-                                                            width="100%" cellspacing="0">
+                                                        <table class="table table-bordered" id="dtTicket" width="100%"
+                                                            cellspacing="0">
                                                             <thead>
                                                                 <tr>
                                                                     <th>No.</th>

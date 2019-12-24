@@ -196,6 +196,13 @@ class MUser extends CI_Model {
                 }
         }
     }
+
+    public function dashboard($id=''){
+        error_reporting(0);
+        $query = "SELECT * FROM campaign WHERE approval=1 AND id_user=".$id.";";
+        $data['campaign'] = $this->db->query($query);
+        $this->load->view('dashboard', $data);
+    }
 }
 ?>
 

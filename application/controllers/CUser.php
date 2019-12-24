@@ -43,7 +43,8 @@ class CUser extends CI_Controller
 
     public function dashboard()
 	{
-        $this->load->view('dashboard');
+        $this->load->model('MUser');
+        $this->MUser->dashboard($_SESSION['idUser']);
     }
     
     public function contribute($id="")

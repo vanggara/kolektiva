@@ -49,6 +49,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <?php require 'convertRupiahs.php' ?>
 </head>
 
 <body>
@@ -89,9 +90,9 @@
                 </div>
                 <div class="col-lg-4 col-4">
                 </div>
-              <?php $datetime1 = new DateTime("now");
+                <?php $datetime1 = new DateTime("now");
                 $datetime2 = new DateTime($key['dueDate']);
-                $interval = $datetime2->diff($datetime1);?>
+                $interval = $datetime1->diff($datetime2);?>
                 <div class="col-lg-4 col-4">
                   <?php if ($interval->format('%R%a') < 0) {?>
                   <button disabled class="btn btn-primary btn-user btn-block">
@@ -103,8 +104,10 @@
                   <?php } ?>
                 </div>
               </div>
-              <p>Will be held on Friday, <?php echo $key['eventDate'] ?><br>Follow us on Instagram:
-                @<?php echo $key['instagram'] ?></p>
+              <p>Will be held on <?php echo DateTime::createFromFormat('Y-m-d', $key['eventDate'])->format('l'); ?>,
+                <?php echo $key['eventDate'] ?><br>Follow us on Instagram:
+                <a href="https://www.instagram.com/<?php echo $key['instagram'] ?>"
+                  target="_blank">@<?php echo $key['instagram'] ?></a></p>
               <table>
                 <tr>
                   <th>Campaigner</th>
@@ -123,7 +126,7 @@
               <hr>
               <?php $datetime1 = new DateTime("now");
                 $datetime2 = new DateTime($key['dueDate']);
-                $interval = $datetime2->diff($datetime1);?>
+                $interval = $datetime1->diff($datetime2);?>
               <div class="row counters">
                 <div class="col-lg-4 col-4 text-center">
                   <?php if ($interval->format('%R%a') < 0) {?>
@@ -139,7 +142,8 @@
                 </div>
                 <div class="col-lg-6 col-6 text-center">
                   <p><span style="color: #FF7065;font-size: 30px;font-weight:bold" data-toggle="counter-up">60</span>%
-                    to Rp.<?php echo $key['target'] ?></h4>
+                    to <?php echo rupiah($key['target']) ?>
+                    </h4>
                 </div>
               </div>
             </div>
@@ -162,19 +166,18 @@
             <div class="card">
               <img style="height: 238px; width: 300px"
                 src=<?php echo base_url('assets/uploads/gift/')?><?php echo $key['image'] ?> alt="">
-              <p><?php echo $key['price'] ?></p>
+              <p><?php echo rupiah($key['price']) ?></p>
               <p><?php echo $key['package_name'] ?><br>
                 <?php echo $key['detail'] ?>
               </p>
               <hr>
               <?php $datetime1 = new DateTime("now");
                 $datetime2 = new DateTime($key['dueDate']);
-                $interval = $datetime2->diff($datetime1);?>
+                $interval = $datetime1->diff($datetime2);?>
               <div class="row counters">
                 <div class="col-lg-4 col-4 text-center">
                   <?php if ($interval->format('%R%a') < 0) {?>
-                  <p><span style="color: #FF7065;font-size: 20px;font-weight:bold"
-                      data-toggle="counter-up">0</span>
+                  <p><span style="color: #FF7065;font-size: 20px;font-weight:bold" data-toggle="counter-up">0</span>
                     Left</p>
                   <?php } else{?>
                   <p><span style="color: #FF7065;font-size: 20px;font-weight:bold"
@@ -188,8 +191,8 @@
                     <a style="color: white;">Too Late</a></button>
                   <?php } else{?>
                   <button class="btn btn-primary btn-user btn-block">
-                    <a href="#" data-toggle="modal" data-target="#getTicket" style="color: white;">Pick This</a>
-                    </button>
+                    <a href="#" data-toggle="modal" data-target="#getTicket2" style="color: white;">Pick This</a>
+                  </button>
                   <?php } ?>
                 </div>
               </div>
@@ -243,6 +246,7 @@
 
     <!-- Template Main Javascript File -->
     <script src=<?php echo base_url('assets/js/main.js')?>></script>
+    <script src='<?php echo base_url('assets/js/toConcurancy.js')?>' defer></script>
 
 
     <!--==========================
