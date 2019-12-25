@@ -144,7 +144,18 @@ class MUser extends CI_Model {
         }
         $this->load->view('add_gift');
     }
-
+        
+    public function save_ticket_transaction(){
+        error_reporting(0);
+        $data = array(
+            'order_id_transaction_ticket' => $_GET['order_id'],
+            'status_code_transaction_ticket' => $_GET['status_code'],
+            'transaction_status_transaction_ticket' => $_GET['transaction_status']
+        );
+        $this->db->insert('transaction_ticket', $data);
+        echo "<script>alert('Transaksi Berhasil!');</script>";
+        redirect ('home','refresh');
+    }
     
     public function action_add_gift(){
         error_reporting(0);

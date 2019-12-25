@@ -76,4 +76,10 @@ class CUser extends CI_Controller
         $this->load->model('MUser');
         $this->MUser->action_add_gift();
     }
+    public function save_ticket_transaction()
+	{
+        $this->load->model('MUser');
+        $this->MUser->save_ticket_transaction();
+    }
+    
 }
