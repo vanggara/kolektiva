@@ -1,4 +1,5 @@
 <?php
+ob_start();
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MUser extends CI_Model {
@@ -154,7 +155,7 @@ class MUser extends CI_Model {
         );
         $this->db->insert('transaction_ticket', $data);
         echo "<script>alert('Transaksi Berhasil!');</script>";
-        redirect ('home','refresh');
+        $this->load->view('home');
     }
     
     public function action_add_gift(){
@@ -212,6 +213,10 @@ class MUser extends CI_Model {
         error_reporting(0);
         $query = "SELECT * FROM campaign WHERE approval=1 AND id_user=".$id.";";
         $data['campaign'] = $this->db->query($query);
+        
+        $query2 = "SELECT * FROM transaction_ticket WHERE approval=1 AND id_user=".$id.";";
+        $data['campaign'] = $this->db->query($query2);
+
         $this->load->view('dashboard', $data);
     }
 }
