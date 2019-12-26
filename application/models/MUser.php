@@ -155,7 +155,7 @@ class MUser extends CI_Model {
         );
         $this->db->insert('transaction_ticket', $data);
         echo "<script>alert('Transaksi Berhasil!');</script>";
-        $this->load->view('home');
+        redirect('home','refresh');
     }
     
     public function action_add_gift(){
