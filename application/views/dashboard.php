@@ -99,6 +99,12 @@
                                             <div class="shadow mb-4">
                                                 <div class="card-body">
                                                     <div class="table-responsive">
+                                                        <div class="form-group">
+                                                            <label for="category1">Filter by Category</label>
+                                                            <div id='category1'>
+                                                            </div>
+                                                        </div>
+                                                        <br>
                                                         <table class="table table-bordered" id="dtCampaign" width="100%"
                                                             cellspacing="0">
                                                             <thead>
@@ -171,6 +177,11 @@
                                             <div class="shadow mb-4">
                                                 <div class="card-body">
                                                     <div class="table-responsive">
+                                                        <div class="form-group">
+                                                            <label for="category2">Filter by Category</label>
+                                                            <div id='category2'>
+                                                            </div>
+                                                        </div>
                                                         <table class="table table-bordered" id="dtContribute"
                                                             width="100%" cellspacing="0">
                                                             <thead>
@@ -232,6 +243,11 @@
                                             <div class="shadow mb-4">
                                                 <div class="card-body">
                                                     <div class="table-responsive">
+                                                        <div class="form-group">
+                                                            <label for="category3">Filter by Category</label>
+                                                            <div id='category3'>
+                                                            </div>
+                                                        </div>
                                                         <table class="table table-bordered" id="dtTicket" width="100%"
                                                             cellspacing="0">
                                                             <thead>
@@ -257,6 +273,18 @@
                                                                 </tr>
                                                             </tfoot>
                                                             <tbody>
+                                                                <?php 
+                                                                $no = 1;
+                                                                foreach ($ticket->result_array() as $key): ?>
+                                                                <tr>
+                                                                    <td><?php echo $no++?></td>
+                                                                    <td><?php echo $key['category'] ?></td>
+                                                                    <td><?php echo $key['eventName'] ?></td>
+                                                                    <td><?php echo $key['dueDate'] ?></td>
+                                                                    <td><?php echo $key['dueDate'] ?></td>
+                                                                    <td><?php echo rupiah($key['target']) ?></td>
+                                                                </tr>
+                                                                <?php endforeach ?>
                                                             </tbody>
                                                         </table>
                                                     </div>

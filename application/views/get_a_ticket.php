@@ -39,6 +39,12 @@
               <p class="modal-title">Price: Rp. &nbsp</p>
               <p class="modal-title" id="price"><?php echo $key['price'] ?></p>
             </div>
+            <hr>
+            <div class="col-lg-9 col-9 text-left row">
+              <p class="modal-title">Total Pay: Rp. &nbsp</p>
+              <p class="modal-title" id="total_price"><?php echo $key['price'] ?></p>
+            </div>
+            <hr>
           </div>
           <div class="col-lg-3 col-3 text-center">
             <div class="col-lg-12 col-12 text-center">
@@ -58,7 +64,6 @@
             </div>
           </div>
         </div>
-        <br>
         <div class="form-group">
           <div class="row">
             <p style="color: red; width: auto;">&nbsp *required
@@ -85,6 +90,7 @@
   window.summary = price * strUser;
   window.eventName = document.getElementById('event_name').innerHTML;
   window.fullName = document.getElementById('fullName').innerHTML;
+  document.getElementById('total_price').innerHTML = window.summary;
 
   function cek() {
     var total_ticket = document.getElementById("total_ticket");
@@ -93,6 +99,7 @@
     window.summary = price * strUser;
     window.eventName = document.getElementById('event_name').innerHTML;
     window.fullName = document.getElementById('fullName').innerHTML;
+    document.getElementById('total_price').innerHTML = window.summary;
   }
 
   document.getElementById('pay-button').onclick = function () {

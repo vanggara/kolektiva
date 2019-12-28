@@ -157,7 +157,7 @@
                                                     id="venue">
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <div class="row">
                                                 <label for="target">Target</label>
                                                 <div class="input-group mb-2 mr-sm-2">
@@ -168,7 +168,7 @@
                                                         class="form-control round-form" name="target" id="target">
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="form-group">
                                             <div class="row">
@@ -215,15 +215,9 @@
                                         </div>
                                         <hr>
                                         <div class="row">
-                                            <div class="col-lg-6">
-                                                <button type="submit" name="submit" value="Add Campaign"
-                                                    class="btn btn-primary btn-user btn-block">
-                                                    Save
-                                                </button>
-                                            </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-12">
                                                 <button type="submit" name="addGift" value="Add Gift"
-                                                    class="btn btn-secondary btn-user btn-block">
+                                                    class="btn btn-primary btn-user btn-block">
                                                     Save and Add Gift
                                                 </button>
                                             </div>

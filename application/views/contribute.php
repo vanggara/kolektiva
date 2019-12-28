@@ -181,7 +181,7 @@
                     Left</p>
                   <?php } else{?>
                   <p><span style="color: #FF7065;font-size: 20px;font-weight:bold"
-                      data-toggle="counter-up"><?php echo $key['gift_stock'] ?></span>
+                      data-toggle="counter-up"><?php echo $key['id'] ?></span>
                     Left</p>
                   <?php } ?>
                 </div>
@@ -191,7 +191,7 @@
                     <a style="color: white;">Too Late</a></button>
                   <?php } else{?>
                   <button class="btn btn-primary btn-user btn-block">
-                    <a href="#" data-toggle="modal" data-target="#getTicket2" style="color: white;">Pick This</a>
+                    <a href="#" data-toggle="modal" data-target="#getTicket2" style="color: white;" data-packagename=<?php echo $key['package_name'] ?> data-price2=<?php echo $key['price'] ?>>Pick This</a>
                   </button>
                   <?php } ?>
                 </div>

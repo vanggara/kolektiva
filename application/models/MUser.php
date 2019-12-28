@@ -7,9 +7,7 @@ class MUser extends CI_Model {
     public function contribute($id=""){
         error_reporting(0);
         $query = "SELECT * FROM campaign where id='".$id."';";
-        $query2 = "SELECT gift.image, gift.price, gift.package_name, 
-        campaign.dueDate, gift.detail, gift.gift_stock FROM gift 
-        JOIN campaign ON gift.id_campaign = campaign.id WHERE gift.id_campaign = '".$id."';";
+        $query2 = "SELECT * from gift WHERE id_campaign = '".$id."';";
         $data['content'] = $this->db->query($query);
         $data['content2'] = $this->db->query($query2);
         $this->load->view('contribute', $data);
@@ -44,7 +42,7 @@ class MUser extends CI_Model {
                 $campaigner = $_POST['campaigner'];
                 $dueDate = $_POST['dueDate'];
                 $venue = $_POST['venue'];
-                $target = $_POST['target'];
+                // $target = $_POST['target'];
                 $detail = $_POST['detail'];
                 $price = $_POST['ticket'];
                 $idUser = $_SESSION['idUser'];
@@ -90,7 +88,7 @@ class MUser extends CI_Model {
                                     'campaigner' => $campaigner,
                                     'dueDate' => $dueDate,
                                     'venue' => $venue,
-                                    'target' => $target,
+                                    'target' => 0,
                                     'detail' => $detail,
                                     'approval' => 0,
                                     'gift' => 1
@@ -113,7 +111,7 @@ class MUser extends CI_Model {
                                     'campaigner' => $campaigner,
                                     'dueDate' => $dueDate,
                                     'venue' => $venue,
-                                    'target' => $target,
+                                    'target' => 0,
                                     'detail' => $detail,
                                     'approval' => 0,
                                     'gift' => 0
@@ -147,15 +145,29 @@ class MUser extends CI_Model {
     }
         
     public function save_ticket_transaction(){
-        error_reporting(0);
-        $data = array(
-            'order_id_transaction_ticket' => $_GET['order_id'],
-            'status_code_transaction_ticket' => $_GET['status_code'],
-            'transaction_status_transaction_ticket' => $_GET['transaction_status']
-        );
-        $this->db->insert('transaction_ticket', $data);
-        echo "<script>alert('Transaksi Berhasil!');</script>";
-        redirect('home','refresh');
+        
+        $this->db->where('order_id_transaction_ticket', $_GET['order_id']);
+        $this->db->where('id_user_transaction_ticket', $_SESSION['idUser']);
+        $this->db->from('transaction_ticket');
+
+        $query = $this->db->count_all_results();
+        if($query == 1)
+        {
+            echo "ok2";
+            echo "<script>alert('Transaksi sudah diproses!');</script>";
+            redirect ('home','refresh');
+        }
+        else{
+            $data = array(
+                'id_user_transaction_ticket' => $_SESSION['idUser'],
+                'order_id_transaction_ticket' => $_GET['order_id'],
+                'status_code_transaction_ticket' => $_GET['status_code'],
+                'transaction_status_transaction_ticket' => $_GET['transaction_status']
+            );
+            $this->db->insert('transaction_ticket', $data);
+            echo "<script>alert('Transaksi Berhasil!');</script>";
+            redirect('home','refresh');        
+        }
     }
     
     public function action_add_gift(){
@@ -170,6 +182,7 @@ class MUser extends CI_Model {
                 $id_campaign = $_SESSION['idCampaign'];
                 
                 $this->db->where('package_name', $packageName);
+                $this->db->where('id_campaign', $id_campaign);
                 $this->db->from('gift');
 
                 $query = $this->db->count_all_results();
@@ -184,7 +197,25 @@ class MUser extends CI_Model {
                     $target_path = $target_path . basename( $_FILES['imgInp']['name']); 
                     
                     if(move_uploaded_file($_FILES['imgInp']['tmp_name'], $target_path)) {
-                            $datas = array(
+                        
+                        $targetDb = 0;
+                        $sql = "SELECT target FROM campaign where id=".$_SESSION['idCampaign'].";";
+                        $query=$this->db->query($sql);
+                        foreach ($query->result() as $row)
+                        {  
+                            $targetDb = $row->target;
+                        }
+                        $target = ($price * $giftStock) + $targetDb;
+                        echo var_dump($target, $price, $giftStock, $targetDb);
+                        
+                        $targets = array(
+                            'target' => $target
+                        );
+                        $this->db->where('id', $_SESSION['idCampaign']);
+                        $this->db->update('campaign', $targets);
+                    
+
+                        $datas = array(
                             'id_campaign' => $id_campaign,
                             'image' => $image,
                             'price' => $price,
@@ -193,7 +224,7 @@ class MUser extends CI_Model {
                             'gift_stock' => $giftStock
                         );
                         $this->db->insert('gift', $datas);
-                    
+                        
                         echo "<script>alert('Saved data success!');</script>";
 
                         if(isset($_POST['addGift'])){
@@ -214,8 +245,8 @@ class MUser extends CI_Model {
         $query = "SELECT * FROM campaign WHERE approval=1 AND id_user=".$id.";";
         $data['campaign'] = $this->db->query($query);
         
-        $query2 = "SELECT * FROM transaction_ticket WHERE approval=1 AND id_user=".$id.";";
-        $data['campaign'] = $this->db->query($query2);
+        $query2 = "SELECT * FROM transaction_ticket WHERE id_user_transaction_ticket=".$id.";";
+        $data['ticket'] = $this->db->query($query2);
 
         $this->load->view('dashboard', $data);
     }

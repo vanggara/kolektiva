@@ -92,10 +92,16 @@
                                 <div class="shadow mb-4">
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-bordered" id="dataTable" width="100%"
-                                                cellspacing="0">
+                                            <div class="form-group">
+                                                <label for="category">Filter by Category</label>
+                                                <div id='category'>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
+                                                                    <th>No.</th>
                                                         <th>Event Category</th>
                                                         <th>Event Name</th>
                                                         <th>Due Date</th>
@@ -104,6 +110,7 @@
                                                 </thead>
                                                 <tfoot>
                                                     <tr>
+                                                                    <th>No.</th>
                                                         <th>Event Category</th>
                                                         <th>Event Name</th>
                                                         <th>Due Date</th>
@@ -111,13 +118,17 @@
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
-                                                    <?php foreach ($content->result_array() as $key): ?>
+                                                    <?php $no = 1;
+                                                    foreach ($content->result_array() as $key): ?>
                                                     <tr>
+                                                                    <td><?php echo $no++?></td>
                                                         <td><?php echo $key['category'] ?></td>
                                                         <td><?php echo $key['eventName'] ?></td>
                                                         <td><?php echo $key['dueDate'] ?></td>
                                                         <td>
-                                                            <button onclick="window.location.href = '<?php echo base_url() ?>CUser/contribute/<?php echo $key['id'] ?>'" class="btn btn-primary btn-user btn-block">Go</butt>
+                                                            <button
+                                                                onclick="window.location.href = '<?php echo base_url() ?>CUser/contribute/<?php echo $key['id'] ?>'"
+                                                                class="btn btn-primary btn-user btn-block">Go</butt>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach ?>
@@ -231,7 +242,7 @@
         <script src=<?php echo base_url('assets/js/sb-admin-2.js')?>></script>
 
         <!-- Page level plugins -->
-        <script src=<?php echo base_url('assets/vendor/datatables/jquery.dataTables.min.js')?>></script>
+        <script src=<?php echo base_url('assets/vendor/datatables/jquery.dataTables.js')?>></script>
         <script src=<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.min.js')?>></script>
 
         <!-- Page level custom scripts -->
