@@ -101,7 +101,7 @@
                                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
-                                                                    <th>No.</th>
+                                                        <th>No.</th>
                                                         <th>Event Category</th>
                                                         <th>Event Name</th>
                                                         <th>Due Date</th>
@@ -110,7 +110,7 @@
                                                 </thead>
                                                 <tfoot>
                                                     <tr>
-                                                                    <th>No.</th>
+                                                        <th>No.</th>
                                                         <th>Event Category</th>
                                                         <th>Event Name</th>
                                                         <th>Due Date</th>
@@ -118,10 +118,15 @@
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
-                                                    <?php $no = 1;
-                                                    foreach ($content->result_array() as $key): ?>
+                                                    <?php 
+                                                    $no = 1;
+                                                    foreach ($content->result_array() as $key): 
+                                                        $datetime1 = new DateTime("now");
+                                                        $datetime2 = new DateTime($key['dueDate']);
+                                                        $interval = $datetime1->diff($datetime2);
+                                                        if ($interval->format('%R%a') > 0) {?>
                                                     <tr>
-                                                                    <td><?php echo $no++?></td>
+                                                        <td><?php echo $no++?></td>
                                                         <td><?php echo $key['category'] ?></td>
                                                         <td><?php echo $key['eventName'] ?></td>
                                                         <td><?php echo $key['dueDate'] ?></td>
@@ -131,7 +136,8 @@
                                                                 class="btn btn-primary btn-user btn-block">Go</butt>
                                                         </td>
                                                     </tr>
-                                                    <?php endforeach ?>
+                                                        <?php } 
+                                                        endforeach ?>
                                                 </tbody>
                                             </table>
                                         </div>

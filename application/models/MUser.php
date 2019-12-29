@@ -6,6 +6,7 @@ class MUser extends CI_Model {
 
     public function contribute($id=""){
         error_reporting(0);
+        $_SESSION['idCampaign'] = $id;
         $query = "SELECT * FROM campaign where id='".$id."';";
         $query2 = "SELECT * from gift WHERE id_campaign = '".$id."';";
         $data['content'] = $this->db->query($query);
@@ -90,6 +91,7 @@ class MUser extends CI_Model {
                                     'venue' => $venue,
                                     'target' => 0,
                                     'detail' => $detail,
+                                    'percentage' => 0,
                                     'approval' => 0,
                                     'gift' => 1
                                 );
@@ -113,6 +115,7 @@ class MUser extends CI_Model {
                                     'venue' => $venue,
                                     'target' => 0,
                                     'detail' => $detail,
+                                    'percentage' => 0,
                                     'approval' => 0,
                                     'gift' => 0
                                 );
@@ -145,28 +148,90 @@ class MUser extends CI_Model {
     }
         
     public function save_ticket_transaction(){
-        
-        $this->db->where('order_id_transaction_ticket', $_GET['order_id']);
-        $this->db->where('id_user_transaction_ticket', $_SESSION['idUser']);
-        $this->db->from('transaction_ticket');
+        $PecahStr = explode("-", $_GET['order_id']);
+        if($PecahStr[0]=="T"){
+            $this->db->where('order_id_transaction_ticket', $_GET['order_id']);
+            $this->db->where('id_campaign_transaction_ticket', $_SESSION['idCampaign']);
+            $this->db->where('id_user_transaction_ticket', $_SESSION['idUser']);
+            $this->db->from('transaction_ticket');
+    
+            $query = $this->db->count_all_results();
+            if($query == 1)
+            {
+                echo "ok2";
+                echo "<script>alert('Transaksi sudah diproses!');</script>";
+                redirect ('home','refresh');
+            }
+            else{
+                $data = array(
+                    'id_user_transaction_ticket' => $_SESSION['idUser'],
+                    'id_campaign_transaction_ticket' => $_SESSION['idCampaign'],
+                    'order_id_transaction_ticket' => $_GET['order_id'],
+                    'status_code_transaction_ticket' => $_GET['status_code'],
+                    'transaction_status_transaction_ticket' => $_GET['transaction_status']
+                );
+                $this->db->insert('transaction_ticket', $data);
+                echo "<script>alert('Transaksi Berhasil!');</script>";
+                redirect('home','refresh');        
+            }
+        }else{
+            $this->db->where('order_id_transaction_gift', $_GET['order_id']);
+            $this->db->where('id_gift_transaction_gift', $_SESSION['idGift']);
+            $this->db->where('id_user_transaction_gift', $_SESSION['idUser']);
+            $this->db->from('transaction_gift');
 
-        $query = $this->db->count_all_results();
-        if($query == 1)
-        {
-            echo "ok2";
-            echo "<script>alert('Transaksi sudah diproses!');</script>";
-            redirect ('home','refresh');
-        }
-        else{
-            $data = array(
-                'id_user_transaction_ticket' => $_SESSION['idUser'],
-                'order_id_transaction_ticket' => $_GET['order_id'],
-                'status_code_transaction_ticket' => $_GET['status_code'],
-                'transaction_status_transaction_ticket' => $_GET['transaction_status']
-            );
-            $this->db->insert('transaction_ticket', $data);
-            echo "<script>alert('Transaksi Berhasil!');</script>";
-            redirect('home','refresh');        
+            $query = $this->db->count_all_results();
+            if($query == 1)
+            {
+                echo "ok2";
+                echo "<script>alert('Transaksi sudah diproses!');</script>";
+                redirect ('home','refresh');
+            }
+            else{
+                $data = array(
+                    'id_user_transaction_gift' => $_SESSION['idUser'],
+                    'id_campaign_transaction_gift' => $_SESSION['idCampaign'],
+                    'id_gift_transaction_gift' => $_SESSION['idGift'],
+                    'order_id_transaction_gift' => $_GET['order_id'],
+                    'status_code_transaction_gift' => $_GET['status_code'],
+                    'transaction_status_transaction_gift' => $_GET['transaction_status'],
+                    'total_ticket_transaction_gift' => $_POST['quantity'],
+                    'price_transaction_gift' => $_POST['price'],
+                    'total_price_transaction_gift' => $_GET['gross_amount']
+                );
+                $this->db->insert('transaction_gift', $data);
+                //update percentage
+                $query=$this->db->query("SELECT * FROM campaign WHERE id=".$_SESSION['idCampaign']);
+                foreach ($query->result() as $row)
+                {  
+                    $target = $row->target;
+                }
+                $percent = 0;
+                $percent = (($target - $_SESSION['total_price2']) / $target) * 100;
+                
+                $update = array(
+                    'percentage' => $percent
+                );
+                $this->db->where('id', $_SESSION['idCampaign']);
+                $this->db->update('campaign', $update);
+
+                //update gift stock
+                $query2=$this->db->query("SELECT * FROM gift WHERE id=".$_SESSION['idGift']);
+                foreach ($query2->result() as $row)
+                {  
+                    $target2 = $row->gift_stock;
+                }
+                $gift_stock = $target2 - 1;
+                
+                $update2 = array(
+                    'gift_stock' => $gift_stock
+                );
+                $this->db->where('id', $_SESSION['idGift']);
+                $this->db->update('gift', $update2);
+
+                echo "<script>alert('Transaksi Berhasil!');</script>";
+                redirect('home','refresh');        
+            }
         }
     }
     
@@ -206,7 +271,6 @@ class MUser extends CI_Model {
                             $targetDb = $row->target;
                         }
                         $target = ($price * $giftStock) + $targetDb;
-                        echo var_dump($target, $price, $giftStock, $targetDb);
                         
                         $targets = array(
                             'target' => $target
@@ -240,15 +304,34 @@ class MUser extends CI_Model {
         }
     }
 
-    public function dashboard($id=''){
+    public function dashboard(){
         error_reporting(0);
-        $query = "SELECT * FROM campaign WHERE approval=1 AND id_user=".$id.";";
+        $query = "SELECT * FROM campaign WHERE approval=1 AND id_user=".$_SESSION['idUser'].";";
         $data['campaign'] = $this->db->query($query);
         
-        $query2 = "SELECT * FROM transaction_ticket WHERE id_user_transaction_ticket=".$id.";";
+        $query2 = "SELECT * FROM campaign JOIN transaction_ticket ON 
+        campaign.id = transaction_ticket.id_campaign_transaction_ticket WHERE 
+        transaction_ticket.id_user_transaction_ticket=".$_SESSION['idUser'].";";
         $data['ticket'] = $this->db->query($query2);
+        
+        $query3 = "SELECT * FROM campaign JOIN transaction_gift ON 
+        campaign.id = transaction_gift.id_campaign_transaction_gift WHERE 
+        transaction_gift.id_user_transaction_gift=".$_SESSION['idUser'].";";
+        $data['gift'] = $this->db->query($query3);
 
         $this->load->view('dashboard', $data);
+    }
+    
+    public function pay(){
+        
+        error_reporting(0);
+        $data = array(
+            'status_code_transaction_gift' => $_POST['status_code'],
+            'transaction_status_transaction_gift' => $_POST['transaction_status'],
+        );
+        $this->db->where('order_id_transaction_gift', $_POST['order_id']);
+        $this->db->update('transaction_gift', $data);
+        redirect('http://kolektiva1.000webhostapp.com/handle_notification.php');
     }
 }
 ?>

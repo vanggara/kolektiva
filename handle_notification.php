@@ -89,5 +89,4 @@ else if ($transaction == 'settlement'){
 	  echo "<p>Status message: [$response->status_code] " . $transaction;
 	}
 
-
 }

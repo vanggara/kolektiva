@@ -207,6 +207,19 @@
                                                                 </tr>
                                                             </tfoot>
                                                             <tbody>
+                                                                <?php 
+                                                                $no = 1;
+                                                                foreach ($gift->result_array() as $key): ?>
+                                                                <tr>
+                                                                    <td><?php echo $no++?></td>
+                                                                    <td><?php echo $key['category'] ?></td>
+                                                                    <td><?php echo $key['eventName'] ?></td>
+                                                                    <td><?php echo $key['eventDate'] ?></td>
+                                                                    <td><?php echo $key['venue'] ?></td>
+                                                                    <td><?php echo rupiah($key['target']) ?></td>
+                                                                    <td><?php echo $key['transaction_status_transaction_gift'] ?></td>
+                                                                </tr>
+                                                                <?php endforeach ?>
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -280,9 +293,10 @@
                                                                     <td><?php echo $no++?></td>
                                                                     <td><?php echo $key['category'] ?></td>
                                                                     <td><?php echo $key['eventName'] ?></td>
-                                                                    <td><?php echo $key['dueDate'] ?></td>
-                                                                    <td><?php echo $key['dueDate'] ?></td>
-                                                                    <td><?php echo rupiah($key['target']) ?></td>
+                                                                    <td><?php echo $key['eventDate'] ?></td>
+                                                                    <td><?php echo $key['venue'] ?></td>
+                                                                    <td><?php echo rupiah($key['price']) ?></td>
+                                                                    <td><?php echo $key['transaction_status_transaction_ticket'] ?></td>
                                                                 </tr>
                                                                 <?php endforeach ?>
                                                             </tbody>

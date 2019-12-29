@@ -45,7 +45,7 @@ class CUser extends CI_Controller
     public function dashboard()
 	{
         $this->load->model('MUser');
-        $this->MUser->dashboard($_SESSION['idUser']);
+        $this->MUser->dashboard();
     }
     
     public function contribute($id="")
@@ -81,6 +81,12 @@ class CUser extends CI_Controller
 	{
         $this->load->model('MUser');
         $this->MUser->save_ticket_transaction();
+    }
+
+    public function pay()
+	{
+        $this->load->model('MUser');
+        $this->MUser->pay();
     }
     
 }

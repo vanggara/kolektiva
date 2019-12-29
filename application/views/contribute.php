@@ -141,7 +141,7 @@
                 <div class="col-lg-2 col-2 text-center">
                 </div>
                 <div class="col-lg-6 col-6 text-center">
-                  <p><span style="color: #FF7065;font-size: 30px;font-weight:bold" data-toggle="counter-up">60</span>%
+                  <p><span style="color: #FF7065;font-size: 30px;font-weight:bold" data-toggle="counter-up"><?php echo $key['percentage'] ?></span>%
                     to <?php echo rupiah($key['target']) ?>
                     </h4>
                 </div>
@@ -181,15 +181,16 @@
                     Left</p>
                   <?php } else{?>
                   <p><span style="color: #FF7065;font-size: 20px;font-weight:bold"
-                      data-toggle="counter-up"><?php echo $key['id'] ?></span>
+                      data-toggle="counter-up"><?php echo $key['gift_stock'] ?></span>
                     Left</p>
                   <?php } ?>
                 </div>
                 <div class="col-lg-8 col-8 text-center">
-                  <?php if ($interval->format('%R%a') < 0) {?>
+                  <?php if ($interval->format('%R%a') < 0 ||  $key['gift_stock'] <= 0) {?>
                   <button disabled class="btn btn-primary btn-user btn-block">
                     <a style="color: white;">Too Late</a></button>
-                  <?php } else{?>
+                  <?php } else{
+                    $_SESSION['idGift'] = $key['id'];?>
                   <button class="btn btn-primary btn-user btn-block">
                     <a href="#" data-toggle="modal" data-target="#getTicket2" style="color: white;" data-packagename=<?php echo $key['package_name'] ?> data-price2=<?php echo $key['price'] ?>>Pick This</a>
                   </button>

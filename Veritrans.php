@@ -387,6 +387,8 @@ class Veritrans_Notification {
     $raw_notification = json_decode(file_get_contents($input_source), true);
     $status_response = Veritrans_Transaction::status($raw_notification['transaction_id']);
     $this->response = $status_response;
+    
+    var_dump($response);
   }
 
   public function __get($name)
