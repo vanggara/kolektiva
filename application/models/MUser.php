@@ -5,17 +5,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class MUser extends CI_Model {
 
     public function contribute($id=""){
-        error_reporting(0);
         $_SESSION['idCampaign'] = $id;
         $query = "SELECT * FROM campaign where id='".$id."';";
-        $query2 = "SELECT * from gift WHERE id_campaign = '".$id."';";
+        $query2 = "SELECT gift.image, gift.price, gift.package_name, gift.detail, gift.gift_stock, gift.id, campaign.eventDate, campaign.eventName, campaign.venue from gift JOIN
+        campaign ON campaign.id = gift.id_campaign 
+        WHERE gift.id_campaign = '".$id."';";
         $data['content'] = $this->db->query($query);
         $data['content2'] = $this->db->query($query2);
         $this->load->view('contribute', $data);
     }
 
     public function event_list(){
-        error_reporting(0);
         $query = "SELECT * FROM campaign WHERE approval=1";
         $data['content'] = $this->db->query($query);
         $this->load->view('home', $data);
@@ -30,108 +30,74 @@ class MUser extends CI_Model {
 
     public function action_add_campaign(){
         error_reporting(0);
-        if(isset($_POST['submit']) || isset($_POST['addGift']))
-            {
-                $category = $_POST['category'];
-                $eventName = $_POST['eventName'];
-                $eventDate = $_POST['eventDate'];
+        $category = $_POST['category'];
+        $eventName = $_POST['eventName'];
+        $eventDate = $_POST['eventDate'];
 
-                $image = $_FILES['imgInp']['name'];
-                $imageKtp = $_FILES['imgKtp']['name'];
-                $pdfProposal = $_FILES['pdfProposal']['name'];
-                $instagram = $_POST['instagram'];
-                $campaigner = $_POST['campaigner'];
-                $dueDate = $_POST['dueDate'];
-                $venue = $_POST['venue'];
-                // $target = $_POST['target'];
-                $detail = $_POST['detail'];
-                $price = $_POST['ticket'];
-                $idUser = $_SESSION['idUser'];
-                
-                $this->db->where('eventName', $eventName);
-                $this->db->where('eventDate', $eventDate);
-                $this->db->from('campaign');
+        $image = $_FILES['imgInp']['name'];
+        $imageKtp = $_FILES['imgKtp']['name'];
+        $pdfProposal = $_FILES['pdfProposal']['name'];
+        $instagram = $_POST['instagram'];
+        $campaigner = $_POST['campaigner'];
+        $dueDate = $_POST['dueDate'];
+        $venue = $_POST['venue'];
+        // $target = $_POST['target'];
+        $detail = $_POST['detail'];
+        $price = $_POST['ticket'];
+        $idUser = $_SESSION['idUser'];
+        
+        $this->db->where('eventName', $eventName);
+        $this->db->where('eventDate', $eventDate);
+        $this->db->from('campaign');
 
-                $query = $this->db->count_all_results();
-                if($query == 1)
-                {
-                    echo "<script>alert('Campaign already exist!');</script>";
-                    redirect ('add-campaign','refresh');
-                }
-                else{                  
-                    $target_path = "assets//uploads//campaign//";    
-                    $target_path = $target_path . basename( $_FILES['imgInp']['name']); 
-                    $file_type=$_FILES['pdfProposal']['type'];
+        $query = $this->db->count_all_results();
+        if($query == 1)
+        {
+            echo "<script>alert('Campaign already exist!');</script>";
+            redirect ('add-campaign','refresh');
+        }
+        else{                  
+            $target_path = "assets/uploads/campaign/";    
+            $target_path = $target_path . basename( $_FILES['imgInp']['name']); 
+            $file_type=$_FILES['imgInp']['type'];
 
-                    $target_path_ktp = "assets//uploads//ktp//";    
-                    $target_path_ktp = $target_path_ktp . basename( $_FILES['imgKtp']['name']); 
-                    $file_type_ktp=$_FILES['pdfProposal']['type'];
+            $target_path_ktp = "assets/uploads/ktp/";    
+            $target_path_ktp = $target_path_ktp . basename( $_FILES['imgKtp']['name']); 
+            $file_type_ktp=$_FILES['imgKtp']['type'];
 
-                    $target_path_proposal = "assets//uploads//proposal//";    
-                    $target_path_proposal = $target_path_proposal . basename( $_FILES['pdfProposal']['name']); 
-                    $file_type_proposal=$_FILES['pdfProposal']['type'];
+            $target_path_proposal = "assets/uploads/proposal/";    
+            $target_path_proposal = $target_path_proposal . basename( $_FILES['pdfProposal']['name']); 
+            $file_type_proposal=$_FILES['pdfProposal']['type'];
 
-                    if ($file_type_proposal=="application/pdf" || $file_type_ktp=="image/jpeg/png" || $file_type=="image/jpeg/png") {
-                        if(move_uploaded_file($_FILES['imgInp']['tmp_name'], $target_path) &&
-                        move_uploaded_file($_FILES['imgKtp']['tmp_name'], $target_path_ktp) &&
-                        move_uploaded_file($_FILES['pdfProposal']['tmp_name'], $target_path_proposal)) {                           
-                            if(isset($_POST['addGift'])){
-                                $data = array(
-                                    'id_user' => $idUser,
-                                    'category' => $category,
-                                    'eventName' => $eventName,
-                                    'eventDate' => $eventDate,
-                                    'image' => $image,
-                                    'imageKtp' => $imageKtp,
-                                    'proposal' => $pdfProposal,
-                                    'price' => $price,
-                                    'instagram' => $instagram,
-                                    'campaigner' => $campaigner,
-                                    'dueDate' => $dueDate,
-                                    'venue' => $venue,
-                                    'target' => 0,
-                                    'detail' => $detail,
-                                    'percentage' => 0,
-                                    'approval' => 0,
-                                    'gift' => 1
-                                );
-                                $this->db->insert('campaign', $data);
+                if(move_uploaded_file($_FILES['imgInp']['tmp_name'], $target_path) &&
+                    move_uploaded_file($_FILES['imgKtp']['tmp_name'], $target_path_ktp) &&
+                    move_uploaded_file($_FILES['pdfProposal']['tmp_name'], $target_path_proposal)) {
+                    $data = array(
+                        'id_user' => $idUser,
+                        'category' => $category,
+                        'eventName' => $eventName,
+                        'eventDate' => $eventDate,
+                        'image' => $image,
+                        'imageKtp' => $imageKtp,
+                        'proposal' => $pdfProposal,
+                        'price' => $price,
+                        'instagram' => $instagram,
+                        'campaigner' => $campaigner,
+                        'dueDate' => $dueDate,
+                        'venue' => $venue,
+                        'target' => 0,
+                        'detail' => $detail,
+                        'percentage' => 0,
+                        'approval' => 0,
+                        'gift' => 1
+                    );
+                    $this->db->insert('campaign', $data);
 
-                                echo "<script>alert('Saved data success!');</script>";
-                                redirect('add-gift','refresh');
-                            }else{
-                                $data = array(
-                                    'id_user' => $idUser,
-                                    'category' => $category,
-                                    'eventName' => $eventName,
-                                    'eventDate' => $eventDate,
-                                    'image' => $image,
-                                    'imageKtp' => $imageKtp,
-                                    'proposal' => $pdfProposal,
-                                    'price' => $price,
-                                    'instagram' => $instagram,
-                                    'campaigner' => $campaigner,
-                                    'dueDate' => $dueDate,
-                                    'venue' => $venue,
-                                    'target' => 0,
-                                    'detail' => $detail,
-                                    'percentage' => 0,
-                                    'approval' => 0,
-                                    'gift' => 0
-                                );
-                                $this->db->insert('campaign', $data);
-    
-                                echo "<script>alert('Saved data success!');</script>";
-                                redirect('home','refresh');
-                            }
-                        } else{
-                            echo "<script>alert('Failed to upload!');</script>";
-                            redirect('add-campaign','refresh');
-                        }
-                    }else{
-                        echo "<script>alert('You may only upload PDFs, PNGs or JPEGs files!');</script>";
-                        redirect('add-campaign','refresh');
-                    }
+                    echo "<script>alert('Saved data success!');</script>";
+                    redirect('add-gift','refresh');
+                } else{
+                    echo "<script>alert('Failed to upload!');</script>";
+                    redirect('add-campaign','refresh');
                 }
         }
     }
@@ -292,8 +258,12 @@ class MUser extends CI_Model {
                         echo "<script>alert('Saved data success!');</script>";
 
                         if(isset($_POST['addGift'])){
+                            $this->load->model('MUser');
+                            $this->MUser->add_gift_rupiahs($id_campaign);
                             redirect('add-gift','refresh');
                         }else{
+                            $this->load->model('MUser');
+                            $this->MUser->add_gift_rupiahs($id_campaign);
                             redirect('home','refresh');
                         }
                     } else{
@@ -301,6 +271,27 @@ class MUser extends CI_Model {
                         redirect('add-gift','refresh');
                     }
                 }
+        }
+    }
+
+    public function add_gift_rupiahs($id_campaign){
+        $this->db->where('package_name', 'No Package');
+        $this->db->where('id_campaign', $id_campaign);
+        $this->db->from('gift');
+
+        $query = $this->db->count_all_results();
+        if($query != 1)
+        {
+            $datas = array(
+                'id_campaign' => $id_campaign,
+                'image' => 'keripik_kentang.jpg',
+                'price' => '0',
+                'package_name' => 'No Package',
+                'detail' => 'Enter the rupiahs as you want',
+                'gift_stock' => '100'
+            );
+            $this->db->insert('gift', $datas);
+            
         }
     }
 

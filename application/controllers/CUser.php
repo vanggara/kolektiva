@@ -8,25 +8,41 @@ class CUser extends CI_Controller
 {
 	public function home()
 	{
-        $query = "SELECT * FROM campaign WHERE approval=1";
-        $data['content'] = $this->db->query($query);
-        $this->load->view('home', $data);
+        // if(isset($_SESSION['login'])){
+            $query = "SELECT * FROM campaign WHERE approval=1";
+            $data['content'] = $this->db->query($query);
+            $this->load->view('home', $data);
+        // }else{
+        //     redirect('404_override');
+        // }
     }
 
 	public function contact()
 	{
-        $this->load->view('contact');
+        if(isset($_SESSION['login'])){
+            $this->load->view('contact');
+        }else{
+            redirect('404_override');
+        }
     }
     
 	public function register()
 	{
-        $this->load->view('register');
+        if(isset($_SESSION['login'])){
+            $this->load->view('register');
+        }else{
+            redirect('404_override');
+        }
     }
 
 	public function action_register()
 	{
-        $this->load->model('MSign');
-        $this->MSign->register();
+        if(isset($_SESSION['login'])){
+            $this->load->model('MSign');
+            $this->MSign->register();
+        }else{
+            redirect('404_override');
+        }
     }
     
 	public function action_login()
@@ -44,49 +60,81 @@ class CUser extends CI_Controller
 
     public function dashboard()
 	{
-        $this->load->model('MUser');
-        $this->MUser->dashboard();
+        if(isset($_SESSION['login'])){
+            $this->load->model('MUser');
+            $this->MUser->dashboard();
+        }else{
+            redirect('404_override');
+        }
     }
     
     public function contribute($id="")
 	{
-        $this->load->model('MUser');
-        $this->MUser->contribute($id);
+        if(isset($_SESSION['login'])){
+            $this->load->model('MUser');
+            $this->MUser->contribute($id);
+        }else{
+            redirect('404_override');
+        }
     }
 
     public function add_campaign()
 	{
-        $this->load->model('MUser');
-        $this->MUser->add_campaign();
+        if(isset($_SESSION['login'])){
+            $this->load->model('MUser');
+            $this->MUser->add_campaign();
+        }else{
+            redirect('404_override');
+        }
     }    
 
 	public function action_add_campaign()
 	{
-        $this->load->model('MUser');
-        $this->MUser->action_add_campaign();
+        if(isset($_SESSION['login'])){
+            $this->load->model('MUser');
+            $this->MUser->action_add_campaign();
+        }else{
+            redirect('404_override');
+        }
     }
     
 	public function add_gift()
 	{
-        $this->load->model('MUser');
-        $this->MUser->add_gift();
+        if(isset($_SESSION['login'])){
+            $this->load->model('MUser');
+            $this->MUser->add_gift();
+        }else{
+            redirect('404_override');
+        }
     }
     
 	public function action_add_gift()
 	{
-        $this->load->model('MUser');
-        $this->MUser->action_add_gift();
+        if(isset($_SESSION['login'])){
+            $this->load->model('MUser');
+            $this->MUser->action_add_gift();
+        }else{
+            redirect('404_override');
+        }
     }
     public function save_ticket_transaction()
 	{
-        $this->load->model('MUser');
-        $this->MUser->save_ticket_transaction();
+        if(isset($_SESSION['login'])){
+            $this->load->model('MUser');
+            $this->MUser->save_ticket_transaction();
+        }else{
+            redirect('404_override');
+        }
     }
 
     public function pay()
 	{
-        $this->load->model('MUser');
-        $this->MUser->pay();
+        if(isset($_SESSION['login'])){
+            $this->load->model('MUser');
+            $this->MUser->pay();
+        }else{
+            redirect('404_override');
+        }
     }
     
 }

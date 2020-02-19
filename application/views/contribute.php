@@ -141,7 +141,8 @@
                 <div class="col-lg-2 col-2 text-center">
                 </div>
                 <div class="col-lg-6 col-6 text-center">
-                  <p><span style="color: #FF7065;font-size: 30px;font-weight:bold" data-toggle="counter-up"><?php echo $key['percentage'] ?></span>%
+                  <p><span style="color: #FF7065;font-size: 30px;font-weight:bold"
+                      data-toggle="counter-up"><?php echo $key['target'] ?></span>%
                     to <?php echo rupiah($key['target']) ?>
                     </h4>
                 </div>
@@ -162,6 +163,7 @@
 
         <div class="owl-carousel clients-carousel">
           <?php foreach ($content2->result_array() as $key): ?>
+          <?php if($key['package_name']!='No Package'){ ?>
           <div class="row flex-items-xs-middle flex-items-xs-center">
             <div class="card">
               <img style="height: 238px; width: 300px"
@@ -171,35 +173,65 @@
                 <?php echo $key['detail'] ?>
               </p>
               <hr>
-              <?php $datetime1 = new DateTime("now");
-                $datetime2 = new DateTime($key['dueDate']);
-                $interval = $datetime1->diff($datetime2);?>
               <div class="row counters">
                 <div class="col-lg-4 col-4 text-center">
-                  <?php if ($interval->format('%R%a') < 0) {?>
-                  <p><span style="color: #FF7065;font-size: 20px;font-weight:bold" data-toggle="counter-up">0</span>
-                    Left</p>
-                  <?php } else{?>
                   <p><span style="color: #FF7065;font-size: 20px;font-weight:bold"
                       data-toggle="counter-up"><?php echo $key['gift_stock'] ?></span>
                     Left</p>
-                  <?php } ?>
                 </div>
                 <div class="col-lg-8 col-8 text-center">
-                  <?php if ($interval->format('%R%a') < 0 ||  $key['gift_stock'] <= 0) {?>
+                  <?php if ($key['gift_stock'] <= 0) {?>
                   <button disabled class="btn btn-primary btn-user btn-block">
                     <a style="color: white;">Too Late</a></button>
-                  <?php } else{
-                    $_SESSION['idGift'] = $key['id'];?>
+                  <?php } else{?>
                   <button class="btn btn-primary btn-user btn-block">
-                    <a href="#" data-toggle="modal" data-target="#getTicket2" style="color: white;" data-packagename=<?php echo $key['package_name'] ?> data-price2=<?php echo $key['price'] ?>>Pick This</a>
+                    <a href="#" data-toggle="modal" data-target="#getTicket2" style="color: white;"
+                      data-packagename='<?php echo $key['package_name'] ?>' data-price2=<?php echo $key['price']?>
+                      data-gift=<?php echo $key['id'] ?> data-date='<?php echo $key['eventDate'] ?>' data-venue='<?php echo $key['venue'] ?>'>Pick
+                      This</a>
                   </button>
                   <?php } ?>
                 </div>
               </div>
             </div>
           </div>
+          <?php }else{ 
+            $_SESSION['idGift'] = $key['id'] ?>
+
+          <div class="row flex-items-xs-middle flex-items-xs-center">
+            <div class="card">
+              <img style="height: 238px; width: 300px"
+                src=<?php echo base_url('assets/uploads/gift/')?><?php echo $key['image'] ?> alt="">
+              <p><?php echo rupiah($key['price']) ?></p>
+              <p><?php echo $key['package_name'] ?><br>
+                <?php echo $key['detail'] ?>
+              </p>
+              <hr>
+              <div class="row counters">
+                <div class="col-lg-4 col-4 text-center">
+                  <p><span style="color: #FF7065;font-size: 20px;font-weight:bold"
+                      data-toggle="counter-up"><?php echo $key['gift_stock'] ?></span>
+                    Left</p>
+                </div>
+                <div class="col-lg-8 col-8 text-center">
+                  <?php if ($key['gift_stock'] <= 0) {?>
+                  <button disabled class="btn btn-primary btn-user btn-block">
+                    <a style="color: white;">Too Late</a></button>
+                  <?php } else{?>
+                  <button class="btn btn-primary btn-user btn-block">
+                    <a href="#" data-toggle="modal" data-target="#getTicket3" style="color: white;"
+                      data-packagename='<?php echo $key['package_name'] ?>' data-price2=<?php echo $key['price']?>
+                      data-gift=<?php echo $key['id'] ?> data-date='<?php echo $key['eventDate'] ?>' data-venue='<?php echo $key['venue'] ?>'>Pick
+                      This</a>
+                  </button>
+                  <?php } ?>
+                </div>
+              </div>
+            </div>
+          </div>
+          <?php } ?>
           <?php endforeach ?>
+
         </div>
       </div>
 
@@ -247,7 +279,6 @@
 
     <!-- Template Main Javascript File -->
     <script src=<?php echo base_url('assets/js/main.js')?>></script>
-    <script src='<?php echo base_url('assets/js/toConcurancy.js')?>' defer></script>
 
 
     <!--==========================
@@ -256,7 +287,7 @@
     <?php include 'login.php' ?>
     <?php include 'get_a_ticket.php' ?>
     <?php include 'pick_this.php' ?>
-
+    <?php include 'pick_no_package.php' ?>
 </body>
 
 </html>

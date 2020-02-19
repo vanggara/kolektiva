@@ -36,6 +36,21 @@
             </div>
             <br>
             <div class="col-lg-9 col-9 text-left row">
+              <p class="modal-title">Event Name: &nbsp</p>
+              <p class="modal-title"><?php echo $key['eventName'] ?></p>
+            </div>
+            <br>
+            <div class="col-lg-9 col-9 text-left row">
+              <p class="modal-title">Event Date: &nbsp</p>
+              <p class="modal-title"><?php echo $key['eventDate'] ?></p>
+            </div>
+            <br>
+            <div class="col-lg-9 col-9 text-left row">
+              <p class="modal-title">Venue: &nbsp</p>
+              <p class="modal-title"><?php echo $key['venue'] ?></p>
+            </div>
+            <br>
+            <div class="col-lg-9 col-9 text-left row">
               <p class="modal-title">Price: Rp. &nbsp</p>
               <p class="modal-title" id="price"><?php echo $key['price'] ?></p>
             </div>
@@ -66,12 +81,10 @@
         </div>
         <div class="form-group">
           <div class="row">
-            <p style="color: red; width: auto;">&nbsp *required
-              <input required type="text" class="form-control form-control-user" id="emailRsvp" name="emailRsvp"
-                aria-describedby="emailHelp" placeholder="yourEmail@gmail.com"></p>
+              <input hidden type="text" class="form-control form-control-user" id="emailRsvp" name="emailRsvp"
+                aria-describedby="emailHelp" placeholder="yourEmail@gmail.com" value=<?php echo $_SESSION['email'] ?>></p>
           </div>
         </div>
-        <hr>
       </div>
       <div class="modal-body text-center">
         <button id="pay-button" type="submit" class="bg-text-red">Buy Now</button>
