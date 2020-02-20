@@ -17,9 +17,8 @@
 
 <!-- Modal -->
 <?php foreach ($content2->result_array() as $key): ?>
-<div class="modal fade" id="getTicket2" role="dialog">
+  <div class="modal fade" id="getTicket2" role="dialog">
   <div class="modal-dialog">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -29,15 +28,30 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-lg-9 col-9 text-left">
+          <div class="col-lg-12 col-12 text-left">
             <div class="col-lg-9 col-9 text-left row">
-              <p class="modal-title">Name:&nbsp </p>
+              <p class="modal-title">Name: &nbsp </p>
               <p class="modal-title" id="fullName2"><?php echo $_SESSION['fullName'] ?></p>
+            </div>
+            <br>
+            <div class="col-lg-9 col-9 text-left row">
+              <p class="modal-title">Event Date: &nbsp</p>
+              <p class="modal-title" id="modal-date"></p>
+            </div>
+            <br>
+            <div class="col-lg-9 col-9 text-left row">
+              <p class="modal-title">Venue: &nbsp</p>
+              <p class="modal-title" id="modal-venue"></p>
             </div>
             <br>
             <div class="col-lg-9 col-9 text-left row">
               <p class="modal-title">Price: Rp.&nbsp </p>
               <p class="modal-title" id="modal-price2"></p>
+            </div>
+            <br>
+            <div class="col-lg-9 col-9 text-left row">
+              <p hidden class="modal-title">Gift: Rp.&nbsp </p>
+              <p hidden class="modal-title" id="modal-gift"></p>
             </div>
             <hr>
             <div class="col-lg-9 col-9 text-left row">
@@ -68,9 +82,8 @@
         <br>
         <div class="form-group">
           <div class="row">
-            <p style="color: red; width: auto;">&nbsp *required
-              <input required type="text" class="form-control form-control-user" id="emailRsvp2" name="emailRsvp2"
-                aria-describedby="emailHelp" placeholder="yourEmail@gmail.com"></p>
+            <input hidden type="text" class="form-control form-control-user" id="emailRsvp2" name="emailRsvp2"
+              aria-describedby="emailHelp" placeholder="yourEmail@gmail.com" value=<?php echo $_SESSION['email'] ?>></p>
           </div>
         </div>
         <div class="modal-body text-center">
@@ -80,12 +93,14 @@
 
     </div>
   </div>
+  </div>
+
   <?php endforeach ?>
   <!-- TODO: Remove ".sandbox" from script src URL for production environment. Also input your client key in "data-client-key" -->
   <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-_hdan0rRy8sHtwJM"></script>
   <script type="text/javascript">
     // data-* attributes to scan when populating modal values
-    var ATTRIBUTES = ['packagename', 'price2'];
+    var ATTRIBUTES = ['packagename', 'price2','gift', 'date', 'venue'];
 
     $('[data-toggle="modal"]').on('click', function (e) {
       // convert target (e.g. the button) to jquery object
@@ -113,6 +128,7 @@
       window.eventName2 = document.getElementById('modal-packagename').innerHTML;
       window.fullName2 = document.getElementById('fullName2').innerHTML;
       document.getElementById('total_price2').innerHTML = window.summary2;
+      var id_gift = document.getElementById('modal-gift').innerHTML;
     });
 
 
@@ -127,6 +143,8 @@
     }
 
     document.getElementById('pay-button2').onclick = function () {
+      sessionStorage.setItem("idGift", document.getElementById('modal-gift').innerHTML);
+        alert(sessionStorage.getItem("idGift"));
       var mEmail = document.getElementById('emailRsvp2').value;
       // This is minimal request body as example.
       // Please refer to docs for all available options: https://snap-docs.midtrans.com/#json-parameter-request-body
@@ -157,6 +175,8 @@
         });
       })
     };
+
+    // 
     /**
      * Send AJAX POST request to checkout.php, then call callback with the API response
      * @param {object} requestBody: request body to be sent to SNAP API

@@ -102,7 +102,6 @@
                                                         <span class="btn btn-primary btn-file">
                                                             Browse… <input required type="file" id="imgInp"
                                                                 name="imgInp" />
-                                                            <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
                                                         </span>
                                                     </span>
                                                 </div>
@@ -188,7 +187,6 @@
                                                         <span class="btn btn-primary btn-file">
                                                             Browse… <input required type="file" id="imgKtp"
                                                                 name="imgKtp" />
-                                                            <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
                                                         </span>
                                                     </span>
                                                 </div>

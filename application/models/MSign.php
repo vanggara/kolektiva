@@ -4,38 +4,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MSign extends CI_Model {
 
-    public function login($id=''){
+    public function login(){
         // session_start();
-        error_reporting(0);
         // $_SESSION['login']='login';
-        if(isset($_POST['login']))
-            {
                 $email=$_POST['email'];
                 $password=md5($_POST['password']);
                 
                 $sql="select * from user where email = '".$email."' AND password = '".$password."'";
                 $query=$this->db->query($sql);
 
-                // echo var_dump($datas);
-                $count = $this->db->count_all_results();
+                // echo var_dump($email);
+                $this->db->query($sql);
+                $count = $this->db->count_all_results("user where email = '".$email."' AND password = '".$password."'");
                 if($count == 1)
                 {
                     foreach ($query->result() as $row)
-                    {  
+                    {
                         $_SESSION['email'] = $email;
                         $_SESSION['password'] = $password; 
                         $_SESSION['login']='login';
                         $_SESSION['fullName'] = $row->fullName;  
                         $_SESSION['idUser'] = $row->id;  
+                        echo "<script>alert('Login success!');</script>";
                     }
                     $this->load->model('MUser');
                     $this->MUser->event_list();
                 } 
                 else{
-                    echo "<script>alert('Invalid Details!');</script>";
+                    echo "<script>alert('Please check your password or email!');</script>";
                     redirect ('home','refresh');
                 }
-        }
     }
 
     public function register(){

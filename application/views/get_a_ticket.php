@@ -36,13 +36,28 @@
             </div>
             <br>
             <div class="col-lg-9 col-9 text-left row">
+              <p class="modal-title">Event Name: &nbsp</p>
+              <p class="modal-title"><?php echo $key['eventName'] ?></p>
+            </div>
+            <br>
+            <div class="col-lg-9 col-9 text-left row">
+              <p class="modal-title">Event Date: &nbsp</p>
+              <p class="modal-title"><?php echo $key['eventDate'] ?></p>
+            </div>
+            <br>
+            <div class="col-lg-9 col-9 text-left row">
+              <p class="modal-title">Venue: &nbsp</p>
+              <p class="modal-title"><?php echo $key['venue'] ?></p>
+            </div>
+            <br>
+            <div class="col-lg-9 col-9 text-left row">
               <p class="modal-title">Price: Rp. &nbsp</p>
               <p class="modal-title" id="price"><?php echo $key['price'] ?></p>
             </div>
             <hr>
             <div class="col-lg-9 col-9 text-left row">
               <p class="modal-title">Total Pay: Rp. &nbsp</p>
-              <p class="modal-title" id="total_price"><?php echo $key['price'] ?></p>
+              <p class="modal-title" id="total_price1"><?php echo $key['price'] ?></p>
             </div>
             <hr>
           </div>
@@ -50,8 +65,8 @@
             <div class="col-lg-12 col-12 text-center">
               <div class="form-group">
                 <div class="row">
-                  <label for="total_ticket">&nbsp Count</label>
-                  <select class="form-control" id="total_ticket" name="total_ticket">
+                  <label for="total_ticket1">&nbsp Count</label>
+                  <select class="form-control" id="total_ticket1" name="total_ticket1">
                     <option value='1' onclick="cek()">1</option>
                     <option value='2' onclick="cek()">2</option>
                     <option value='3' onclick="cek()">3</option>
@@ -66,12 +81,10 @@
         </div>
         <div class="form-group">
           <div class="row">
-            <p style="color: red; width: auto;">&nbsp *required
-              <input required type="text" class="form-control form-control-user" id="emailRsvp" name="emailRsvp"
-                aria-describedby="emailHelp" placeholder="yourEmail@gmail.com"></p>
+              <input hidden type="text" class="form-control form-control-user" id="emailRsvp" name="emailRsvp"
+                aria-describedby="emailHelp" placeholder="yourEmail@gmail.com" value=<?php echo $_SESSION['email'] ?>></p>
           </div>
         </div>
-        <hr>
       </div>
       <div class="modal-body text-center">
         <button id="pay-button" type="submit" class="bg-text-red">Buy Now</button>
@@ -84,26 +97,27 @@
 <!-- TODO: Remove ".sandbox" from script src URL for production environment. Also input your client key in "data-client-key" -->
 <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-_hdan0rRy8sHtwJM"></script>
 <script type="text/javascript">
-  var total_ticket = document.getElementById("total_ticket");
+  var total_ticket1 = document.getElementById("total_ticket1");
   window.price = document.getElementById('price').innerHTML;
-  window.strUser = total_ticket.options[total_ticket.selectedIndex].value;
-  window.summary = price * strUser;
+  window.strUser = total_ticket1.options[total_ticket1.selectedIndex].value;
+  window.summary = window.price * window.strUser;
   window.eventName = document.getElementById('event_name').innerHTML;
   window.fullName = document.getElementById('fullName').innerHTML;
-  document.getElementById('total_price').innerHTML = window.summary;
+  document.getElementById('total_price1').innerHTML =  summary;
 
   function cek() {
-    var total_ticket = document.getElementById("total_ticket");
-    window.price = document.getElementById('price').innerHTML;
-    window.strUser = total_ticket.options[total_ticket.selectedIndex].value;
-    window.summary = price * strUser;
-    window.eventName = document.getElementById('event_name').innerHTML;
-    window.fullName = document.getElementById('fullName').innerHTML;
-    document.getElementById('total_price').innerHTML = window.summary;
+  var total_ticket1 = document.getElementById("total_ticket1");
+  window.price = document.getElementById('price').innerHTML;
+  window.strUser = total_ticket1.options[total_ticket1.selectedIndex].value;
+  window.summary = window.price * window.strUser;
+  window.eventName = document.getElementById('event_name').innerHTML;
+  window.fullName = document.getElementById('fullName').innerHTML;
+  document.getElementById('total_price1').innerHTML =  summary;
   }
 
   document.getElementById('pay-button').onclick = function () {
     var mEmail = document.getElementById('emailRsvp').value;
+    window.eventName = document.getElementById('event_name').innerHTML;
     // This is minimal request body as example.
     // Please refer to docs for all available options: https://snap-docs.midtrans.com/#json-parameter-request-body
     // TODO: you should change this gross_amount and order_id to your desire. 

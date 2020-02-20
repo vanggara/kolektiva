@@ -93,6 +93,7 @@ class Veritrans_Transaction {
         Veritrans_Config::getBaseUrl() . '/' . $id . '/status',
         Veritrans_Config::$serverKey,
         false);
+        echo 'test get status </br>';
   }
 
   /**
@@ -106,6 +107,7 @@ class Veritrans_Transaction {
         Veritrans_Config::getBaseUrl() . '/' . $id . '/approve',
         Veritrans_Config::$serverKey,
         false)->status_code;
+        echo 'test get status </br>';
   }
 
   /**
@@ -119,6 +121,7 @@ class Veritrans_Transaction {
         Veritrans_Config::getBaseUrl() . '/' . $id . '/cancel',
         Veritrans_Config::$serverKey,
         false)->status_code;
+        echo 'test get status </br>';
   }
   
   /**
@@ -132,6 +135,7 @@ class Veritrans_Transaction {
         Veritrans_Config::getBaseUrl() . '/' . $id . '/expire',
         Veritrans_Config::$serverKey,
         false);
+        echo 'test get status </br>';
   }
 }
 // Plumbing
