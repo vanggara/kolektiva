@@ -13,7 +13,9 @@
 
   <!-- Custom fonts for this template -->
   <link href=<?php echo base_url('assets/vendor/fontawesome-free/css/all.min.css')?> rel="stylesheet" type="text/css">
-  <link href=<?php echo base_url('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i')?> rel="stylesheet">
+  <link
+    href=<?php echo base_url('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i')?>
+    rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href=<?php echo base_url('assets/css/sb-admin-2.min.css')?> rel="stylesheet">
@@ -86,7 +88,7 @@
           </div>
         </div>
       </li>
-      
+
       <li class="nav-item">
         <a class="nav-link" href="pengguna">
           <!-- <i class="fas fa-fw fa-home"></i> -->
@@ -135,7 +137,7 @@
       <div id="content">
 
         <!-- Topbar -->
-        <?php include 'application/views/topbar.php'?>
+        <?php include 'application/views/admin/topbar.php'?>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
@@ -143,8 +145,9 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-2 text-gray-800">Informasi bootcamp</h1>
-            <a href="tambah-informasi-bootcamp" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-60"></i> Tambah</a>
+            <h1 class="h3 mb-2 text-gray-800">Informasi bootcamp</h1>
+            <a href="tambah-informasi-bootcamp" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-plus fa-sm text-white-60"></i> Tambah</a>
           </div>
           <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
 
@@ -176,11 +179,11 @@
                   </tfoot>
                   <?php foreach ($content->result_array() as $key): ?>
                   <tr>
-                    <td><?php echo $key['jenis_sertifikasi'] ?></td>
-                    <td><?php echo $key['kuota'] ?></td>
-                    <td><?php echo $key['tanggal_mulai'] ?></td>
-                    <td><?php echo $key['tangal_akhir'] ?></td>
-                    <td><?php echo $key['tanggal_lahir'] ?></td>
+                    <td><?php echo $key['category'] ?></td>
+                    <td><?php echo $key['eventName'] ?></td>
+                    <td><?php echo $key['eventDate'] ?></td>
+                    <td><?php echo $key['price'] ?></td>
+                    <td><?php echo $key['instagram'] ?></td>
                     <td>
                       <button class="btn btn-primary btn-xs"
                         onclick="window.location.href = '<?php echo base_url() ?>crud/update_anggota/<?php echo $key['id'] ?>'"><i
@@ -222,7 +225,6 @@
 
           </div>
         </div>
-        <?php include 'application/views/footer.php'?>
 
       </div>
       <!-- End of Content Wrapper -->
@@ -235,22 +237,22 @@
       <i class="fas fa-angle-up"></i>
     </a>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src=<?php echo base_url('assets/vendor/jquery/jquery.min.js')?>></script>
-  <script src=<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src=<?php echo base_url('assets/vendor/jquery/jquery.min.js')?>></script>
+    <script src=<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src=<?php echo base_url('assets/vendor/jquery-easing/jquery.easing.min.js')?>></script>
+    <!-- Core plugin JavaScript-->
+    <script src=<?php echo base_url('assets/vendor/jquery-easing/jquery.easing.min.js')?>></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src=<?php echo base_url('assets/js/sb-admin-2.min.js')?>></script>
+    <!-- Custom scripts for all pages-->
+    <script src=<?php echo base_url('assets/js/sb-admin-2.min.js')?>></script>
 
-  <!-- Page level plugins -->
-  <script src=<?php echo base_url('assets/vendor/datatables/jquery.dataTables.min.js')?>></script>
-  <script src=<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.min.js')?>></script>
+    <!-- Page level plugins -->
+    <script src=<?php echo base_url('assets/vendor/datatables/jquery.dataTables.min.js')?>></script>
+    <script src=<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.min.js')?>></script>
 
-  <!-- Page level custom scripts -->
-  <script src=<?php echo base_url('assets/js/demo/datatables-demo.js')?>></script>
+    <!-- Page level custom scripts -->
+    <script src=<?php echo base_url('assets/js/demo/datatables-demo.js')?>></script>
 
 </body>
 
