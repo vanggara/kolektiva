@@ -39,7 +39,11 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center">
                 <div class="sidebar-brand-icon">
-                    <img class="img-profile" src="assets/img/perpus2.png" width="225" height="70">
+        <!-- <div class="logo float-left"> -->
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <h1 class="text-light"><a href=<?php echo base_url('home')?> class="scrollto"><span>KOLEKTIVA</span></a></h1>
+            <!-- <a href="#header" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid"></a> -->
+        <!-- </div> -->
                     <!-- <i class="fas fa-book">  <br>Admin</i> -->
                 </div>
                 <!-- <div class="sidebar-brand-text mx-3">Perpustakaan Umum</div> -->

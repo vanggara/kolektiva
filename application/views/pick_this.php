@@ -144,7 +144,7 @@
 
     document.getElementById('pay-button2').onclick = function () {
       sessionStorage.setItem("idGift", document.getElementById('modal-gift').innerHTML);
-        alert(sessionStorage.getItem("idGift"));
+        // alert(sessionStorage.getItem("idGift"));
       var mEmail = document.getElementById('emailRsvp2').value;
       // This is minimal request body as example.
       // Please refer to docs for all available options: https://snap-docs.midtrans.com/#json-parameter-request-body

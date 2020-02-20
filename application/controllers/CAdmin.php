@@ -16,4 +16,27 @@ class CAdmin extends CI_Controller
             redirect('404_override');
         }
     }
+
+    public function login()
+	{
+        if(isset($_SESSION['login'])){
+            $this->load->model('MAdmin');
+			$data['content'] = $this->MAdmin->home();
+            $this->load->view('admin/campaign', $data);
+        }else{
+            $this->load->view('admin/login');
+        }
+    }
+
+    
+	public function action_login()
+	{
+        $this->load->model('MAdmin');
+        if($data['content'] = $this->MAdmin->login() == false){
+            $this->load->view('admin/login');
+        }else{
+            $data['content'] = $this->MAdmin->login();
+            $this->load->view('admin/campaign', $data);
+        }
+    }
 }

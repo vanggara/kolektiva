@@ -8,13 +8,9 @@ class CUser extends CI_Controller
 {
 	public function home()
 	{
-        // if(isset($_SESSION['login'])){
             $query = "SELECT * FROM campaign WHERE approval=1";
             $data['content'] = $this->db->query($query);
             $this->load->view('home', $data);
-        // }else{
-        //     redirect('404_override');
-        // }
     }
 
 	public function contact()
@@ -28,21 +24,13 @@ class CUser extends CI_Controller
     
 	public function register()
 	{
-        if(isset($_SESSION['login'])){
             $this->load->view('register');
-        }else{
-            redirect('404_override');
-        }
     }
 
 	public function action_register()
 	{
-        if(isset($_SESSION['login'])){
             $this->load->model('MSign');
             $this->MSign->register();
-        }else{
-            redirect('404_override');
-        }
     }
     
 	public function action_login()

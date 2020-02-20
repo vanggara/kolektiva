@@ -110,7 +110,7 @@
 
     document.getElementById('pay-button3').onclick = function () {
       sessionStorage.setItem("idGift", document.getElementById('modal1-gift').innerHTML);
-        alert(sessionStorage.getItem("idGift")  );
+        // alert(sessionStorage.getItem("idGift")  );
       // var eventName = document.getElementById('modal-packagename').innerHTML;
       var packagename = document.getElementById('modal1-packagename').innerHTML;
       var mEmail = document.getElementById('emailRsvp2').value;

@@ -63,7 +63,8 @@ $route['add-campaign'] = 'CUser/add_campaign';
 $route['add-gift'] = 'CUser/add_gift';
 $route['save-ticket-transaction'] = 'CUser/save_ticket_transaction';
 
-$route['admin'] = 'CAdmin/home';
+$route['admin'] = 'CAdmin/login';
+$route['action_login_admin'] = 'CAdmin/action_login';
 
 $route['404_override'] = 'controllererror';
 $route['translate_uri_dashes'] = FALSE;
