@@ -27,7 +27,6 @@ class CAdmin extends CI_Controller
             $this->load->view('admin/login');
         }
     }
-
     
 	public function action_login()
 	{
@@ -37,6 +36,15 @@ class CAdmin extends CI_Controller
         }else{
             $data['content'] = $this->MAdmin->login();
             $this->load->view('admin/campaign', $data);
+        }
+    }
+    
+	public function tambah_campaign()
+	{
+        if(isset($_SESSION['login'])){
+            $this->load->view('admin/tambah_campaign');
+        }else{
+            $this->load->view('admin/login');
         }
     }
 }
