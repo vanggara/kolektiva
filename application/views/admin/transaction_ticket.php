@@ -62,9 +62,9 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Campaign Services:</h6>
-                        <a class="collapse-item active" href="<?php echo base_url('CAdmin/campaign')?>">List
+                        <a class="collapse-item" href="<?php echo base_url('CAdmin/campaign')?>">List
                             Campaign</a>
-                        <a class="collapse-item" href="<?php echo base_url('CAdmin/transaction_ticket')?>">Transaction Ticket</a>
+                        <a class="collapse-item active" href="<?php echo base_url('CAdmin/transaction_ticket')?>">Transaction Ticket</a>
                     </div>
                 </div>
             </li>
@@ -138,9 +138,6 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-2 text-gray-800">Campaign</h1>
-                        <a href="<?php echo base_url('CAdmin/tambah_campaign')?>"
-                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-plus fa-sm text-white-60"></i> Tambah</a>
                     </div>
                     <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
 
@@ -148,12 +145,12 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">List Campaign</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Transaction Ticket</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <div class="card-body">
-                                    <label for="category">Filter by Category</label>
+                                    <label for="category">Filter by Event Name</label>
                                     <div id='category'>
                                     </div>
                                 </div>
@@ -161,46 +158,21 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Category</th>
                                             <th>Event Name</th>
-                                            <th>Event Date</th>
-                                            <th>Price</th>
-                                            <th>Venue</th>
-                                            <th>Proposal</th>
-                                            <th>Approval</th>
-                                            <th>Percentage</th>
-                                            <th>Action</th>
+                                            <th>Email User</th>
+                                            <th>Order ID</th>
+                                            <th>Status Code Transaction</th>
+                                            <th>Status Transaction</th>
                                         </tr>
                                     </thead>
                                     <?php $no=1; foreach ($content->result_array() as $key): ?>
                                     <tr>
                                         <td><?php echo $no++; ?></td>
-                                        <td><?php echo $key['category'] ?></td>
                                         <td><?php echo $key['eventName'] ?></td>
-                                        <td><?php echo $key['eventDate'] ?></td>
-                                        <td><?php echo $key['price'] ?></td>
-                                        <td><?php echo $key['venue'] ?></td>
-                                        <td>
-                                            <button class="btn btn-success btn-xs"
-                                                onclick="window.location.href = '<?php echo base_url() ?>CAdmin/view_proposal/<?php echo $key['id'] ?>'"><i
-                                                    class="fa fa-eye"></i></button></td>
-                                        <?php if($key['approval']==1) {?>
-                                        <td style="color: green;"><b>Approved</b></td>
-                                        <?php }else {?>
-                                        <td>
-                                            <button class="btn btn-warning btn-xs"
-                                                onclick="approve('<?php echo base_url() ?>CAdmin/approve/<?php echo $key['id'] ?>');">
-                                                Need Approve</button></td>
-                                        <?php }?>
-                                        <td><?php echo $key['percentage'] ?>%</td>
-                                        <td>
-                                            <button class="btn btn-primary btn-xs"
-                                                onclick="window.location.href = '<?php echo base_url() ?>CAdmin/edit_campaign/<?php echo $key['id'] ?>'"><i
-                                                    class="fa fa-edit"></i></button>
-                                            <button class="btn btn-danger btn-xs"
-                                                onclick="hapus('<?php echo base_url() ?>CAdmin/hapus_campaign/<?php echo $key['id'] ?>');"><i
-                                                    class="fa fa-trash "></i></button>
-                                        </td>
+                                        <td><?php echo $key['email'] ?></td>
+                                        <td><?php echo $key['order_id_transaction_ticket'] ?></td>
+                                        <td><?php echo $key['status_code_transaction_ticket'] ?></td>
+                                        <td><?php echo $key['transaction_status_transaction_ticket'] ?></td>
                                     </tr>
                                     <?php endforeach ?>
                                     <tbody>

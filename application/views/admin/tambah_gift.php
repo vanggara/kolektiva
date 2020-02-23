@@ -62,17 +62,17 @@
       </div> -->
             <!-- Nav Item - Books -->
 
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                     aria-expanded="true" aria-controls="collapseOne">
                     <!-- <i class="fas fa-fw fa-book"></i> -->
                     <span>Campaign</span>
                 </a>
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Campaign Services:</h6>
-                        <a class="collapse-item active" href="<?php echo base_url('CAdmin/campaign')?>">List
+                        <a class="collapse-item" href="<?php echo base_url('CAdmin/campaign')?>">List
                             Campaign</a>
                         <a class="collapse-item" href="<?php echo base_url('CAdmin/transaction_ticket')?>">Transaction Ticket</a>
                     </div>
@@ -81,16 +81,16 @@
 
             <!-- Nav Item - User -->
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <!-- <i class="fas fa-fw fa-user"></i> -->
                     <span>Gift</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gift Services:</h6>
-                        <a class="collapse-item" href="<?php echo base_url('CAdmin/gift')?>">Gift List</a>
+                        <a class="collapse-item active" href="<?php echo base_url('CAdmin/gift')?>">Gift List</a>
                         <a class="collapse-item" href="<?php echo base_url('CAdmin/transaction_gift')?>">Transaction Gift</a>
                     </div>
                 </div>
@@ -147,20 +147,21 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-2 text-gray-800">New Campaign</h1>
+                        <h1 class="h3 mb-2 text-gray-800">New Gift</h1>
                     </div>
                     <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
-                    <form class="user" action="<?php echo base_url();?>CAdmin/action_add_campaign" method="post" enctype="multipart/form-data">
+                    <form class="user" action="<?php echo base_url();?>CAdmin/action_add_gift" method="post" enctype="multipart/form-data">
                         <div class="card-body">
                             <!--main content start-->
                             <section id="main-content">
                                 <section class="wrapper">
                                     <div class="form-group">
                                         <div class="row">
-                                            <label for="category">Category</label>
-                                            <select class="form-control " id="category" name="category">
+                                            <label for="eventName">Event Name</label>
+                                            <select class="form-control " id="eventName" name="id_campaign">
                                                 <?php foreach ($content->result_array() as $key): ?>
-                                                <option><?php echo $key['category_name'] ?></option>
+                                                    <option value=<?php echo $key['id'] ?>>
+                                                        <?php echo $key['eventName'] ?></option>
                                                 <?php endforeach ?>
                                             </select>
                                             <br>
@@ -168,27 +169,14 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label for="eventName">Event Name</label>
-                                            <input required type="text" class="form-control" id="eventName"
-                                                name="eventName">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <label for="eventDate">Event Date</label>
-                                            <input required type="date" class="form-control" id="eventDate"
-                                                name="eventDate">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <label>Upload Poster</label>
-                                            <div class="input-group">
+                                            <label>Upload Image</label>
+                                            <div class="input-group my-3">
                                                 <input required type="text" name="image" accept="image/*"
                                                     class="file form-control" disabled placeholder="Upload File" />
                                                 <span class="input-group-btn">
                                                     <span class="btn btn-primary btn-file">
                                                         Browse… <input required type="file" id="imgInp" name="imgInp" />
+                                                        <input type="hidden" />
                                                     </span>
                                                 </span>
                                             </div>
@@ -198,111 +186,46 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label for="ticket">Ticket Price</label>
+                                            <label for="price">Package Price</label>
                                             <div class="input-group mb-2 mr-sm-2">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">Rp.</div>
                                                 </div>
                                                 <input required type="text" onkeypress="return isNumberKey(event)"
-                                                    class="form-control round-form" name="ticket" id="ticket">
+                                                    class="form-control round-form" name="price" id="price">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label for="venue">Instagram Name</label>
-                                            <div class="input-group mb-2 mr-sm-2">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text">@</div>
-                                                </div>
-                                                <input type="text" class="form-control round-form" name="instagram"
-                                                    id="instagram">
-                                            </div>
+                                            <label for="packageName">Package Name</label>
+                                            <input required type="text" class="form-control" name="packageName"
+                                                id="packageName">
                                         </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <label for="campaigner">Campaigner</label>
-                                            <input required type="text" class="form-control" name="campaigner"
-                                                id="campaigner">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <label for="dueDate">Campaign Due Date</label>
-                                            <input required type="date" class="form-control" name="dueDate"
-                                                id="dueDate">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <label for="venue">Event Venue</label>
-                                            <input required type="text" class="form-control" name="venue" id="venue">
-                                        </div>
-                                    </div>
-                                    <!-- <div class="form-group">
-                                            <div class="row">
-                                                <label for="target">Target</label>
-                                                <div class="input-group mb-2 mr-sm-2">
-                                                    <div class="input-group-prepend">
-                                                        <div class="input-group-text">Rp.</div>
-                                                    </div>
-                                                    <input required type="text" onkeypress="return isNumberKey(event)"
-                                                        class="form-control round-form" name="target" id="target">
-                                                </div>
-                                            </div>
-                                        </div> -->
-
                                     <div class="form-group">
                                         <div class="row">
                                             <label for="detail">Detail</label>
-                                            <textarea required style="height:200px" type="text"
-                                                class="form-control round-form" name="detail"></textarea>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <label>Upload KTP</label>
-                                            <div class="input-group my-3">
-                                                <input required type="text" name="image" accept="image/*"
-                                                    class="file form-control" disabled placeholder="Upload File" />
-                                                <span class="input-group-btn">
-                                                    <span class="btn btn-primary btn-file">
-                                                        Browse… <input required type="file" id="imgKtp" name="imgKtp" />
-                                                    </span>
-                                                </span>
-                                            </div>
-                                            <img src="https://placehold.it/80x80" style="height: 150px; width: 150px;"
-                                                id="img-ktp" class="img-thumbnail">
+                                            <input required type="text" class="form-control" name="detail" id="detail">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label>Upload Proposal</label>
-                                            <div class="input-group my-3">
-                                                <input required type="text" name="image" class="file form-control"
-                                                    disabled placeholder="Upload File" />
-                                                <span class="input-group-btn">
-                                                    <span class="btn btn-primary btn-file">
-                                                        Browse… <input required type="file" id="pdfProposal"
-                                                            name="pdfProposal" size="50" />
-                                                        <input type="hidden" />
-                                                    </span>
-                                                </span>
-                                            </div>
+                                            <label for="giftStock">Gift Stock</label>
+                                            <input required type="text" class="form-control" name="giftStock"
+                                                id="giftStock" onkeypress="return isNumberKey(event)">
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <button type="submit" name="submit" value="Add Gift"
+                                            <button type="submit" name="submit" value="Add Campaign"
                                                 class="btn btn-primary btn-user btn-block">
                                                 Save
                                             </button>
                                         </div>
                                     </div>
+                                    <hr>
                                 </section>
                             </section>
                         </div>

@@ -52,17 +52,17 @@
       </div> -->
             <!-- Nav Item - Books -->
 
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                     aria-expanded="true" aria-controls="collapseOne">
                     <!-- <i class="fas fa-fw fa-book"></i> -->
                     <span>Campaign</span>
                 </a>
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Campaign Services:</h6>
-                        <a class="collapse-item active" href="<?php echo base_url('CAdmin/campaign')?>">List
+                        <a class="collapse-item" href="<?php echo base_url('CAdmin/campaign')?>">List
                             Campaign</a>
                         <a class="collapse-item" href="<?php echo base_url('CAdmin/transaction_ticket')?>">Transaction Ticket</a>
                     </div>
@@ -71,16 +71,16 @@
 
             <!-- Nav Item - User -->
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <!-- <i class="fas fa-fw fa-user"></i> -->
                     <span>Gift</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gift Services:</h6>
-                        <a class="collapse-item" href="<?php echo base_url('CAdmin/gift')?>">Gift List</a>
+                        <a class="collapse-item active" href="<?php echo base_url('CAdmin/gift')?>">Gift List</a>
                         <a class="collapse-item" href="<?php echo base_url('CAdmin/transaction_gift')?>">Transaction Gift</a>
                     </div>
                 </div>
@@ -137,8 +137,8 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-2 text-gray-800">Campaign</h1>
-                        <a href="<?php echo base_url('CAdmin/tambah_campaign')?>"
+                        <h1 class="h3 mb-2 text-gray-800">Gift</h1>
+                        <a href="<?php echo base_url('CAdmin/tambah_gift')?>"
                             class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-plus fa-sm text-white-60"></i> Tambah</a>
                     </div>
@@ -148,12 +148,12 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">List Campaign</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">List Gift</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <div class="card-body">
-                                    <label for="category">Filter by Category</label>
+                                    <label for="category">Filter by Campaign Name</label>
                                     <div id='category'>
                                     </div>
                                 </div>
@@ -161,44 +161,28 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Category</th>
-                                            <th>Event Name</th>
-                                            <th>Event Date</th>
+                                            <th>Campaign Name</th>
+                                            <th>Package Name</th>
                                             <th>Price</th>
-                                            <th>Venue</th>
-                                            <th>Proposal</th>
-                                            <th>Approval</th>
-                                            <th>Percentage</th>
+                                            <th>Detail</th>
+                                            <th>Gift Stock</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <?php $no=1; foreach ($content->result_array() as $key): ?>
                                     <tr>
                                         <td><?php echo $no++; ?></td>
-                                        <td><?php echo $key['category'] ?></td>
                                         <td><?php echo $key['eventName'] ?></td>
-                                        <td><?php echo $key['eventDate'] ?></td>
+                                        <td><?php echo $key['package_name'] ?></td>
                                         <td><?php echo $key['price'] ?></td>
-                                        <td><?php echo $key['venue'] ?></td>
-                                        <td>
-                                            <button class="btn btn-success btn-xs"
-                                                onclick="window.location.href = '<?php echo base_url() ?>CAdmin/view_proposal/<?php echo $key['id'] ?>'"><i
-                                                    class="fa fa-eye"></i></button></td>
-                                        <?php if($key['approval']==1) {?>
-                                        <td style="color: green;"><b>Approved</b></td>
-                                        <?php }else {?>
-                                        <td>
-                                            <button class="btn btn-warning btn-xs"
-                                                onclick="approve('<?php echo base_url() ?>CAdmin/approve/<?php echo $key['id'] ?>');">
-                                                Need Approve</button></td>
-                                        <?php }?>
-                                        <td><?php echo $key['percentage'] ?>%</td>
+                                        <td><?php echo $key['detail'] ?></td>
+                                        <td><?php echo $key['gift_stock'] ?></td>
                                         <td>
                                             <button class="btn btn-primary btn-xs"
-                                                onclick="window.location.href = '<?php echo base_url() ?>CAdmin/edit_campaign/<?php echo $key['id'] ?>'"><i
+                                                onclick="window.location.href = '<?php echo base_url() ?>CAdmin/edit_gift/<?php echo $key['id'] ?>'"><i
                                                     class="fa fa-edit"></i></button>
                                             <button class="btn btn-danger btn-xs"
-                                                onclick="hapus('<?php echo base_url() ?>CAdmin/hapus_campaign/<?php echo $key['id'] ?>');"><i
+                                                onclick="hapus('<?php echo base_url() ?>CAdmin/hapus_gift/<?php echo $key['id'] ?>');"><i
                                                     class="fa fa-trash "></i></button>
                                         </td>
                                     </tr>

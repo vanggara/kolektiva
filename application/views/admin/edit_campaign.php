@@ -14,10 +14,6 @@
 
     <!-- Custom fonts for this template-->
     <link href=<?php echo base_url('assets/vendor/fontawesome-free/css/all.min.css')?> rel="stylesheet" type="text/css">
-    <link
-        href=<?php echo base_url('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i')?>
-        rel="stylesheet">
-
     <!-- Custom styles for this template-->
     <link href=<?php echo base_url('assets/css/sb-admin-2.css')?> rel="stylesheet">
 
@@ -147,10 +143,12 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-2 text-gray-800">New Campaign</h1>
+                        <h1 class="h3 mb-2 text-gray-800">Edit Campaign</h1>
                     </div>
+                    <?php foreach ($content->result_array() as $key): ?>
                     <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
-                    <form class="user" action="<?php echo base_url();?>CAdmin/action_add_campaign" method="post" enctype="multipart/form-data">
+                    <form class="user" action="<?php echo base_url();?>CAdmin/action_edit_campaign/<?php echo $key['id']?>" method="post"
+                        enctype="multipart/form-data">
                         <div class="card-body">
                             <!--main content start-->
                             <section id="main-content">
@@ -159,8 +157,8 @@
                                         <div class="row">
                                             <label for="category">Category</label>
                                             <select class="form-control " id="category" name="category">
-                                                <?php foreach ($content->result_array() as $key): ?>
-                                                <option><?php echo $key['category_name'] ?></option>
+                                                <?php foreach ($content2->result_array() as $key2): ?>
+                                                <option><?php echo $key2['category_name'] ?></option>
                                                 <?php endforeach ?>
                                             </select>
                                             <br>
@@ -170,30 +168,30 @@
                                         <div class="row">
                                             <label for="eventName">Event Name</label>
                                             <input required type="text" class="form-control" id="eventName"
-                                                name="eventName">
+                                                name="eventName" value="<?php echo $key['eventName'] ?>">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <label for="eventDate">Event Date</label>
                                             <input required type="date" class="form-control" id="eventDate"
-                                                name="eventDate">
+                                                name="eventDate" value="<?php echo $key['eventDate'] ?>">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <label>Upload Poster</label>
                                             <div class="input-group">
-                                                <input required type="text" name="image" accept="image/*"
-                                                    class="file form-control" disabled placeholder="Upload File" />
+                                                <input required type="text" name="imgInp" accept="image/*"
+                                                    class="file form-control" readonly="readonly" placeholder="Upload File" value="<?php echo $key['image'] ?>"/>
                                                 <span class="input-group-btn">
                                                     <span class="btn btn-primary btn-file">
-                                                        Browse… <input required type="file" id="imgInp" name="imgInp" />
+                                                        Browse… <input type="file" id="imgInp" name="imgInp" />
                                                     </span>
                                                 </span>
                                             </div>
-                                            <img src="https://placehold.it/80x80" style="height: 150px; width: 150px;"
-                                                id="img-upload" class="img-thumbnail">
+                                            <img style="height: 150px; width: 150px;"
+                                                id="img-upload" class="img-thumbnail" src="<?php echo base_url()?>assets/uploads/campaign/<?php echo $key['image']?>">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -204,7 +202,7 @@
                                                     <div class="input-group-text">Rp.</div>
                                                 </div>
                                                 <input required type="text" onkeypress="return isNumberKey(event)"
-                                                    class="form-control round-form" name="ticket" id="ticket">
+                                                    class="form-control round-form" name="ticket" id="ticket" value="<?php echo $key['price'] ?>">
                                             </div>
                                         </div>
                                     </div>
@@ -216,7 +214,7 @@
                                                     <div class="input-group-text">@</div>
                                                 </div>
                                                 <input type="text" class="form-control round-form" name="instagram"
-                                                    id="instagram">
+                                                    id="instagram" value="<?php echo $key['instagram'] ?>">
                                             </div>
                                         </div>
                                     </div>
@@ -225,20 +223,20 @@
                                         <div class="row">
                                             <label for="campaigner">Campaigner</label>
                                             <input required type="text" class="form-control" name="campaigner"
-                                                id="campaigner">
+                                                id="campaigner" value="<?php echo $key['campaigner'] ?>">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <label for="dueDate">Campaign Due Date</label>
                                             <input required type="date" class="form-control" name="dueDate"
-                                                id="dueDate">
+                                                id="dueDate" value="<?php echo $key['dueDate'] ?>">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <label for="venue">Event Venue</label>
-                                            <input required type="text" class="form-control" name="venue" id="venue">
+                                            <input required type="text" class="form-control" name="venue" id="venue" value="<?php echo $key['venue'] ?>">
                                         </div>
                                     </div>
                                     <!-- <div class="form-group">
@@ -258,7 +256,7 @@
                                         <div class="row">
                                             <label for="detail">Detail</label>
                                             <textarea required style="height:200px" type="text"
-                                                class="form-control round-form" name="detail"></textarea>
+                                                class="form-control round-form" name="detail" value="<?php echo $key['detail'] ?>"><?php echo $key['detail'] ?></textarea>
                                         </div>
                                     </div>
                                     <hr>
@@ -266,15 +264,15 @@
                                         <div class="row">
                                             <label>Upload KTP</label>
                                             <div class="input-group my-3">
-                                                <input required type="text" name="image" accept="image/*"
-                                                    class="file form-control" disabled placeholder="Upload File" />
+                                                <input required type="text" name="imgKtp" accept="image/*"
+                                                    class="file form-control"  readonly="readonly" placeholder="Upload File" value="<?php echo $key['imageKtp'] ?>"/>
                                                 <span class="input-group-btn">
                                                     <span class="btn btn-primary btn-file">
-                                                        Browse… <input required type="file" id="imgKtp" name="imgKtp" />
+                                                        Browse… <input type="file" id="imgKtp" name="imgKtp" />
                                                     </span>
                                                 </span>
                                             </div>
-                                            <img src="https://placehold.it/80x80" style="height: 150px; width: 150px;"
+                                            <img src="<?php echo base_url()?>assets/uploads/campaign/<?php echo $key['imageKtp']?>" style="height: 150px; width: 150px;"
                                                 id="img-ktp" class="img-thumbnail">
                                         </div>
                                     </div>
@@ -282,11 +280,11 @@
                                         <div class="row">
                                             <label>Upload Proposal</label>
                                             <div class="input-group my-3">
-                                                <input required type="text" name="image" class="file form-control"
-                                                    disabled placeholder="Upload File" />
+                                                <input required type="text" name="pdfProposal" class="file form-control"
+                                                readonly="readonly" placeholder="Upload File" value="<?php echo $key['proposal'] ?>"/>
                                                 <span class="input-group-btn">
                                                     <span class="btn btn-primary btn-file">
-                                                        Browse… <input required type="file" id="pdfProposal"
+                                                        Browse… <input type="file" id="pdfProposal"
                                                             name="pdfProposal" size="50" />
                                                         <input type="hidden" />
                                                     </span>
@@ -307,6 +305,7 @@
                             </section>
                         </div>
                     </form>
+                    <?php endforeach ?>
                 </div>
 
             </div>
