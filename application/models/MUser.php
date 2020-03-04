@@ -68,7 +68,12 @@ class MUser extends CI_Model {
             $target_path_proposal = "assets/uploads/proposal/";    
             $target_path_proposal = $target_path_proposal . basename( $_FILES['pdfProposal']['name']); 
             $file_type_proposal=$_FILES['pdfProposal']['type'];
-
+            
+            if(isset($_POST['addGift'])){
+                $gift = 1;
+            }else{
+                $gift = 0;
+            }
                 if(move_uploaded_file($_FILES['imgInp']['tmp_name'], $target_path) &&
                     move_uploaded_file($_FILES['imgKtp']['tmp_name'], $target_path_ktp) &&
                     move_uploaded_file($_FILES['pdfProposal']['tmp_name'], $target_path_proposal)) {
@@ -89,12 +94,16 @@ class MUser extends CI_Model {
                         'detail' => $detail,
                         'percentage' => 0,
                         'approval' => 0,
-                        'gift' => 1
+                        'gift' => $gift
                     );
                     $this->db->insert('campaign', $data);
 
                     echo "<script>alert('Saved data success!');</script>";
-                    redirect('add-gift','refresh');
+                    if(isset($_POST['addGift'])){
+                        redirect('add-gift','refresh');
+                    }else{
+                        redirect('home','refresh');
+                    }
                 } else{
                     echo "<script>alert('Failed to upload!');</script>";
                     redirect('add-campaign','refresh');

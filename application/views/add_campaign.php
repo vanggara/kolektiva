@@ -204,7 +204,7 @@
                                                     <span class="input-group-btn">
                                                         <span class="btn btn-primary btn-file">
                                                             Browse… <input required type="file" id="pdfProposal"
-                                                                name="pdfProposal" size="50"/>
+                                                                name="pdfProposal"/>
                                                             <input type="hidden" />
                                                         </span>
                                                     </span>
@@ -213,7 +213,13 @@
                                         </div>
                                         <hr>
                                         <div class="row">
-                                            <div class="col-lg-12">
+                                            <div class="col-lg-6">
+                                                <button type="submit" name="submit" value="Save"
+                                                    class="btn btn-primary btn-user btn-block">
+                                                    Save
+                                                </button>
+                                            </div>
+                                            <div class="col-lg-6">
                                                 <button type="submit" name="addGift" value="Add Gift"
                                                     class="btn btn-primary btn-user btn-block">
                                                     Save and Add Gift
