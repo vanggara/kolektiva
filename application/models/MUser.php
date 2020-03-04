@@ -295,27 +295,25 @@ class MUser extends CI_Model {
         }
     }
 
-    public function dashboard(){
-        error_reporting(0);
-        $query = "SELECT * FROM campaign WHERE approval=1 AND id_user=".$_SESSION['idUser'].";";
-        $data['campaign'] = $this->db->query($query);
+    // public function dashboard(){
+    //     error_reporting(0);
+    //     $query = "SELECT * FROM campaign WHERE approval=1 AND id_user=".$_SESSION['idUser'].";";
+    //     $data['campaign'] = $this->db->query($query);
         
-        $query2 = "SELECT * FROM campaign JOIN transaction_ticket ON 
-        campaign.id = transaction_ticket.id_campaign_transaction_ticket WHERE 
-        transaction_ticket.id_user_transaction_ticket=".$_SESSION['idUser'].";";
-        $data['ticket'] = $this->db->query($query2);
+    //     $query2 = "SELECT * FROM campaign JOIN transaction_ticket ON 
+    //     campaign.id = transaction_ticket.id_campaign_transaction_ticket WHERE 
+    //     transaction_ticket.id_user_transaction_ticket=".$_SESSION['idUser'].";";
+    //     $data['ticket'] = $this->db->query($query2);
         
-        $query3 = "SELECT * FROM campaign JOIN transaction_gift ON 
-        campaign.id = transaction_gift.id_campaign_transaction_gift WHERE 
-        transaction_gift.id_user_transaction_gift=".$_SESSION['idUser'].";";
-        $data['gift'] = $this->db->query($query3);
+    //     $query3 = "SELECT * FROM campaign JOIN transaction_gift ON 
+    //     campaign.id = transaction_gift.id_campaign_transaction_gift WHERE 
+    //     transaction_gift.id_user_transaction_gift=".$_SESSION['idUser'].";";
+    //     $data['gift'] = $this->db->query($query3);
 
-        $this->load->view('dashboard', $data);
-    }
+    //     $this->load->view('dashboard', $data);
+    // }
     
     public function pay(){
-        
-        error_reporting(0);
         $data = array(
             'status_code_transaction_gift' => $_POST['status_code'],
             'transaction_status_transaction_gift' => $_POST['transaction_status'],
@@ -323,6 +321,16 @@ class MUser extends CI_Model {
         $this->db->where('order_id_transaction_gift', $_POST['order_id']);
         $this->db->update('transaction_gift', $data);
         redirect('http://kolektiva1.000webhostapp.com/handle_notification.php');
+    }
+    
+    public function campaign(){
+        $query = $this->db->query("SELECT * from campaign where gift=1 and approval=1 and dueDate > now()");
+        return $query;
+    }
+    
+    public function crownfunding(){
+        $query = $this->db->query("SELECT * from campaign where gift=0 and approval=1 and dueDate > now()");
+        return $query;
     }
 }
 ?>

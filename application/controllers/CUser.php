@@ -51,6 +51,7 @@ class CUser extends CI_Controller
         if(isset($_SESSION['login'])){
             $this->load->model('MUser');
             $this->MUser->dashboard();
+            $this->load->view('dashboard');
         }else{
             redirect('404_override');
         }
@@ -125,4 +126,25 @@ class CUser extends CI_Controller
         }
     }
     
+    public function campaign()
+	{
+        if(isset($_SESSION['login'])){
+            $this->load->model('MUser');
+            $data['content'] = $this->MUser->campaign();
+            $this->load->view('event', $data);
+        }else{
+            redirect('404_override');
+        }
+    }
+    
+    public function crownfunding()
+	{
+        if(isset($_SESSION['login'])){
+            $this->load->model('MUser');
+            $data['content'] = $this->MUser->crownfunding();
+            $this->load->view('event', $data);
+        }else{
+            redirect('404_override');
+        }
+    }
 }

@@ -70,32 +70,71 @@
         <section id="services" class="section-bg">
             <div class="container">
                 <?php if(isset($_SESSION['login'])){ ?>
-                    <header class="section-header">
-                        <h3>ABOUT KOLEKTIVA</h3>
-                        <p>We are constantly in search for innovative solutions that makes the event organizer easier
-                            while
-                            increasing their opportunities
-                            to make you event comes true by crowdfunding system. We provide We also provide registration
-                            for participants who wish to attend the event.</p>
-                    </header>
-                    <div class="row justify-content-center">
-                        <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
-                            <div class="box" style="min-height: 227.6px; background: #FF7065">
-                                <div class="icon" style="background: #fceef3;"><i class="ion-ios-paperplane"
-                                        style="color: #ff689b;"></i></div>
-                                <h4 class="title"><a href="CUser/campaign">CAMPAIGN</a></h4>
-                                <p class="description">Be a participant to enjoy the event.</p>
+                <!-- Page Wrapper -->
+                <div id="wrapper">
+
+                    <!-- Content Wrapper -->
+                    <div id="content-wrapper" class="d-flex flex-column">
+
+                        <!-- Main Content -->
+                        <div id="content">
+
+                            <!-- Begin Page Content -->
+                            <div class="container-fluid">
+
+                                <!-- Page Heading -->
+                                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                    <h1 class="h3 mb-2 text-gray-800">Event</h1>
+                                </div>
+                                <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
+
+                                <!-- DataTales Example -->
+                                <div class="shadow mb-4">
+                                    <div class="card-body">
+                                            <!-- <div class="form-group">
+                                                <label for="category">Filter by Category</label>
+                                                <div id='category'>
+                                                </div>
+                                            </div> -->
+                                            <br>
+                                            <div class="row">
+                                                <?php foreach ($content->result_array() as $key): ?>
+                                                <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s" onclick="window.location.href = '<?php echo base_url() ?>CUser/contribute/<?php echo $key['id'] ?>'">
+                                                    <!-- Card -->
+                                                    <div class="box" style="width:270px;">
+                                                        <!-- Card image -->
+                                                        <img class="card-img-top"
+                                                            src="<?php echo base_url('assets/uploads/campaign/')?><?php echo $key['image'] ?>"
+                                                            alt="Card image cap">
+
+                                                        <!-- Card content -->
+                                                        <div class="card-body">
+
+                                                            <!-- Title -->
+                                                            <h4 class="card-title"><b><?php echo $key['eventName'] ?></b>
+                                                            </h4>
+                                                            <!-- Text -->
+                                                            <p class="card-text"><?php echo $key['venue'] ?></p>
+                                                            <!-- Button -->
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <!-- Card -->
+                                                <?php endforeach ?>
+                                            </div>
+                                    </div>
+                                </div>
+
                             </div>
+                            <!-- End of Main Content -->
+
                         </div>
-                        <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-                            <div class="box" style="min-height: 227.6px; background: #FF7065">
-                                <div class="icon" style="background: #e6fdfc;"><i class="ion-ios-rose"
-                                        style="color: #3fcdc7;"></i></div>
-                                <h4 class="title"><a href="CUser/crownfunding">CROWNFUNDING</a></h4>
-                                <p class="description">Get a rewards by support the event with join crowdfunding</p>
-                            </div>
-                        </div>
+                        <!-- End of Content Wrapper -->
+
                     </div>
+                    <!-- End of Page Wrapper -->
                     <?php } else { ?>
                     <header class="section-header">
                         <h3>ABOUT KOLEKTIVA</h3>
