@@ -180,13 +180,13 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label>Upload Poster</label>
+                                            <label>Upload Poster (Allowed file: .JPG, .JPEG, .PNG)</label>
                                             <div class="input-group">
                                                 <input required type="text" name="imgInp" accept="image/*"
                                                     class="file form-control" readonly="readonly" placeholder="Upload File" value="<?php echo $key['image'] ?>"/>
                                                 <span class="input-group-btn">
                                                     <span class="btn btn-primary btn-file">
-                                                        Browse… <input type="file" id="imgInp" name="imgInp" />
+                                                        Browse… <input type="file" id="imgInp2" name="imgInp2" />
                                                     </span>
                                                 </span>
                                             </div>
@@ -262,13 +262,13 @@
                                     <hr>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label>Upload KTP</label>
+                                            <label>Upload KTP (Allowed file: .JPG, .JPEG, .PNG)</label>
                                             <div class="input-group my-3">
-                                                <input required type="text" name="imgKtp" accept="image/*"
+                                                <input required type="text" name="imgKtp"
                                                     class="file form-control"  readonly="readonly" placeholder="Upload File" value="<?php echo $key['imageKtp'] ?>"/>
                                                 <span class="input-group-btn">
                                                     <span class="btn btn-primary btn-file">
-                                                        Browse… <input type="file" id="imgKtp" name="imgKtp" />
+                                                        Browse… <input type="file" id="imgKtp2" name="imgKtp2" accept = "image/jpeg , image/jpg, image/png"/>
                                                     </span>
                                                 </span>
                                             </div>
@@ -278,14 +278,14 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label>Upload Proposal</label>
+                                            <label>Upload Proposal (Only accepts a .PDF file)</label>
                                             <div class="input-group my-3">
                                                 <input required type="text" name="pdfProposal" class="file form-control"
                                                 readonly="readonly" placeholder="Upload File" value="<?php echo $key['proposal'] ?>"/>
                                                 <span class="input-group-btn">
                                                     <span class="btn btn-primary btn-file">
-                                                        Browse… <input type="file" id="pdfProposal"
-                                                            name="pdfProposal" size="50" />
+                                                        Browse… <input type="file" id="pdfProposal2"
+                                                            name="pdfProposal2" size="50" />
                                                         <input type="hidden" />
                                                     </span>
                                                 </span>

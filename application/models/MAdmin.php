@@ -91,37 +91,52 @@ class MAdmin extends CI_Model {
             $target_path_proposal = $target_path_proposal . basename( $_FILES['pdfProposal']['name']); 
             $file_type_proposal=$_FILES['pdfProposal']['type'];
 
-                if(move_uploaded_file($_FILES['imgInp']['tmp_name'], $target_path) &&
-                    move_uploaded_file($_FILES['imgKtp']['tmp_name'], $target_path_ktp) &&
-                    move_uploaded_file($_FILES['pdfProposal']['tmp_name'], $target_path_proposal)) {
-                    $data = array(
-                        'id_user' => $idUser,
-                        'category' => $category,
-                        'eventName' => $eventName,
-                        'eventDate' => $eventDate,
-                        'image' => $image,
-                        'imageKtp' => $imageKtp,
-                        'proposal' => $pdfProposal,
-                        'price' => $price,
-                        'instagram' => $instagram,
-                        'campaigner' => $campaigner,
-                        'dueDate' => $dueDate,
-                        'venue' => $venue,
-                        'target' => 0,
-                        'detail' => $detail,
-                        'percentage' => 0,
-                        'approval' => 0,
-                        'gift' => 1
-                    );
-                    $this->db->insert('campaign', $data);
-
-                    echo "<script>alert('Saved data success!');</script>";
-                    return false;
-                } else{
-                    echo "<script>alert('Failed to upload!');</script>";
-                    $query = "SELECT * FROM category";
-                    return $this->db->query($query);
+            if ($file_type_proposal=="application/pdf"){
+                if ($file_type_ktp=="image/jpg" || $file_type_ktp=="image/png" || $file_type_ktp=="image/jpeg") {
+                    if ($file_type=="image/jpg" || $file_type=="image/png" || $file_type=="image/jpeg") {
+                        if(move_uploaded_file($_FILES['imgInp']['tmp_name'], $target_path) &&
+                            move_uploaded_file($_FILES['imgKtp']['tmp_name'], $target_path_ktp) &&
+                            move_uploaded_file($_FILES['pdfProposal']['tmp_name'], $target_path_proposal)) {
+                            $data = array(
+                                'id_user' => $idUser,
+                                'category' => $category,
+                                'eventName' => $eventName,
+                                'eventDate' => $eventDate,
+                                'image' => $image,
+                                'imageKtp' => $imageKtp,
+                                'proposal' => $pdfProposal,
+                                'price' => $price,
+                                'instagram' => $instagram,
+                                'campaigner' => $campaigner,
+                                'dueDate' => $dueDate,
+                                'venue' => $venue,
+                                'target' => 0,
+                                'detail' => $detail,
+                                'percentage' => 0,
+                                'approval' => 0,
+                                'gift' => 1
+                            );
+                            $this->db->insert('campaign', $data);
+        
+                            echo "<script>alert('Saved data success!');</script>";
+                            return false;
+                        } else{
+                            echo "<script>alert('Failed to upload!');</script>";
+                            $query = "SELECT * FROM category";
+                            return $this->db->query($query);
+                        }
+                    }else{
+                        echo "<script>alert('Only accepts Poster with .JPG, .JPEG, .PNG type!');</script>";
+                        redirect('add-campaign','refresh');
+                    }
+                }else{
+                    echo "<script>alert('Only accepts a KTP with .JPG, .JPEG, .PNG type!');</script>";
+                    redirect('add-campaign','refresh');
                 }
+            }else{
+                echo "<script>alert('Only accepts a Proposal with .PDF!');</script>";
+                redirect('add-campaign','refresh');
+            }
         }
     }
     
@@ -131,22 +146,28 @@ class MAdmin extends CI_Model {
         $eventName = $_POST['eventName'];
         $eventDate = $_POST['eventDate'];
 
-        if(!isset($_FILES['imgInp']['name'])){
-            $image = $_FILES['imgInp']['name'];
-        }else{
+        if(empty($_FILES['imgInp2']['name'])){
             $image = $_POST['imgInp'];
+            $file_type = "image/png";
+        }else{
+            $image = $_FILES['imgInp2']['name'];
+            $file_type=$_FILES['imgInp2']['type'];
         }
         
-        if(!isset($_FILES['imgKtp']['name'])){
-            $imageKtp = $_FILES['imgKtp']['name'];
-        }else{
+        if(empty($_FILES['imgKtp2']['name'])){
             $imageKtp = $_POST['imgKtp'];
+            $file_type_ktp = "image/png";
+        }else{
+            $imageKtp = $_FILES['imgKtp2']['name'];
+            $file_type_ktp=$_FILES['imgKtp2']['type'];
         }
         
-        if(!isset($_FILES['pdfProposal']['name'])){
-            $pdfProposal = $_FILES['pdfProposal']['name'];
-        }else{
+        if(empty($_FILES['pdfProposal2']['name'])){
             $pdfProposal = $_POST['pdfProposal'];
+            $file_type_proposal = "application/pdf";
+        }else{
+            $pdfProposal = $_FILES['pdfProposal2']['name'];
+            $file_type_proposal=$_FILES['pdfProposal2']['type'];
         }
         $instagram = $_POST['instagram'];
         $campaigner = $_POST['campaigner'];
@@ -158,68 +179,80 @@ class MAdmin extends CI_Model {
         $idUser = $_SESSION['idUser'];
 
             $target_path = "assets/uploads/campaign/";    
-            $target_path = $target_path . basename( $_FILES['imgInp']['name']); 
-            $file_type=$_FILES['imgInp']['type'];
+            $target_path = $target_path . basename( $_FILES['imgInp2']['name']); 
 
             $target_path_ktp = "assets/uploads/ktp/";    
-            $target_path_ktp = $target_path_ktp . basename( $_FILES['imgKtp']['name']); 
-            $file_type_ktp=$_FILES['imgKtp']['type'];
+            $target_path_ktp = $target_path_ktp . basename( $_FILES['imgKtp2']['name']); 
 
             $target_path_proposal = "assets/uploads/proposal/";    
-            $target_path_proposal = $target_path_proposal . basename( $_FILES['pdfProposal']['name']); 
-            $file_type_proposal=$_FILES['pdfProposal']['type'];
-
-                if(move_uploaded_file($_FILES['imgInp']['tmp_name'], $target_path) ||
-                    move_uploaded_file($_FILES['imgKtp']['tmp_name'], $target_path_ktp) ||
-                    move_uploaded_file($_FILES['pdfProposal']['tmp_name'], $target_path_proposal)) {
-                    $data = array(
-                        'id_user' => $idUser,
-                        'category' => $category,
-                        'eventName' => $eventName,
-                        'eventDate' => $eventDate,
-                        'image' => $image,
-                        'imageKtp' => $imageKtp,
-                        'proposal' => $pdfProposal,
-                        'price' => $price,
-                        'instagram' => $instagram,
-                        'campaigner' => $campaigner,
-                        'dueDate' => $dueDate,
-                        'venue' => $venue,
-                        'target' => 0,
-                        'detail' => $detail,
-                        'percentage' => 0,
-                        'approval' => 1,
-                        'gift' => 1
-                    );
-                    $this->db->where('id', $id_campaign);
-                    $this->db->update('campaign', $data);
+            $target_path_proposal = $target_path_proposal . basename( $_FILES['pdfProposal2']['name']); 
+            // echo var_dump( $pdfProposal,$file_type, $file_type_ktp, $file_type_proposal);
+            if ($file_type_proposal=="application/pdf"){
+                if ($file_type_ktp=="image/jpg" || $file_type_ktp=="image/png" || $file_type_ktp=="image/jpeg") {
+                    if ($file_type=="image/jpg" || $file_type=="image/png" || $file_type=="image/jpeg") {
+                        if(move_uploaded_file($_FILES['imgInp2']['tmp_name'], $target_path) ||
+                            move_uploaded_file($_FILES['imgKtp2']['tmp_name'], $target_path_ktp) ||
+                            move_uploaded_file($_FILES['pdfProposal2']['tmp_name'], $target_path_proposal)) {
+                            $data = array(
+                                'id_user' => $idUser,
+                                'category' => $category,
+                                'eventName' => $eventName,
+                                'eventDate' => $eventDate,
+                                'image' => $image,
+                                'imageKtp' => $imageKtp,
+                                'proposal' => $pdfProposal,
+                                'price' => $price,
+                                'instagram' => $instagram,
+                                'campaigner' => $campaigner,
+                                'dueDate' => $dueDate,
+                                'venue' => $venue,
+                                'target' => 0,
+                                'detail' => $detail,
+                                'percentage' => 0,
+                                'approval' => 1,
+                                'gift' => 1
+                            );
+                            $this->db->where('id', $id_campaign);
+                            $this->db->update('campaign', $data);
+                            
+                            $query = "SELECT * FROM category";
+                            return $this->db->query($query);
+                        } else{
+                            $data = array(
+                                'id_user' => $idUser,
+                                'category' => $category,
+                                'eventName' => $eventName,
+                                'eventDate' => $eventDate,
+                                'image' => $image,
+                                'imageKtp' => $imageKtp,
+                                'proposal' => $pdfProposal,
+                                'price' => $price,
+                                'instagram' => $instagram,
+                                'campaigner' => $campaigner,
+                                'dueDate' => $dueDate,
+                                'venue' => $venue,
+                                'target' => 0,
+                                'detail' => $detail,
+                                'percentage' => 0,
+                                'approval' => 1,
+                                'gift' => 1
+                            );
+                            $this->db->where('id', $id_campaign);
+                            $this->db->update('campaign', $data);
+                            
+                            $query = "SELECT * FROM category";
+                            return $this->db->query($query);
+                        }
+                    }
+                    echo "<script>alert('Only accepts Poster with .JPG, .JPEG, .PNG type!');</script>";
                     return false;
-                } else{
-                    $data = array(
-                        'id_user' => $idUser,
-                        'category' => $category,
-                        'eventName' => $eventName,
-                        'eventDate' => $eventDate,
-                        'image' => $image,
-                        'imageKtp' => $imageKtp,
-                        'proposal' => $pdfProposal,
-                        'price' => $price,
-                        'instagram' => $instagram,
-                        'campaigner' => $campaigner,
-                        'dueDate' => $dueDate,
-                        'venue' => $venue,
-                        'target' => 0,
-                        'detail' => $detail,
-                        'percentage' => 0,
-                        'approval' => 1,
-                        'gift' => 1
-                    );
-                    $this->db->where('id', $id_campaign);
-                    $this->db->update('campaign', $data);
-                    
-                    $query = "SELECT * FROM category";
-                    return $this->db->query($query);
                 }
+                echo "<script>alert('Only accepts KTP with .JPG, .JPEG, .PNG type!');</script>";
+                return false;
+            }else{
+                echo "<script>alert('Only accepts a Proposal with .PDF type!');</script>";
+                return false;
+            }
     }
     
     public function hapus_campaign($id_campaign)
@@ -259,10 +292,12 @@ class MAdmin extends CI_Model {
     public function action_add_gift(){
         // error_reporting(0);
         
-        if(!isset($_FILES['imgInp']['name'])){
-            $image = $_FILES['imgInp']['name'];
-        }else{
+        if(empty($_FILES['imgInp']['name'])){
             $image = $_POST['imgInp'];
+            $image_type_file= "image/png";
+        }else{
+            $image = $_FILES['imgInp']['name'];
+            $image_type_file=$_FILES['imgInp']['type'];
         }
 
                 $image = $_FILES['imgInp']['name'];
@@ -279,44 +314,54 @@ class MAdmin extends CI_Model {
                 $query = $this->db->count_all_results();
                 if($query == 1)
                 {
+                    echo "<script>alert('Gift already exist!');</script>";
                     return true;
                 }
-                else{                        
+                else{    
                     $target_path = "assets//uploads//gift//";    
                     $target_path = $target_path . basename( $_FILES['imgInp']['name']); 
                     
-                    if(move_uploaded_file($_FILES['imgInp']['tmp_name'], $target_path)) {
+                    echo var_dump( $image_type_file);
+                    if ($image_type_file =="image/jpeg" || $image_type_file =="image/jpg" || $image_type_file =="image/png") {
+                        if(move_uploaded_file($_FILES['imgInp']['tmp_name'], $target_path)) {
+                            
+                            $targetDb = 0;
+                            $sql = "SELECT target FROM campaign where id=".$id_campaign.";";
+                            $query=$this->db->query($sql);
+                            foreach ($query->result() as $row)
+                            {  
+                                $targetDb = $row->target;
+                            }
+                            $target = ($price * $giftStock) + $targetDb;
+                            
+                            $targets = array(
+                                'target' => $target
+                            );
+                            $this->db->where('id', $id_campaign);
+                            $this->db->update('campaign', $targets);
                         
-                        $targetDb = 0;
-                        $sql = "SELECT target FROM campaign where id=".$id_campaign.";";
-                        $query=$this->db->query($sql);
-                        foreach ($query->result() as $row)
-                        {  
-                            $targetDb = $row->target;
+    
+                            $datas = array(
+                                'id_campaign' => $id_campaign,
+                                'image' => $image,
+                                'price' => $price,
+                                'package_name' => $packageName,
+                                'detail' => $detail,
+                                'gift_stock' => $giftStock
+                            );
+                            $this->db->insert('gift', $datas);
+                                $this->load->model('MUser');
+                                $this->MUser->add_gift_rupiahs($id_campaign);
+                                return true;
+                                // redirect('add-gift','refresh');
+                            echo "<script>alert('Saved data success!');</script>";
+                        } else{
+                            $query = "SELECT * FROM campaign;";
+                            return $this->db->query($query);
+                            echo "<script>alert('Failed to save!');</script>";
                         }
-                        $target = ($price * $giftStock) + $targetDb;
-                        
-                        $targets = array(
-                            'target' => $target
-                        );
-                        $this->db->where('id', $id_campaign);
-                        $this->db->update('campaign', $targets);
-                    
-
-                        $datas = array(
-                            'id_campaign' => $id_campaign,
-                            'image' => $image,
-                            'price' => $price,
-                            'package_name' => $packageName,
-                            'detail' => $detail,
-                            'gift_stock' => $giftStock
-                        );
-                        $this->db->insert('gift', $datas);
-                            $this->load->model('MUser');
-                            $this->MUser->add_gift_rupiahs($id_campaign);
-                            return true;
-                            // redirect('add-gift','refresh');
-                    } else{
+                    }else{
+                        echo "<script>alert('Only accepts a image with .JPG, .JPEG, .PNG type!');</script>";
                         $query = "SELECT * FROM campaign;";
                         return $this->db->query($query);
                     }
@@ -331,80 +376,89 @@ class MAdmin extends CI_Model {
     public function action_edit_gift($id_gift){
         // error_reporting(0);
         
-        if(isset($_FILES['imgInp']['name'])){
+        if(empty($_FILES['imgInp']['name'])){
             $image = $_POST['imgInp'];
+            $image_type_file= "image/png";
         }else{
             $image = $_FILES['imgInp']['name'];
+            $image_type_file=$_FILES['imgInp']['type'];
         }
-                $price = $_POST['price'];
-                $packageName = $_POST['packageName'];
-                $detail = $_POST['detail'];
-                $giftStock = $_POST['giftStock'];
-                $id_campaign = $_POST['id_campaign'];
+        $price = $_POST['price'];
+        $packageName = $_POST['packageName'];
+        $detail = $_POST['detail'];
+        $giftStock = $_POST['giftStock'];
+        $id_campaign = $_POST['id_campaign'];
 
-                    $target_path = "assets//uploads//gift//";    
-                    $target_path = $target_path . basename( $_FILES['imgInp']['name']); 
+        $target_path = "assets//uploads//gift//";    
+        $target_path = $target_path . basename( $_FILES['imgInp']['name']); 
                     
-                    if(move_uploaded_file($_FILES['imgInp']['tmp_name'], $target_path)) {
-                        
-                        $targetDb = 0;
-                        $sql = "SELECT target FROM campaign where id=".$id_campaign.";";
-                        $query=$this->db->query($sql);
-                        foreach ($query->result() as $row)
-                        {  
-                            $targetDb = $row->target;
-                        }
-                        $target = ($price * $giftStock) + $targetDb;
-                        
-                        $targets = array(
-                            'target' => $target
-                        );
-                        $this->db->where('id', $id_campaign);
-                        $this->db->update('campaign', $targets);
-                    
-
-                        $datas = array(
-                            'id_campaign' => $id_campaign,
-                            'image' => $image,
-                            'price' => $price,
-                            'package_name' => $packageName,
-                            'detail' => $detail,
-                            'gift_stock' => $giftStock
-                        );
-                        $this->db->where('id', $id_gift);
-                        $this->db->update('gift', $datas);
-                            return true;
-                            // redirect('add-gift','refresh');
-                    } else{
-                        $targetDb = 0;
-                        $sql = "SELECT target FROM campaign where id=".$id_campaign.";";
-                        $query=$this->db->query($sql);
-                        foreach ($query->result() as $row)
-                        {  
-                            $targetDb = $row->target;
-                        }
-                        $target = ($price * $giftStock) + $targetDb;
-                        
-                        $targets = array(
-                            'target' => $target
-                        );
-                        $this->db->where('id', $id_campaign);
-                        $this->db->update('campaign', $targets);
+        if ($image_type_file =="image/jpeg" || $image_type_file =="image/jpg" || $image_type_file =="image/png") {
+            if(move_uploaded_file($_FILES['imgInp']['tmp_name'], $target_path)) {
+                
+                $targetDb = 0;
+                $sql = "SELECT target FROM campaign where id=".$id_campaign.";";
+                $query=$this->db->query($sql);
+                foreach ($query->result() as $row)
+                {  
+                    $targetDb = $row->target;
+                }
+                $target = ($price * $giftStock) + $targetDb;
+                
+                $targets = array(
+                    'target' => $target
+                );
+                $this->db->where('id', $id_campaign);
+                $this->db->update('campaign', $targets);
                     
 
-                        $datas = array(
-                            'id_campaign' => $id_campaign,
-                            'image' => $image,
-                            'price' => $price,
-                            'package_name' => $packageName,
-                            'detail' => $detail,
-                            'gift_stock' => $giftStock
-                        );
-                        $this->db->where('id', $id_gift);
-                        $this->db->update('gift', $datas);
-                        $query = "SELECT * FROM campaign;";
-                        return $this->db->query($query);
-                    }
+                $datas = array(
+                    'id_campaign' => $id_campaign,
+                    'image' => $image,
+                    'price' => $price,
+                    'package_name' => $packageName,
+                    'detail' => $detail,
+                    'gift_stock' => $giftStock
+                );
+                $this->db->where('id', $id_gift);
+                $this->db->update('gift', $datas);
+                $query = "SELECT * FROM campaign;";
+                return $this->db->query($query);
+                // redirect('add-gift','refresh');
+            } else{
+                $targetDb = 0;
+                $sql = "SELECT target FROM campaign where id=".$id_campaign.";";
+                $query=$this->db->query($sql);
+                foreach ($query->result() as $row)
+                {  
+                    $targetDb = $row->target;
+                }
+                $target = ($price * $giftStock) + $targetDb;
+                    
+                $targets = array(
+                    'target' => $target
+                );
+                $this->db->where('id', $id_campaign);
+                $this->db->update('campaign', $targets);
+                        
+
+                $datas = array(
+                    'id_campaign' => $id_campaign,
+                    'image' => $image,
+                    'price' => $price,
+                    'package_name' => $packageName,
+                    'detail' => $detail,
+                    'gift_stock' => $giftStock
+                );
+                $this->db->where('id', $id_gift);
+                $this->db->update('gift', $datas);
+                $query = "SELECT * FROM campaign;";
+                return $this->db->query($query);
+            }
+        }
+        else{
+            echo "<script>alert('Only accepts a image with .JPG, .JPEG, .PNG type!');</script>";
+            return false;
+        }
                 
     }
     

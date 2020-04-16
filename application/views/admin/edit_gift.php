@@ -170,7 +170,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label>Upload Image</label>
+                                            <label>Upload Image (Allowed file: .JPG, .JPEG, .PNG)</label>
                                             <div class="input-group my-3">
                                                 <input required type="text" name="imgInp" accept="image/*"
                                                     class="file form-control" readonly="readonly" placeholder="Upload File" value='<?php echo $key['image']?>'>

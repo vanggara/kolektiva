@@ -94,7 +94,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
-                                                <label>Upload Poster</label>
+                                                <label>Upload Poster (Allowed file: .JPG, .JPEG, .PNG)</label>
                                                 <div class="input-group my-3">
                                                     <input required type="text" name="image" accept="image/*"
                                                         class="file form-control" disabled placeholder="Upload File" />
@@ -179,7 +179,7 @@
                                         <hr>
                                         <div class="form-group">
                                             <div class="row">
-                                                <label>Upload KTP</label>
+                                                <label>Upload KTP (Allowed file: .JPG, .JPEG, .PNG)</label>
                                                 <div class="input-group my-3">
                                                     <input required type="text" name="image" accept="image/*"
                                                         class="file form-control" disabled placeholder="Upload File" />
@@ -197,7 +197,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
-                                                <label>Upload Proposal</label>
+                                                <label>Upload Proposal (Only accepts a .PDF file)</label>
                                                 <div class="input-group my-3">
                                                     <input required type="text" name="image"
                                                         class="file form-control" disabled placeholder="Upload File" />

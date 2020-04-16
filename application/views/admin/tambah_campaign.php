@@ -182,7 +182,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label>Upload Poster</label>
+                                            <label>Upload Poster (Allowed file: .JPG, .JPEG, .PNG)</label>
                                             <div class="input-group">
                                                 <input required type="text" name="image" accept="image/*"
                                                     class="file form-control" disabled placeholder="Upload File" />
@@ -264,7 +264,7 @@
                                     <hr>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label>Upload KTP</label>
+                                            <label>Upload KTP (Allowed file: .JPG, .JPEG, .PNG)</label>
                                             <div class="input-group my-3">
                                                 <input required type="text" name="image" accept="image/*"
                                                     class="file form-control" disabled placeholder="Upload File" />
@@ -280,7 +280,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label>Upload Proposal</label>
+                                            <label>Upload Proposal (Only accepts a .PDF file)</label>
                                             <div class="input-group my-3">
                                                 <input required type="text" name="image" class="file form-control"
                                                     disabled placeholder="Upload File" />
@@ -295,14 +295,20 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <button type="submit" name="submit" value="Add Gift"
-                                                class="btn btn-primary btn-user btn-block">
-                                                Save
-                                            </button>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <button type="submit" name="submit" value="Save"
+                                                    class="btn btn-primary btn-user btn-block">
+                                                    Save
+                                                </button>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <button type="submit" name="addGift" value="Add Gift"
+                                                    class="btn btn-primary btn-user btn-block">
+                                                    Save and Add Gift
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
                                 </section>
                             </section>
                         </div>

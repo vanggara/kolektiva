@@ -95,7 +95,7 @@ class CAdmin extends CI_Controller
 	{
         if(isset($_SESSION['login'])){
             $this->load->model('MAdmin');
-            if($this->MAdmin->action_edit_campaign($id_campaign)==true){
+            if($this->MAdmin->action_edit_campaign($id_campaign)==false){
                 $data['content'] = $this->MAdmin->edit_campaign($id_campaign);
                 $data['content2'] = $this->MAdmin->tambah_campaign();
                 $this->load->view('admin/edit_campaign', $data);
@@ -183,12 +183,10 @@ class CAdmin extends CI_Controller
                 $this->load->model('MAdmin');
                 $data['content'] = $this->MAdmin->tambah_gift();
                 $this->load->view('admin/tambah_gift', $data);
-                echo "<script>alert('Saved data success!');</script>";
             }else{
                 $this->load->model('MAdmin');
                 $data['content'] = $this->MAdmin->tambah_gift();
                 $this->load->view('admin/tambah_gift', $data);
-                echo "<script>alert('Failed to save data!');</script>";
             }
         }else{
             $this->load->view('admin/login');
