@@ -98,9 +98,15 @@
                   <button disabled class="btn btn-primary btn-user btn-block">
                     <a style="color: black;">Too Late</a></button>
                   <?php } else{?>
-                  <button class="btn btn-primary btn-user btn-block">
+                    <button class="btn btn-primary btn-user btn-block">
+                    <a href="#" data-toggle="modal" data-target="#getTicket2" style="color: black;"
+                      data-packagename='Campaign-<?php echo $key['eventName'] ?>' data-price2=<?php echo $key['price']?>
+                      data-gift=<?php echo $key['id'] ?> data-date='<?php echo $key['eventDate'] ?>' data-venue='<?php echo $key['venue'] ?>'>Get a
+                      ticket</a>
+                  </button>
+                  <!-- <button class="btn btn-primary btn-user btn-block">
                     <a href="#" data-toggle="modal" data-target="#getTicket" style="color: black;">Get a
-                      ticket</a></button>
+                      ticket</a></button> -->
                   <?php } ?>
                 </div>
               </div>
@@ -162,8 +168,7 @@
       <div class="container">
 
         <div class="owl-carousel clients-carousel">
-          <?php foreach ($content2->result_array() as $key): ?>
-          <?php if($key['package_name']!='No Package'){ ?>
+          <?php foreach ($content2->result_array() as $key):?>
           <div class="row flex-items-xs-middle flex-items-xs-center">
             <div class="card">
               <img style="height: 238px; width: 300px"
@@ -186,7 +191,7 @@
                   <?php } else{?>
                   <button class="btn btn-primary btn-user btn-block">
                     <a href="#" data-toggle="modal" data-target="#getTicket2" style="color: white;"
-                      data-packagename='<?php echo $key['package_name'] ?>' data-price2=<?php echo $key['price']?>
+                      data-packagename='Gift-<?php echo $key['package_name'] ?>' data-price2=<?php echo $key['price']?>
                       data-gift=<?php echo $key['id'] ?> data-date='<?php echo $key['eventDate'] ?>' data-venue='<?php echo $key['venue'] ?>'>Pick
                       This</a>
                   </button>
@@ -195,41 +200,6 @@
               </div>
             </div>
           </div>
-          <?php }else{ 
-            $_SESSION['idGift'] = $key['id'] ?>
-
-          <div class="row flex-items-xs-middle flex-items-xs-center">
-            <div class="card">
-              <img style="height: 238px; width: 300px"
-                src=<?php echo base_url('assets/uploads/gift/')?><?php echo $key['image'] ?> alt="">
-              <p><?php echo rupiah($key['price']) ?></p>
-              <p><?php echo $key['package_name'] ?><br>
-                <?php echo $key['detail'] ?>
-              </p>
-              <hr>
-              <div class="row counters">
-                <div class="col-lg-4 col-4 text-center">
-                  <p><span style="color: #FF7065;font-size: 20px;font-weight:bold"
-                      data-toggle="counter-up"><?php echo $key['gift_stock'] ?></span>
-                    Left</p>
-                </div>
-                <div class="col-lg-8 col-8 text-center">
-                  <?php if ($key['gift_stock'] <= 0) {?>
-                  <button disabled class="btn btn-primary btn-user btn-block">
-                    <a style="color: white;">Too Late</a></button>
-                  <?php } else{?>
-                  <button class="btn btn-primary btn-user btn-block">
-                    <a href="#" data-toggle="modal" data-target="#getTicket3" style="color: white;"
-                      data-packagename='<?php echo $key['package_name'] ?>' data-price2=<?php echo $key['price']?>
-                      data-gift=<?php echo $key['id'] ?> data-date='<?php echo $key['eventDate'] ?>' data-venue='<?php echo $key['venue'] ?>'>Pick
-                      This</a>
-                  </button>
-                  <?php } ?>
-                </div>
-              </div>
-            </div>
-          </div>
-          <?php } ?>
           <?php endforeach ?>
 
         </div>

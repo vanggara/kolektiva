@@ -471,7 +471,7 @@ class MAdmin extends CI_Model {
     public function transaction_ticket()
 	{
             $query = $this->db->query("SELECT u.email, c.eventName, tc.order_id_transaction_ticket, tc.status_code_transaction_ticket ,
-            tc.transaction_status_transaction_ticket FROM transaction_ticket tc JOIN campaign c ON c.id = tc.id_campaign_transaction_ticket
+            tc.transaction_status_transaction_ticket, tc.total_tickets_transaction_ticket, tc.prices_transaction_ticket, tc.total_prices_transaction_ticket FROM transaction_ticket tc JOIN campaign c ON c.id = tc.id_campaign_transaction_ticket
             JOIN user u ON tc.id_user_transaction_ticket = u.id;");
             return $query;
     }
@@ -479,7 +479,7 @@ class MAdmin extends CI_Model {
     public function transaction_gift()
 	{
             $query = $this->db->query("SELECT g.package_name, tg.order_id_transaction_gift, tg.status_code_transaction_gift, 
-            tg.transaction_status_transaction_gift, u.fullName, tg.total_ticket_transaction_gift, tg.price_transaction_gift, 
+            tg.transaction_status_transaction_gift, u.email, tg.total_ticket_transaction_gift, tg.price_transaction_gift, 
             tg.total_price_transaction_gift FROM transaction_gift tg JOIN gift g ON g.id = tg.id_gift_transaction_gift
             JOIN user u ON tg.id_user_transaction_gift = u.id;");
             return $query;

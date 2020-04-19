@@ -5,7 +5,7 @@
                     <h2>An online crowdfunding platfrom to make your event comes true by collectively</h2>
                     <div class="row">
                     <?php if(isset($_SESSION['login'])){ ?>
-                        <a href="add-campaign" class="btn-get-started scrollto">Make Your Campaign</a>
+                        <a href="<?php echo base_url('add-campaign')?>" class="btn-get-started scrollto">Make Your Campaign</a>
                     <?php } else{?>
                         <a href="#" data-toggle="modal" data-target="#sorryModal" class="btn-get-started scrollto">Make Your Campaign</a>
                         <a href="register" class="btn-get-started scrollto">Sign Up</a>

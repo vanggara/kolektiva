@@ -171,7 +171,7 @@
                                     <?php $no=1; foreach ($content->result_array() as $key): ?>
                                     <tr>
                                         <td><?php echo $no++; ?></td>
-                                        <td><?php echo $key['eventName'] ?></td>
+                                        <td><?php echo $key['package_name'] ?></td>
                                         <td><?php echo $key['email'] ?></td>
                                         <td><?php echo $key['order_id_transaction_gift'] ?></td>
                                         <td><?php echo $key['status_code_transaction_gift'] ?></td>

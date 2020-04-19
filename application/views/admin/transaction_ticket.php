@@ -163,6 +163,9 @@
                                             <th>Order ID</th>
                                             <th>Status Code Transaction</th>
                                             <th>Status Transaction</th>
+                                            <th>Total Ticket</th>
+                                            <th>Price</th>
+                                            <th>Total Price</th>
                                         </tr>
                                     </thead>
                                     <?php $no=1; foreach ($content->result_array() as $key): ?>
@@ -173,6 +176,9 @@
                                         <td><?php echo $key['order_id_transaction_ticket'] ?></td>
                                         <td><?php echo $key['status_code_transaction_ticket'] ?></td>
                                         <td><?php echo $key['transaction_status_transaction_ticket'] ?></td>
+                                        <td><?php echo $key['total_tickets_transaction_ticket'] ?></td>
+                                        <td><?php echo $key['prices_transaction_ticket'] ?></td>
+                                        <td><?php echo $key['total_prices_transaction_ticket'] ?></td>
                                     </tr>
                                     <?php endforeach ?>
                                     <tbody>

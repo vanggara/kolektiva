@@ -4,6 +4,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MUser extends CI_Model {
 
+    public function __construct()
+    {
+        parent::__construct();
+        $params = array('server_key' => 'SB-Mid-server-MLjIjEnWi4KYmrC0HKtNfYeR', 'production' => false);
+		$this->load->library('veritrans');
+		$this->veritrans->config($params);
+		$this->load->helper('url');	
+    }
+
     public function contribute($id=""){
         $_SESSION['idCampaign'] = $id;
         $query = "SELECT * FROM campaign where id='".$id."';";
@@ -137,9 +146,23 @@ class MUser extends CI_Model {
     }
         
     public function save_ticket_transaction(){
-        $PecahStr = explode("-", $_GET['order_id']);
-        if($PecahStr[0]=="T"){
-            $this->db->where('order_id_transaction_ticket', $_GET['order_id']);
+    //     'order_id' => $_POST['order_id'],
+    //     'gross_amount' => $_POST['gross_amount'], // no decimal allowed for creditcard
+    //     'id' =>$_POST['id_gift'],
+    //     'price' => $_POST['price2'],
+    //     'quantity' => $_POST['quantity'],
+    //     'name' => $_POST['name']
+    //     'first_name'    => $_POST['first_name'],
+    //   //   'last_name'     => "Litani",
+    //     'email'         => $_POST['emailRsvp2'],
+        $status = json_decode( json_encode($this->veritrans->status($_POST['order_id'])), true);
+        // echo var_dump($status);
+        // echo "  |||||||||||||||||||||||||| /n";
+        // // echo ($status['transaction_status']);
+        // echo var_dump($_POST);
+        $PecahStr = explode("-", $_POST['order_id']);
+        if($PecahStr[0]=="C"){
+            $this->db->where('order_id_transaction_ticket', $_POST['order_id']);
             $this->db->where('id_campaign_transaction_ticket', $_SESSION['idCampaign']);
             $this->db->where('id_user_transaction_ticket', $_SESSION['idUser']);
             $this->db->from('transaction_ticket');
@@ -155,24 +178,27 @@ class MUser extends CI_Model {
                 $data = array(
                     'id_user_transaction_ticket' => $_SESSION['idUser'],
                     'id_campaign_transaction_ticket' => $_SESSION['idCampaign'],
-                    'order_id_transaction_ticket' => $_GET['order_id'],
-                    'status_code_transaction_ticket' => $_GET['status_code'],
-                    'transaction_status_transaction_ticket' => $_GET['transaction_status']
+                    'order_id_transaction_ticket' => $_POST['order_id'],
+                    'status_code_transaction_ticket' => $status['status_code'],
+                    'transaction_status_transaction_ticket' => $status['transaction_status'],
+                    'total_tickets_transaction_ticket' => $_POST['quantity'],
+                    'prices_transaction_ticket' => $_POST['price2'],
+                    'total_prices_transaction_ticket' => $status['gross_amount']
                 );
                 $this->db->insert('transaction_ticket', $data);
                 echo "<script>alert('Transaksi Berhasil!');</script>";
                 redirect('home','refresh');        
             }
         }else{
-            $this->db->where('order_id_transaction_gift', $_GET['order_id']);
-            $this->db->where('id_gift_transaction_gift', $_SESSION['idGift']);
+            $this->db->where('order_id_transaction_gift', $_POST['order_id']);
+            $this->db->where('id_gift_transaction_gift', $_POST['id_gift']);
             $this->db->where('id_user_transaction_gift', $_SESSION['idUser']);
             $this->db->from('transaction_gift');
 
             $query = $this->db->count_all_results();
             if($query == 1)
             {
-                echo "ok2";
+                // echo $this->veritrans->status($_POST['order_id']);
                 echo "<script>alert('Transaksi sudah diproses!');</script>";
                 redirect ('home','refresh');
             }
@@ -180,13 +206,13 @@ class MUser extends CI_Model {
                 $data = array(
                     'id_user_transaction_gift' => $_SESSION['idUser'],
                     'id_campaign_transaction_gift' => $_SESSION['idCampaign'],
-                    'id_gift_transaction_gift' => $_SESSION['idGift'],
-                    'order_id_transaction_gift' => $_GET['order_id'],
-                    'status_code_transaction_gift' => $_GET['status_code'],
-                    'transaction_status_transaction_gift' => $_GET['transaction_status'],
+                    'id_gift_transaction_gift' => $_POST['id_gift'],
+                    'order_id_transaction_gift' => $_POST['order_id'],
+                    'status_code_transaction_gift' => $status['status_code'],
+                    'transaction_status_transaction_gift' => $status['transaction_status'],
                     'total_ticket_transaction_gift' => $_POST['quantity'],
-                    'price_transaction_gift' => $_POST['price'],
-                    'total_price_transaction_gift' => $_GET['gross_amount']
+                    'price_transaction_gift' => $_POST['price2'],
+                    'total_price_transaction_gift' => $status['gross_amount']
                 );
                 $this->db->insert('transaction_gift', $data);
                 //update percentage
@@ -196,7 +222,7 @@ class MUser extends CI_Model {
                     $target = $row->target;
                 }
                 $percent = 0;
-                $percent = (($target - $_SESSION['total_price2']) / $target) * 100;
+                $percent = (($target - $status['gross_amount']) / $target) * 100;
                 
                 $update = array(
                     'percentage' => $percent
@@ -205,7 +231,7 @@ class MUser extends CI_Model {
                 $this->db->update('campaign', $update);
 
                 //update gift stock
-                $query2=$this->db->query("SELECT * FROM gift WHERE id=".$_SESSION['idGift']);
+                $query2=$this->db->query("SELECT * FROM gift WHERE id=".$_POST['id_gift']);
                 foreach ($query2->result() as $row)
                 {  
                     $target2 = $row->gift_stock;
@@ -215,7 +241,7 @@ class MUser extends CI_Model {
                 $update2 = array(
                     'gift_stock' => $gift_stock
                 );
-                $this->db->where('id', $_SESSION['idGift']);
+                $this->db->where('id', $_POST['id_gift']);
                 $this->db->update('gift', $update2);
 
                 echo "<script>alert('Transaksi Berhasil!');</script>";
