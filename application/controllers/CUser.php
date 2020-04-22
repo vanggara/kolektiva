@@ -174,6 +174,7 @@ class CUser extends CI_Controller
         }else{
             $id = $_SESSION['idCampaign'];
         }
+        $name = str_replace('Harap Jawab', '', $_POST['name3']);
 		// Required
 		$transaction_details = array(
 		  'order_id' => $_POST['order_id3'],
@@ -185,7 +186,7 @@ class CUser extends CI_Controller
             'id' =>$id,
             'price' => $_POST['price3'],
             'quantity' => $_POST['quantity3'],
-            'name' => $_POST['name3']
+            'name' => $name
 		);
 
 		// Optional
@@ -264,6 +265,13 @@ class CUser extends CI_Controller
         }else{
             $id = $_SESSION['idCampaign'];
         }
+        
+        $PecahStr = explode(" ", $_POST['name']);
+        if($PecahStr[2]=='Jawab'){
+            $name = str_replace('Harap Jawab', '', $_POST['name']);
+        }else if($PecahStr[2]=='Dijawab'){
+            $name = str_replace('Harap Dijawab', '', $_POST['name']);
+        }
 		// Required
 		$transaction_details = array(
 		  'order_id' => $_POST['order_id'],
@@ -275,7 +283,7 @@ class CUser extends CI_Controller
             'id' =>$id,
             'price' => $_POST['price2'],
             'quantity' => $_POST['quantity'],
-            'name' => $_POST['name']
+            'name' => $name
 		);
 
 		// Optional

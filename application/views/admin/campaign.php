@@ -137,7 +137,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-2 text-gray-800">Campaign</h1>
+                        <h1 class="h3 mb-2 text-gray-800">Kampanye</h1>
                         <a href="<?php echo base_url('CAdmin/tambah_campaign')?>"
                             class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-plus fa-sm text-white-60"></i> Tambah</a>
@@ -153,7 +153,7 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <div class="card-body">
-                                    <label for="category">Filter by Category</label>
+                                    <label for="category">Filter Berdasarkan Kategori</label>
                                     <div id='category'>
                                     </div>
                                 </div>
@@ -161,15 +161,15 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Category</th>
-                                            <th>Event Name</th>
-                                            <th>Event Date</th>
-                                            <th>Price</th>
-                                            <th>Venue</th>
+                                            <th>Kategori</th>
+                                            <th>Nama Acara</th>
+                                            <th>Tanggal Acara</th>
+                                            <th>Harga Tiket</th>
+                                            <th>Tempat</th>
                                             <th>Proposal</th>
-                                            <th>Approval</th>
-                                            <th>Percentage</th>
-                                            <th>Action</th>
+                                            <th>Status</th>
+                                            <th>Persentase</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <?php $no=1; foreach ($content->result_array() as $key): ?>

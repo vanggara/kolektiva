@@ -100,9 +100,9 @@
                   <?php } else{?>
                     <button class="btn btn-primary btn-user btn-block">
                     <a href="#" data-toggle="modal" data-target="#getTicket2" style="color: black;"
-                      data-packagename='Campaign-<?php echo $key['eventName'] ?>' data-price2=<?php echo $key['price']?>
-                      data-gift=<?php echo $key['id'] ?> data-date='<?php echo $key['eventDate'] ?>' data-venue='<?php echo $key['venue'] ?>'>Get a
-                      ticket</a>
+                      data-packagename='Harap Dijawab <?php echo $key['eventName'] ?>' data-price2=<?php echo $key['price']?>
+                      data-gift=<?php echo $key['id'] ?> data-date='<?php echo $key['eventDate'] ?>' data-venue='<?php echo $key['venue'] ?>'>Dapatkan
+                      Tiket</a>
                   </button>
                   <!-- <button class="btn btn-primary btn-user btn-block">
                     <a href="#" data-toggle="modal" data-target="#getTicket" style="color: black;">Get a
@@ -110,15 +110,15 @@
                   <?php } ?>
                 </div>
               </div>
-              <p>Will be held on <?php echo DateTime::createFromFormat('Y-m-d', $key['eventDate'])->format('l'); ?>,
-                <?php echo $key['eventDate'] ?><br>Follow us on Instagram:
+              <p>Akan diadakan pada <?php echo DateTime::createFromFormat('Y-m-d', $key['eventDate'])->format('l'); ?>,
+                <?php echo $key['eventDate'] ?><br>Follow kami di Instagram:
                 <a href="https://www.instagram.com/<?php echo $key['instagram'] ?>"
                   target="_blank">@<?php echo $key['instagram'] ?></a></p>
               <table>
                 <tr>
-                  <th>Campaigner</th>
-                  <th>Due Date</th>
-                  <th>Venue</th>
+                  <th>Penyelenggara</th>
+                  <th>Batas Tanggal Kampanye</th>
+                  <th>Tempat</th>
                 </tr>
                 <tr>
                   <th><?php echo $key['campaigner'] ?></th>
@@ -137,11 +137,11 @@
                 <div class="col-lg-4 col-4 text-center">
                   <?php if ($interval->format('%R%a') < 0) {?>
                   <p><span style="color: #FF7065;font-size: 30px;font-weight:bold">
-                      Finish</p>
+                      Selesai</p>
                   <?php } else{?>
                   <p><span style="color: #FF7065;font-size: 30px;font-weight:bold"
                       data-toggle="counter-up"><?php echo $interval->format('%R%a') ?></span>
-                    More Days</p>
+                    Hari Lagi</p>
                   <?php } ?>
                 </div>
                 <div class="col-lg-2 col-2 text-center">
@@ -149,7 +149,7 @@
                 <div class="col-lg-6 col-6 text-center">
                   <p><span style="color: #FF7065;font-size: 30px;font-weight:bold"
                       data-toggle="counter-up"><?php echo $key['target'] ?></span>%
-                    to <?php echo rupiah($key['target']) ?>
+                    dari <?php echo rupiah($key['target']) ?>
                     </h4>
                 </div>
               </div>
@@ -182,18 +182,17 @@
                 <div class="col-lg-4 col-4 text-center">
                   <p><span style="color: #FF7065;font-size: 20px;font-weight:bold"
                       data-toggle="counter-up"><?php echo $key['gift_stock'] ?></span>
-                    Left</p>
+                    Tersisa</p>
                 </div>
                 <div class="col-lg-8 col-8 text-center">
                   <?php if ($key['gift_stock'] <= 0) {?>
                   <button disabled class="btn btn-primary btn-user btn-block">
-                    <a style="color: white;">Too Late</a></button>
+                    <a style="color: white;">Terlambat</a></button>
                   <?php } else{?>
                   <button class="btn btn-primary btn-user btn-block">
                     <a href="#" data-toggle="modal" data-target="#getTicket2" style="color: white;"
-                      data-packagename='Gift-<?php echo $key['package_name'] ?>' data-price2=<?php echo $key['price']?>
-                      data-gift=<?php echo $key['id'] ?> data-date='<?php echo $key['eventDate'] ?>' data-venue='<?php echo $key['venue'] ?>'>Pick
-                      This</a>
+                      data-packagename='Harap Jawab <?php echo $key['package_name'] ?>' data-price2=<?php echo $key['price']?>
+                      data-gift=<?php echo $key['id'] ?> data-date='<?php echo $key['eventDate'] ?>' data-venue='<?php echo $key['venue'] ?>'>Pilih</a>
                   </button>
                   <?php } ?>
                 </div>

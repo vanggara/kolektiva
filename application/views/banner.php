@@ -2,13 +2,13 @@
         <div class="container d-flex h-100">
             <div class="row justify-content-center align-self-center">
                 <div class="col-md-12 intro-info order-md-first order-last">
-                    <h2>An online crowdfunding platfrom to make your event comes true by collectively</h2>
+                    <h2>Sebuah wadah penggalangan dana daring untuk mewujudkan sebuah acara secara kolektif.</h2>
                     <div class="row">
                     <?php if(isset($_SESSION['login'])){ ?>
-                        <a href="<?php echo base_url('add-campaign')?>" class="btn-get-started scrollto">Make Your Campaign</a>
+                        <a href="<?php echo base_url('add-campaign')?>" class="btn-get-started scrollto">Buat Kampanye Acaramu</a>
                     <?php } else{?>
-                        <a href="#" data-toggle="modal" data-target="#sorryModal" class="btn-get-started scrollto">Make Your Campaign</a>
-                        <a href="register" class="btn-get-started scrollto">Sign Up</a>
+                        <a href="#" data-toggle="modal" data-target="#sorryModal" class="btn-get-started scrollto">Buat Kampanye Acaramu</a>
+                        <a href="register" class="btn-get-started scrollto">Daftar</a>
                     <?php } ?>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Sorry, you’ve must login first.</h4>
+                <h4 class="modal-title">Maaf, Anda harus login terlebih dahulu!</h4>
             </div>
             <div class="modal-body text-center">
                 <button type="button" class="bg-text-red" data-dismiss="modal">OK</button>

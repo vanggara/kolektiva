@@ -45,7 +45,7 @@
                       Login
                     </button>
                     <hr>
-                    <p>Don’t have an account? <a href="register">Sign up here</a></p>
+                    <p>Belum punya akun? <a href="register">Daftar sekarang!</a></p>
                   </form>
               </div>
             </div>

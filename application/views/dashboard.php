@@ -68,12 +68,12 @@
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link active" id="nav-campaign-tab" data-toggle="tab"
                                     href="#nav-campaign" role="tab" aria-controls="nav-campaign"
-                                    aria-selected="true">Campaign</a>
+                                    aria-selected="true">Kampanye</a>
                                 <a class="nav-item nav-link" id="nav-contribute-tab" data-toggle="tab"
                                     href="#nav-contribute" role="tab" aria-controls="nav-contribute"
-                                    aria-selected="false">Contribute</a>
+                                    aria-selected="false">Konstribusi</a>
                                 <a class="nav-item nav-link" id="nav-ticket-tab" data-toggle="tab" href="#nav-ticket"
-                                    role="tab" aria-controls="nav-ticket" aria-selected="false">Ticket</a>
+                                    role="tab" aria-controls="nav-ticket" aria-selected="false">Tiket</a>
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
@@ -100,7 +100,7 @@
                                                 <div class="card-body">
                                                     <div class="table-responsive">
                                                         <div class="form-group">
-                                                            <label for="category1">Filter by Category</label>
+                                                            <label for="category1">Filter Berdasarkan Kategori</label>
                                                             <div id='category1'>
                                                             </div>
                                                         </div>
@@ -110,9 +110,9 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th>No.</th>
-                                                                    <th>Event Category</th>
-                                                                    <th>Event Name</th>
-                                                                    <th>Due Date</th>
+                                                                    <th>Kategori Acara</th>
+                                                                    <th>Nama Acara</th>
+                                                                    <th>Batas Tanggal</th>
                                                                     <th>Progress (%)</th>
                                                                     <th>Target</th>
                                                                 </tr>
@@ -120,9 +120,9 @@
                                                             <tfoot>
                                                                 <tr>
                                                                     <th>No.</th>
-                                                                    <th>Event Category</th>
-                                                                    <th>Event Name</th>
-                                                                    <th>Due Date</th>
+                                                                    <th>Kategori Acara</th>
+                                                                    <th>Nama Acara</th>
+                                                                    <th>Batas Tanggal</th>
                                                                     <th>Progress (%)</th>
                                                                     <th>Target</th>
                                                                 </tr>
@@ -178,7 +178,7 @@
                                                 <div class="card-body">
                                                     <div class="table-responsive">
                                                         <div class="form-group">
-                                                            <label for="category2">Filter by Category</label>
+                                                            <label for="category2">Filter Berdasarkan Kategori</label>
                                                             <div id='category2'>
                                                             </div>
                                                         </div>
@@ -187,9 +187,9 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th>No.</th>
-                                                                    <th>Event Category</th>
-                                                                    <th>Event Name</th>
-                                                                    <th>Due Date</th>
+                                                                    <th>Kategori Acara</th>
+                                                                    <th>Nama Acara</th>
+                                                                    <th>Batas Tanggal</th>
                                                                     <th>Progress (%)</th>
                                                                     <th>Target (Rp)</th>
                                                                     <th>Status</th>
@@ -198,9 +198,9 @@
                                                             <tfoot>
                                                                 <tr>
                                                                     <th>No.</th>
-                                                                    <th>Event Category</th>
-                                                                    <th>Event Name</th>
-                                                                    <th>Due Date</th>
+                                                                    <th>Kategori Acara</th>
+                                                                    <th>Nama Acara</th>
+                                                                    <th>Batas Tanggal</th>
                                                                     <th>Progress (%)</th>
                                                                     <th>Target (Rp)</th>
                                                                     <th>Status</th>
@@ -257,7 +257,7 @@
                                                 <div class="card-body">
                                                     <div class="table-responsive">
                                                         <div class="form-group">
-                                                            <label for="category3">Filter by Category</label>
+                                                            <label for="category3">Filter Berdasarkan Kategori</label>
                                                             <div id='category3'>
                                                             </div>
                                                         </div>
@@ -266,22 +266,22 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th>No.</th>
-                                                                    <th>Event Category</th>
-                                                                    <th>Event Name</th>
-                                                                    <th>Event Date</th>
-                                                                    <th>Venue</th>
-                                                                    <th>Price (Rp)</th>
+                                                                    <th>Kategori Acara</th>
+                                                                    <th>Nama Acara</th>
+                                                                    <th>Tanggal Acara</th>
+                                                                    <th>Tempat</th>
+                                                                    <th>Harga Tiket (Rp)</th>
                                                                     <th>Status</th>
                                                                 </tr>
                                                             </thead>
                                                             <tfoot>
                                                                 <tr>
                                                                     <th>No.</th>
-                                                                    <th>Event Category</th>
-                                                                    <th>Event Name</th>
-                                                                    <th>Event Date</th>
-                                                                    <th>Venue</th>
-                                                                    <th>Price (Rp)</th>
+                                                                    <th>Kategori Acara</th>
+                                                                    <th>Nama Acara</th>
+                                                                    <th>Tanggal Acara</th>
+                                                                    <th>Tempat</th>
+                                                                    <th>Harga Tiket (Rp)</th>
                                                                     <th>Status</th>
                                                                 </tr>
                                                             </tfoot>

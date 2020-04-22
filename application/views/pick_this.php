@@ -22,7 +22,7 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">RSVP &nbsp</h4>
+        <h4 class="modal-title"> &nbsp</h4>
         <h4 class="modal-title" id="modal-packagename"></h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
@@ -31,34 +31,34 @@
           <div class="row">
             <div class="col-lg-12 col-12 text-left">
               <div class="col-lg-9 col-9 text-left row">
-                <p class="modal-title">Name: &nbsp </p>
+                <p class="modal-title">Nama: &nbsp </p>
                 <p class="modal-title" id="fullName2"><?php echo $_SESSION['fullName'] ?></p>
               </div>
               <br>
               <div class="col-lg-9 col-9 text-left row">
-                <p class="modal-title">Event Date: &nbsp</p>
+                <p class="modal-title">Tanggal Pelaksanaan Acara: &nbsp</p>
                 <p class="modal-title" id="modal-date"></p>
               </div>
               <br>
               <div class="col-lg-9 col-9 text-left row">
-                <p class="modal-title">Venue: &nbsp</p>
+                <p class="modal-title">Tempat: &nbsp</p>
                 <p class="modal-title" id="modal-venue"></p>
               </div>
               <br>
               <div class="col-lg-9 col-9 text-left row">
-                <p class="modal-title">Price: Rp.&nbsp </p>
+                <p class="modal-title">Harga: Rp.&nbsp </p>
                 <p class="modal-title" id="modal-price2"></p>
                 <input type="number" class="modal1-title" id="price2" name="price2">
               </div>
               <br>
               <div class="col-lg-9 col-9 text-left row">
                 <p hidden class="modal-title">Gift: &nbsp </p>
-                <p  class="modal-title" id="modal-gift"></p>
+                <p hidden class="modal-title" id="modal-gift"></p>
                 <p class="modal-title" id="modal-campaign"></p>
               </div>
               <hr>
               <div class="col-lg-9 col-9 text-left row">
-                <p class="modal-title">Total Pay: Rp. &nbsp</p>
+                <p class="modal-title">Total Bayar: Rp. &nbsp</p>
                 <p class="modal-title" id="total_price2"></p>
               </div>
               <hr>
@@ -67,7 +67,7 @@
               <div class="col-lg-12 col-12 text-center">
                 <div class="form-group">
                   <div class="row">
-                    <label for="total_ticket2">&nbsp Count</label>
+                    <label id="lbl_total_ticket2" for="total_ticket2">&nbsp Total Tiket</label>
                     <select class="form-control" id="total_ticket2" name="quantity">
                       <option value='1' onclick="cek2()">1</option>
                       <option value='2' onclick="cek2()">2</option>
@@ -85,15 +85,15 @@
           <br>
           <div class="form-group">
             <div class="row">
-              <input  type="text" class="form-control form-control-user" id="emailRsvp2" name="emailRsvp2"
+              <input hidden type="text" class="form-control form-control-user" id="emailRsvp2" name="emailRsvp2"
                 aria-describedby="emailHelp" placeholder="yourEmail@gmail.com" value=<?php echo $_SESSION['email'] ?>>
               <input hidden type="text" class="form-control form-control-user" type="text" id="gross_amount"
                 name="gross_amount">
-              <input  type="text" class="form-control form-control-user" type="text" id="order_id" name="order_id">
-              <input  type="text" class="form-control form-control-user" type="text" id="name2" name="name">
-              <input  type="text" class="form-control form-control-user" type="text" id="first_name" name="first_name">
-              <input  type="text" class="form-control form-control-user" type="text" id="id_gift2" name="id_gift">
-              <input  type="text" class="form-control form-control-user" type="text" id="isCampaign" name="isCampaign">
+              <input hidden type="text" class="form-control form-control-user" type="text" id="order_id" name="order_id">
+              <input hidden type="text" class="form-control form-control-user" type="text" id="name2" name="name">
+              <input hidden type="text" class="form-control form-control-user" type="text" id="first_name" name="first_name">
+              <input hidden type="text" class="form-control form-control-user" type="text" id="id_gift2" name="id_gift">
+              <input hidden type="text" class="form-control form-control-user" type="text" id="isCampaign" name="isCampaign">
               </p>
             </div>
           </div>
@@ -146,6 +146,7 @@
 
     var total_ticket2 = document.getElementById("total_ticket2");
     if(document.getElementById('modal-price2').innerHTML==''){
+      document.getElementById("lbl_total_ticket2").style.visibility = "hidden";
       document.getElementById("modal-price2").style.visibility = "hidden";
       document.getElementById("price2").style.display  = "block";
       $('#total_ticket2').prop('hidden', true);
@@ -161,6 +162,7 @@
       document.getElementById('total_price2').innerHTML = window.summary2;
       document.getElementById('price2').value = window.price2;
     }else{
+      document.getElementById("lbl_total_ticket2").style.visibility = "visible";
       $('#total_ticket2').prop('hidden', false);
       window.strUser2 = total_ticket2.options[total_ticket2.selectedIndex].value;
       document.getElementById("modal-price2").style.visibility = "visible";
@@ -176,8 +178,8 @@
     window.fullName2 = document.getElementById('fullName2').innerHTML;
     var id_gift2 = document.getElementById('modal-gift').innerHTML;
     var order_id = document.getElementById('modal-packagename').innerHTML;
-    var myarr = order_id.split("-");
-    if(myarr[0]=="Campaign"){
+    var myarr = order_id.split(" ");
+    if(myarr[1]=="Dijawab"){
       document.getElementById('order_id').value = 'C-' + Math.round((new Date()).getTime() / 1000);
     }else{
       document.getElementById('order_id').value = 'G-' + Math.round((new Date()).getTime() / 1000);

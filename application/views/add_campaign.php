@@ -61,7 +61,7 @@
                                 <div class="p-5">
                                     <hr>
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Make A Campaign
+                                        <h1 class="h4 text-gray-900 mb-4">Membuat Kampanye
                                         </h1>
                                     </div>
                                     <hr>
@@ -80,27 +80,27 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
-                                                <label for="eventName">Event Name</label>
+                                                <label for="eventName">Nama Acara</label>
                                                 <input required type="text" class="form-control" id="eventName"
                                                     name="eventName">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
-                                                <label for="eventDate">Event Date</label>
+                                                <label for="eventDate">Tanggal Acara</label>
                                                 <input required type="date" class="form-control" id="eventDate"
                                                     name="eventDate">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
-                                                <label>Upload Poster (Allowed file: .JPG, .JPEG, .PNG)</label>
+                                                <label>Unggah Poster (Ekstensi file: .JPG, .JPEG, .PNG)</label>
                                                 <div class="input-group my-3">
                                                     <input required type="text" name="image" accept="image/*"
                                                         class="file form-control" disabled placeholder="Upload File" />
                                                     <span class="input-group-btn">
                                                         <span class="btn btn-primary btn-file">
-                                                            Browse… <input required type="file" id="imgInp"
+                                                            Jelajah… <input required type="file" id="imgInp"
                                                                 name="imgInp" />
                                                         </span>
                                                     </span>
@@ -115,7 +115,7 @@
                                                 <label for="ticket">Ticket Price</label>
                                                 <div class="input-group mb-2 mr-sm-2">
                                                     <div class="input-group-prepend">
-                                                        <div class="input-group-text">Rp.</div>
+                                                        <div class="input-group-text">Rp </div>
                                                     </div>
                                                     <input required type="text" onkeypress="return isNumberKey(event)"
                                                         class="form-control round-form" name="ticket" id="ticket">
@@ -124,7 +124,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
-                                                <label for="venue">Instagram Name</label>
+                                                <label for="venue">ID Instagram</label>
                                                 <div class="input-group mb-2 mr-sm-2">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">@</div>
@@ -137,21 +137,21 @@
 
                                         <div class="form-group">
                                             <div class="row">
-                                                <label for="campaigner">Campaigner</label>
+                                                <label for="campaigner">Nama Penyelenggara</label>
                                                 <input required type="text" class="form-control" name="campaigner"
                                                     id="campaigner">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
-                                                <label for="dueDate">Campaign Due Date</label>
+                                                <label for="dueDate">Batas Tanggal Kampanye</label>
                                                 <input required type="date" class="form-control" name="dueDate"
                                                     id="dueDate">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
-                                                <label for="venue">Event Venue</label>
+                                                <label for="venue">Tempat Acara</label>
                                                 <input required type="text" class="form-control" name="venue"
                                                     id="venue">
                                             </div>
@@ -179,13 +179,13 @@
                                         <hr>
                                         <div class="form-group">
                                             <div class="row">
-                                                <label>Upload KTP (Allowed file: .JPG, .JPEG, .PNG)</label>
+                                                <label>Upload KTP (Ekstensi file: .JPG, .JPEG, .PNG)</label>
                                                 <div class="input-group my-3">
                                                     <input required type="text" name="image" accept="image/*"
                                                         class="file form-control" disabled placeholder="Upload File" />
                                                     <span class="input-group-btn">
                                                         <span class="btn btn-primary btn-file">
-                                                            Browse… <input required type="file" id="imgKtp"
+                                                            Jelajah… <input required type="file" id="imgKtp"
                                                                 name="imgKtp" />
                                                         </span>
                                                     </span>
@@ -197,13 +197,13 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
-                                                <label>Upload Proposal (Only accepts a .PDF file)</label>
+                                                <label>Upload Proposal (Ekstensi file: .PDF)</label>
                                                 <div class="input-group my-3">
                                                     <input required type="text" name="image"
                                                         class="file form-control" disabled placeholder="Upload File" />
                                                     <span class="input-group-btn">
                                                         <span class="btn btn-primary btn-file">
-                                                            Browse… <input required type="file" id="pdfProposal"
+                                                            Jelajah… <input required type="file" id="pdfProposal"
                                                                 name="pdfProposal"/>
                                                             <input type="hidden" />
                                                         </span>
@@ -216,13 +216,13 @@
                                             <div class="col-lg-6">
                                                 <button type="submit" name="submit" value="Save"
                                                     class="btn btn-primary btn-user btn-block">
-                                                    Save
+                                                    Simpan
                                                 </button>
                                             </div>
                                             <div class="col-lg-6">
                                                 <button type="submit" name="addGift" value="Add Gift"
                                                     class="btn btn-primary btn-user btn-block">
-                                                    Save and Add Gift
+                                                    Simpan dan Tambah Hadiah
                                                 </button>
                                             </div>
                                         </div>

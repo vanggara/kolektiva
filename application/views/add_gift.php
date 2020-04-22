@@ -61,7 +61,7 @@
                                 <div class="p-5">
                                     <hr>
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Add An Gift
+                                        <h1 class="h4 text-gray-900 mb-4">Tambah Hadiah
                                         </h1>
                                     </div>
                                     <hr>
@@ -69,13 +69,13 @@
                                         action="<?php echo base_url();?>CUser/action_add_gift">
                                         <div class="form-group">
                                             <div class="row">
-                                                <label>Upload Image (Allowed file: .JPG, .JPEG, .PNG)</label>
+                                                <label>Unggah Gambar (Ekstensi file: .JPG, .JPEG, .PNG)</label>
                                                 <div class="input-group my-3">
                                                     <input required type="text" name="image" accept="image/*"
                                                         class="file form-control" disabled placeholder="Upload File" />
                                                     <span class="input-group-btn">
                                                         <span class="btn btn-primary btn-file">
-                                                            Browse… <input required type="file" id="imgInp"
+                                                            Jelajah… <input required type="file" id="imgInp"
                                                                 name="imgInp" />
                                                             <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
                                                         </span>
@@ -88,10 +88,10 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
-                                                <label for="price">Package Price</label>
+                                                <label for="price">Harga Paket Hadiah</label>
                                                 <div class="input-group mb-2 mr-sm-2">
                                                     <div class="input-group-prepend">
-                                                        <div class="input-group-text">Rp.</div>
+                                                        <div class="input-group-text">Rp</div>
                                                     </div>
                                                     <input required type="text" onkeypress="return isNumberKey(event)"
                                                         class="form-control round-form" name="price" id="price">
@@ -100,7 +100,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
-                                                <label for="packageName">Package Name</label>
+                                                <label for="packageName">Nama Paket Hadiah</label>
                                                 <input required type="text" class="form-control" name="packageName"
                                                     id="packageName">
                                             </div>
@@ -114,7 +114,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
-                                                <label for="giftStock">Gift Stock</label>
+                                                <label for="giftStock">Stok Hadiah</label>
                                                 <input required type="text" class="form-control" name="giftStock"
                                                     id="giftStock" onkeypress="return isNumberKey(event)">
                                             </div>
@@ -124,13 +124,13 @@
                                             <div class="col-lg-6">
                                                 <button type="submit" name="submit" value="Add Campaign"
                                                     class="btn btn-primary btn-user btn-block">
-                                                    Save
+                                                    Simpan
                                                 </button>
                                             </div>
                                             <div class="col-lg-6">
                                                 <button type="submit" name="addGift" value="Add Gift"
                                                     class="btn btn-secondary btn-user btn-block">
-                                                    Save and Add Gift
+                                                    Simpan dan Tambah Hadiah
                                                 </button>
                                             </div>
                                         </div>

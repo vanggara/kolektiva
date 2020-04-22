@@ -9,26 +9,26 @@
     <meta content="" name="description">
 
     <!-- Favicons -->
-    <link href=<?php echo base_url('assets/img/favicon.png')?> rel="icon">
-    <link href=<?php echo base_url('assets/img/apple-touch-icon.png')?> rel="apple-touch-icon">
+    <link href=<?php echo base_url('assets/img/favicon.png') ?> rel="icon">
+    <link href=<?php echo base_url('assets/img/apple-touch-icon.png') ?> rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link
-        href=<?php echo base_url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,600,700,700i|Montserrat:300,400,500,600,700')?>
+        href=<?php echo base_url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,600,700,700i|Montserrat:300,400,500,600,700') ?>
         rel="stylesheet">
 
     <!-- Bootstrap CSS File -->
-    <link href=<?php echo base_url('assets/lib/bootstrap/css/bootstrap.min.css')?> rel="stylesheet">
+    <link href=<?php echo base_url('assets/lib/bootstrap/css/bootstrap.min.css') ?> rel="stylesheet">
 
     <!-- Libraries CSS Files -->
-    <link href=<?php echo base_url('assets/lib/font-awesome/css/font-awesome.min.css')?> rel="stylesheet">
-    <link href=<?php echo base_url('assets/lib/animate/animate.min.css')?> rel="stylesheet">
-    <link href=<?php echo base_url('assets/lib/ionicons/css/ionicons.min.css')?> rel="stylesheet">
-    <link href=<?php echo base_url('assets/lib/owlcarousel/assets/owl.carousel.min.css')?> rel="stylesheet">
-    <link href=<?php echo base_url('assets/lib/lightbox/css/lightbox.min.css')?> rel="stylesheet">
+    <link href=<?php echo base_url('assets/lib/font-awesome/css/font-awesome.min.css') ?> rel="stylesheet">
+    <link href=<?php echo base_url('assets/lib/animate/animate.min.css') ?> rel="stylesheet">
+    <link href=<?php echo base_url('assets/lib/ionicons/css/ionicons.min.css') ?> rel="stylesheet">
+    <link href=<?php echo base_url('assets/lib/owlcarousel/assets/owl.carousel.min.css') ?> rel="stylesheet">
+    <link href=<?php echo base_url('assets/lib/lightbox/css/lightbox.min.css') ?> rel="stylesheet">
 
     <!-- Main Stylesheet File -->
-    <link href=<?php echo base_url('assets/css/style.css')?> rel="stylesheet">
+    <link href=<?php echo base_url('assets/css/style.css') ?> rel="stylesheet">
 
     <!-- =======================================================
     Theme Name: Rapid
@@ -42,14 +42,14 @@
     <!--==========================
   Header
   ============================-->
-    <?php include 'topbar.php' ?>
+    <?php include 'topbar.php'?>
 
     <!--==========================
     Banner Section
   ============================-->
 
-    <?php include 'banner.php' ?>
-    
+    <?php include 'banner.php'?>
+
     <main id="main">
 
         <!--==========================
@@ -67,13 +67,13 @@
                                 <div class="col-sm-6">
                                     <div class="footer-links">
                                         <h3>KOLEKTIVA</h3>
-                                        <h4>Contact Us</h4>
+                                        <h4>Hubungi Kami</h4>
                                         <p>
-                                            A108 Adam Street <br>
-                                            New York, NY 535022<br>
-                                            United States <br>
-                                            <strong>Phone:</strong> +1 5589 55488 55<br>
-                                            <strong>Email:</strong> info@example.com<br>
+                                            Jl. Soekarno Hatta <br>
+                                            Malang, Jawa Timur<br>
+                                            Indonesia <br>
+                                            <strong>Phone:</strong> +621 554 855<br>
+                                            <strong>Email:</strong> kolektiva@gmail.com<br>
                                         </p>
                                     </div>
 
@@ -115,28 +115,28 @@
         <!-- <div id="preloader"></div> -->
 
         <!-- JavaScript Libraries -->
-        <script src=<?php echo base_url('assets/lib/jquery/jquery.min.js')?>></script>
-        <script src=<?php echo base_url('assets/lib/jquery/jquery-migrate.min.js')?>></script>
-        <script src=<?php echo base_url('assets/lib/bootstrap/js/bootstrap.bundle.min.js')?>></script>
-        <script src=<?php echo base_url('assets/lib/easing/easing.min.js')?>></script>
-        <script src=<?php echo base_url('assets/lib/mobile-nav/mobile-nav.js')?>></script>
-        <script src=<?php echo base_url('assets/lib/wow/wow.min.js')?>></script>
-        <script src=<?php echo base_url('assets/lib/waypoints/waypoints.min.js')?>></script>
-        <script src=<?php echo base_url('assets/lib/counterup/counterup.min.js')?>></script>
-        <script src=<?php echo base_url('assets/lib/owlcarousel/owl.carousel.min.js')?>></script>
-        <script src=<?php echo base_url('assets/lib/isotope/isotope.pkgd.min.js')?>></script>
-        <script src=<?php echo base_url('assets/lib/lightbox/js/lightbox.min.js')?>></script>
+        <script src=<?php echo base_url('assets/lib/jquery/jquery.min.js') ?>></script>
+        <script src=<?php echo base_url('assets/lib/jquery/jquery-migrate.min.js') ?>></script>
+        <script src=<?php echo base_url('assets/lib/bootstrap/js/bootstrap.bundle.min.js') ?>></script>
+        <script src=<?php echo base_url('assets/lib/easing/easing.min.js') ?>></script>
+        <script src=<?php echo base_url('assets/lib/mobile-nav/mobile-nav.js') ?>></script>
+        <script src=<?php echo base_url('assets/lib/wow/wow.min.js') ?>></script>
+        <script src=<?php echo base_url('assets/lib/waypoints/waypoints.min.js') ?>></script>
+        <script src=<?php echo base_url('assets/lib/counterup/counterup.min.js') ?>></script>
+        <script src=<?php echo base_url('assets/lib/owlcarousel/owl.carousel.min.js') ?>></script>
+        <script src=<?php echo base_url('assets/lib/isotope/isotope.pkgd.min.js') ?>></script>
+        <script src=<?php echo base_url('assets/lib/lightbox/js/lightbox.min.js') ?>></script>
         <!-- Contact Form JavaScript File -->
-        <script src=<?php echo base_url('assets/contactform/contactform.js')?>></script>
+        <script src=<?php echo base_url('assets/contactform/contactform.js') ?>></script>
 
         <!-- Template Main Javascript File -->
-        <script src=<?php echo base_url('assets/js/main.js')?>></script>
+        <script src=<?php echo base_url('assets/js/main.js') ?>></script>
 
 
         <!--==========================
     Login Section
   ============================-->
-        <?php include 'login.php' ?>
+        <?php include 'login.php'?>
 
 </body>
 
