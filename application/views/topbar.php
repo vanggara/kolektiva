@@ -41,7 +41,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Sorry, you’ve must login first.</h4>
+                <h4 class="modal-title">Maaf, Anda harus login terlebih dahulu!</h4>
             </div>
             <div class="modal-body text-center">
                 <button type="button" class="bg-text-red" data-dismiss="modal">OK</button>

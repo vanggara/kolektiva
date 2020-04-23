@@ -166,58 +166,6 @@
       </div>
     </section><!-- #about -->
 
-
-    <!--==========================
-      Clients Section
-    ============================-->
-    <section id="clients" class="wow fadeInUp">
-      <div class="container">
-
-        <div class="owl-carousel clients-carousel">
-          <?php foreach ($content2->result_array() as $key):?>
-          <div class="row flex-items-xs-middle flex-items-xs-center">
-            <div class="card">
-              <img style="height: 238px; width: 300px"
-                src='<?php echo base_url('assets/uploads/gift/')?><?php echo $key['image'] ?>' alt="">
-              <p><?php echo rupiah($key['price']) ?></p>
-              <p><?php echo $key['package_name'] ?><br>
-                <?php echo $key['detail'] ?>
-              </p>
-              <hr>
-              <div class="row counters">
-                <div class="col-lg-4 col-4 text-center">
-                  <p><span style="color: #FF7065;font-size: 20px;font-weight:bold"
-                      data-toggle="counter-up"><?php echo $key['gift_stock'] ?></span>
-                    Tersisa</p>
-                </div>
-                <div class="col-lg-8 col-8 text-center">
-                  <?php if ($key['gift_stock'] <= 0) {?>
-                  <button disabled class="btn btn-primary btn-user btn-block">
-                    <a style="color: white;">Terlambat</a></button>
-                  <?php } else{?>
-                  <?php if(isset($_SESSION['login']) && $_SESSION['fullName']){?>
-                  <button class="btn btn-primary btn-user btn-block">
-                    <a href="#" data-toggle="modal" data-target="#getTicket2" style="color: white;"
-                      data-packagename='Harap Jawab <?php echo $key['package_name'] ?>' data-price2=<?php echo $key['price']?>
-                      data-gift=<?php echo $key['id'] ?> data-date='<?php echo $key['eventDate'] ?>' data-venue='<?php echo $key['venue'] ?>'>Pilih</a>
-                  </button>
-                  <?php } else{?>
-                    <button class="btn btn-primary btn-user btn-block">
-                    <a href="#" data-toggle="modal" style="color: white;" data-target="#sorryModal">Pilih</a>
-                  </button>
-                  <?php } ?>
-                  <?php } ?>
-                </div>
-              </div>
-            </div>
-          </div>
-          <?php endforeach ?>
-
-        </div>
-      </div>
-
-      </div>
-    </section><!-- #clients -->
     <!--==========================
     Footer
   ============================-->

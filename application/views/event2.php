@@ -98,7 +98,7 @@
                                             <br>
                                             <div class="row">
                                                 <?php foreach ($content->result_array() as $key): ?>
-                                                <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s" onclick="window.location.href = '<?php echo base_url() ?>CUser/contribute/<?php echo $key['id'] ?>'">
+                                                <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s" onclick="window.location.href = '<?php echo base_url() ?>CUser/contribute2/<?php echo $key['id'] ?>'">
                                                     <!-- Card -->
                                                     <div class="box" style="width:270px;">
                                                         <!-- Card image -->

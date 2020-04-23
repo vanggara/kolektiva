@@ -24,11 +24,11 @@ class CUser extends CI_Controller
 
 	public function contact()
 	{
-        if(isset($_SESSION['login'])){
+        // if(isset($_SESSION['login'])){
             $this->load->view('contact');
-        }else{
-            redirect('404_override');
-        }
+        // }else{
+        //     redirect('404_override');
+        // }
     }
     
 	public function register()
@@ -66,14 +66,24 @@ class CUser extends CI_Controller
         }
     }
     
-    public function contribute($id="")
+    public function contribute($id)
 	{
-        if(isset($_SESSION['login'])){
+        // if(isset($_SESSION['login'])){
             $this->load->model('MUser');
             $this->MUser->contribute($id);
-        }else{
-            redirect('404_override');
-        }
+        // }else{
+        //     redirect('404_override');
+        // }
+    }
+    
+    public function contribute2($id)
+	{
+        // if(isset($_SESSION['login'])){
+            $this->load->model('MUser');
+            $this->MUser->contribute2($id);
+        // }else{
+        //     redirect('404_override');
+        // }
     }
 
     public function add_campaign()
@@ -147,24 +157,24 @@ class CUser extends CI_Controller
     
     public function campaign()
 	{
-        if(isset($_SESSION['login'])){
+        // if(isset($_SESSION['login'])){
             $this->load->model('MUser');
             $data['content'] = $this->MUser->campaign();
-            $this->load->view('event', $data);
-        }else{
-            redirect('404_override');
-        }
+            $this->load->view('event2', $data);
+        // }else{
+        //     redirect('404_override');
+        // }
     }
     
     public function crownfunding()
 	{
-        if(isset($_SESSION['login'])){
+        // if(isset($_SESSION['login'])){
             $this->load->model('MUser');
             $data['content'] = $this->MUser->crownfunding();
             $this->load->view('event', $data);
-        }else{
-            redirect('404_override');
-        }
+        // }else{
+        //     redirect('404_override');
+        // }
     }
 
     public function token2()

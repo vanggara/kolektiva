@@ -13,15 +13,26 @@ class MUser extends CI_Model {
 		$this->load->helper('url');	
     }
 
-    public function contribute($id=""){
+    public function contribute($id){
         $_SESSION['idCampaign'] = $id;
-        $query = "SELECT * FROM campaign where id='".$id."';";
+        $query = "SELECT *, (SELECT (SUM(total_price_transaction_gift) * 100)/ (SELECT campaign.target from campaign WHERE campaign.id = ".$id.") FROM transaction_gift WHERE id_campaign_transaction_gift=".$id.") as persentase FROM campaign where id='".$id."';";
         $query2 = "SELECT gift.image, gift.price, gift.package_name, gift.detail, gift.gift_stock, gift.id, campaign.eventDate, campaign.eventName, campaign.venue from gift JOIN
         campaign ON campaign.id = gift.id_campaign 
         WHERE gift.id_campaign = '".$id."';";
         $data['content'] = $this->db->query($query);
         $data['content2'] = $this->db->query($query2);
         $this->load->view('contribute', $data);
+    }
+
+    public function contribute2($id){
+        $_SESSION['idCampaign'] = $id;
+        $query = "SELECT *, (SELECT (SUM(total_price_transaction_gift) * 100)/ (SELECT campaign.target from campaign WHERE campaign.id = ".$id.") FROM transaction_gift WHERE id_campaign_transaction_gift=".$id.") as persentase FROM campaign where id='".$id."';";
+        $query2 = "SELECT gift.image, gift.price, gift.package_name, gift.detail, gift.gift_stock, gift.id, campaign.eventDate, campaign.eventName, campaign.venue from gift JOIN
+        campaign ON campaign.id = gift.id_campaign 
+        WHERE gift.id_campaign = '".$id."';";
+        $data['content'] = $this->db->query($query);
+        $data['content2'] = $this->db->query($query2);
+        $this->load->view('contribute2', $data);
     }
 
     public function event_list(){
@@ -220,13 +231,15 @@ class MUser extends CI_Model {
                 foreach ($query->result() as $row)
                 {  
                     $target = $row->target;
+                    $persentase = $row->percentage;
                 }
-                $percent = 0;
-                $percent = (($target - $status['gross_amount']) / $target) * 100;
+                $percent_baru = 0;
+                $percent_baru = ($status['gross_amount']*100) / $target;
                 
                 $update = array(
-                    'percentage' => $percent
+                    'percentage' => $percent_baru + $persentase
                 );
+                echo var_dump($update);
                 $this->db->where('id', $_SESSION['idCampaign']);
                 $this->db->update('campaign', $update);
 
@@ -379,12 +392,12 @@ class MUser extends CI_Model {
     }
     
     public function campaign(){
-        $query = $this->db->query("SELECT * from campaign where gift=1 and approval=1 and dueDate > now()");
+        $query = $this->db->query("SELECT * from campaign where gift=0 and approval=1 and dueDate > now()");
         return $query;
     }
     
     public function crownfunding(){
-        $query = $this->db->query("SELECT * from campaign where gift=0 and approval=1 and dueDate > now()");
+        $query = $this->db->query("SELECT * from campaign where gift=1 and approval=1 and dueDate > now()");
         return $query;
     }
 }

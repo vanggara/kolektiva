@@ -69,7 +69,6 @@
     ============================-->
         <section id="services" class="section-bg">
             <div class="container">
-                <?php if(isset($_SESSION['login'])){ ?>
                     <header class="section-header">
                         <h3>TENTANG KOLEKTIVA</h3>
                         <p>Kami mewujudkan solusi inovatif untuk pelaksanaan sebuah acara sehingga memudahkan panitia acara dan donatur melalui penggalangan dana secara daring berbasis donasi dan imbalan serta menyediakan pendaftaran untuk peserta yang ingin hadir pada acara tersebut</p>
@@ -79,7 +78,7 @@
                             <div class="box" style="min-height: 227.6px; background: #FF7065">
                                 <div class="icon" style="background: #fceef3;"><i class="ion-ios-paperplane"
                                         style="color: #ff689b;"></i></div>
-                                <h4 class="title"><a href="CUser/campaign">KAMPANYE</a></h4>
+                                <h4 class="title"><a href="<?php echo base_url('CUser/campaign')?>">KAMPANYE</a></h4>
                                 <p class="description">Berpartisipasi dalam acara sekarang.</p>
                             </div>
                         </div>
@@ -87,46 +86,11 @@
                             <div class="box" style="min-height: 227.6px; background: #FF7065">
                                 <div class="icon" style="background: #e6fdfc;"><i class="ion-ios-rose"
                                         style="color: #3fcdc7;"></i></div>
-                                <h4 class="title"><a href="CUser/crownfunding">PENGGALANGAN DANA</a></h4>
+                                <h4 class="title"><a href="<?php echo base_url('CUser/crownfunding')?>">PENGGALANGAN DANA</a></h4>
                                 <p class="description">Buat kampanye untuk acara dan lakukan penggalangan dana sekarang untuk mewujudkan acaramu menjadi nyata.</p>
                             </div>
                         </div>
                     </div>
-                    <?php } else { ?>
-                    <header class="section-header">
-                        <h3>TENTANG KOLEKTIVA</h3>
-                        <p>Kami mewujudkan solusi inovatif untuk pelaksanaan sebuah acara sehingga memudahkan panitia acara dan donatur melalui penggalangan dana secara daring berbasis donasi dan imbalan serta menyediakan pendaftaran untuk peserta yang ingin hadir pada acara tersebut</p>
-                    </header>
-                    <div class="row">
-
-                        <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
-                            <div class="box" style="min-height: 227.6px; background: #FF7065">
-                                <div class="icon" style="background: #fceef3;"><i class="ion-log-in"
-                                        style="color: #ff689b;"></i></div>
-                                <h4 class="title"><a href="register">DAFTAR</a></h4>
-                                <p class="description">Berpartisipasi dalam acara sekarang.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
-                            <div class="box" style="min-height: 227.6px; background: #FF7065">
-                                <div class="icon" style="background: #fff0da;"><i class="ion-cash"
-                                        style="color: #e98e06;"></i></div>
-                                <h4 class="title"><a href="">MEMBUAT KAMPANYE</a></h4>
-                                <p class="description">Membuat acaramu menjadi nyata melalui kampanye penggalangan dana daring.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-                            <div class="box" style="min-height: 227.6px; background: #FF7065">
-                                <div class="icon" style="background: #e6fdfc;"><i class="ion-ios-rose"
-                                        style="color: #3fcdc7;"></i></div>
-                                <h4 class="title"><a href="">HADIAH</a></h4>
-                                <p class="description">Dapatkan hadiah atau imbalan atas kontribusi terhadap acara yang kamu dukung.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <?php } ?>
                 </div>
         </section><!-- #services -->
 
