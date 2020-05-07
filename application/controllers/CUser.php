@@ -176,6 +176,17 @@ class CUser extends CI_Controller
         //     redirect('404_override');
         // }
     }
+    
+    public function search($isGift)
+	{
+        // if(isset($_SESSION['login'])){
+            $this->load->model('MUser');
+            $data['content'] = $this->MUser->search($isGift);
+            $this->load->view('event', $data);
+        // }else{
+        //     redirect('404_override');
+        // }
+    }
 
     public function token2()
     {

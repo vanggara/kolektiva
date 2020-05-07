@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 27, 2020 at 06:18 PM
+-- Generation Time: May 07, 2020 at 03:29 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.13
 
@@ -32,8 +32,8 @@ CREATE TABLE `campaign` (
   `id` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL,
   `category` text DEFAULT NULL,
-  `eventName` varchar(225) DEFAULT NULL,
-  `eventDate` date DEFAULT NULL,
+  `eventName` text DEFAULT NULL,
+  `eventDate` text DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
   `image` text DEFAULT NULL,
   `imageKtp` varchar(50) DEFAULT NULL,
@@ -44,20 +44,26 @@ CREATE TABLE `campaign` (
   `venue` text DEFAULT NULL,
   `target` int(11) DEFAULT NULL,
   `detail` text DEFAULT NULL,
+  `percentage` float DEFAULT NULL,
   `approval` int(11) DEFAULT NULL,
-  `gift` int(11) DEFAULT NULL,
-  `percentage` int(11) DEFAULT NULL
+  `gift` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `campaign`
 --
 
-INSERT INTO `campaign` (`id`, `id_user`, `category`, `eventName`, `eventDate`, `price`, `image`, `imageKtp`, `proposal`, `instagram`, `campaigner`, `dueDate`, `venue`, `target`, `detail`, `approval`, `gift`, `percentage`) VALUES
-(2, 4, 'Seminar', 'Raisa', '2020-03-05', 4532, 'okk', 'Class Diagram.jpg', '', 'arbisono_', 'Arbisono', '2020-04-10', 'Samanta Krida', 0, 'Apa itu festifore', 0, 1, 0),
-(3, 1, 'Seminar', 'Isyana', '2020-03-02', 3, 'aldos.jpg', 'aldos.png', 'document(4).pdf', 'arbisono_', 'Arbisono', '2020-02-28', 'Gelora Bung Karno', 150000000, 'Ini adalah sebuah seminar', 1, 1, 0),
-(4, 1, 'Seminar', 'Malang CTD', '2020-03-13', 50000, 'LOGO RE.png', 'LOGO REC.png', '20190828.pdf', 'vckyanggara', 'vicky', '2020-02-13', 'Malang', 600000, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel quam tortor. Aenean molestie lacinia justo, id interdum nunc mollis id. Aliquam erat volutpat. Phasellus nisl neque, venenatis et gravida nec, scelerisque id eros. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam vulputate, ante id pretium sodales, lacus purus eleifend nunc, eu gravida felis nibh eu felis. Duis egestas elit sapien, malesuada dignissim nisl malesuada elementum. Donec mi mi, elementum ac orci ut, commodo rutrum tortor. Duis in sem venenatis, vulputate ligula ac, semper sapien. Aliquam erat volutpat.\r\n\r\nSuspendisse felis dui, posuere et risus ut, auctor convallis ipsum. Suspendisse ipsum enim, consectetur ut rutrum nec, maximus quis dui. Morbi iaculis tempor risus ut commodo. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam at suscipit eros. Fusce lobortis vestibulum sagittis. In vitae eros vitae tortor condimentum malesuada id at leo. Maecenas rhoncus vehicula mi, quis ornare erat. Nulla facilisi. Maecenas lacinia dolor at ex pretium, et accumsan felis mattis.\r\n\r\nMaecenas vehicula molestie eros, in gravida eros convallis non. Nulla feugiat dui ac velit hendrerit, vel sollicitudin massa vehicula. Nullam neque odio, varius et odio ut, sodales accumsan tortor. Maecenas euismod lectus eu velit bibendum scelerisque. Phasellus semper lacus ac libero porttitor ultrices. Aenean euismod mauris at imperdiet luctus. Duis dignissim mi vel diam vestibulum hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin mollis lacus vel velit viverra tempus. Nunc sed egestas enim. Cras et enim pulvinar ipsum porta sollicitudin. In eget urna turpis. Vivamus elementum et ligula at tempus. Suspendisse hendrerit, leo at placerat dignissim, mauris metus tincidunt diam, vitae hendrerit leo odio eu justo. Nullam ac turpis at nibh dapibus blandit. Sed iaculis, mauris eleifend tincidunt malesuada, tortor est efficitur libero, sit amet rutrum purus magna quis sem.\r\n\r\nIn rhoncus urna a efficitur congue. In ac sollicitudin velit. Morbi consectetur magna a velit malesuada, eu accumsan augue molestie. Proin tincidunt leo vel ipsum volutpat mattis et ut purus. Pellentesque lacus nunc, malesuada vitae libero in, vehicula luctus odio. Cras finibus nulla ac dictum aliquet. Sed ultricies enim ut risus fringilla pretium eu ultricies nibh. Suspendisse potenti. Nunc mattis lorem vel tortor efficitur, ut iaculis nisi tempor. Fusce sed vestibulum dui. Sed libero felis, suscipit in ultricies quis, egestas ut nisi. Vivamus fringilla, diam sed dictum gravida, dui orci sagittis nunc, ac bibendum neque tortor sed ligula. Mauris egestas dignissim nisi.\r\n\r\nAliquam imperdiet hendrerit tempor. Suspendisse congue eu mauris sed auctor. In fermentum lacinia dapibus. Nulla placerat dictum magna vitae pellentesque. Maecenas maximus mauris odio. Mauris et posuere lacus. Sed molestie tempus nulla, id convallis metus eleifend vitae.', 0, 1, 0),
-(5, 1, 'Seminar', 'Malang CTD2', '2020-02-29', 50000, 'icon2.ico', 'logo.jpg', 'BISMILLAH.pdf', 'vckyanggara', 'vicky', '2020-02-28', 'Malang', 1350000, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec maximus nec purus et gravida. Donec ac sagittis tellus. Fusce vel ex gravida, egestas felis non, porttitor ligula. Pellentesque sit amet arcu in diam bibendum scelerisque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Etiam convallis egestas velit, at luctus purus interdum eget. Donec ac nisl tortor. Integer aliquet eleifend dolor, et condimentum orci porttitor non. Quisque at lectus consequat, malesuada libero in, lobortis leo. Curabitur tincidunt turpis ut facilisis ultricies.\r\n\r\nQuisque id tortor a eros sollicitudin faucibus. Quisque fermentum sem non lorem mollis laoreet. Quisque in orci lectus. Integer vel mi viverra, tincidunt augue non, malesuada leo. Proin accumsan risus a nunc fringilla, vitae dignissim metus viverra. Nunc eget massa id diam pulvinar volutpat ut ut nunc. Aenean finibus non ligula sit amet convallis.\r\n\r\nPraesent eget mattis elit. Sed dictum nunc at leo placerat bibendum. Pellentesque sit amet arcu id ligula pharetra finibus. Maecenas enim dolor, dapibus sit amet magna vitae, maximus sodales nisi. In vel varius dolor. Vestibulum lobortis orci diam, molestie tempor felis volutpat eget. Nulla efficitur elit porta velit euismod luctus. Phasellus facilisis malesuada sapien, vitae pulvinar leo aliquam id. Aliquam lobortis at risus at tincidunt.\r\n\r\nUt dapibus mauris quis scelerisque porta. In hac habitasse platea dictumst. Ut vestibulum tincidunt libero. Quisque semper lacinia sem, eget viverra nisi auctor sit amet. Nam laoreet erat in mi malesuada, finibus suscipit tortor ultrices. In quis vestibulum elit. Curabitur magna eros, ornare sit amet mollis vel, varius in libero. Maecenas eget lorem sodales, iaculis enim eu, ultrices mi. Praesent pulvinar efficitur neque quis luctus. Proin et fermentum mi, eget fermentum nunc. Sed elementum imperdiet arcu, in aliquam neque. Nunc eu augue odio.\r\n\r\nProin tristique mollis massa quis luctus. Nam in sem eu mi malesuada lacinia. Curabitur laoreet quam at eleifend imperdiet. Praesent mauris est, tempor tristique placerat nec, blandit at nibh. Maecenas mi risus, cursus sed purus ut, pulvinar lacinia purus. Vestibulum tincidunt efficitur lectus, non placerat nulla fermentum sed. Vestibulum aliquet tincidunt ante eu scelerisque. Aliquam finibus dolor nec hendrerit iaculis. Vivamus consequat lacus non elit euismod, semper viverra erat vestibulum. Nam est justo, ullamcorper tincidunt porttitor sit amet, aliquam sed sem.', 1, 1, 0);
+INSERT INTO `campaign` (`id`, `id_user`, `category`, `eventName`, `eventDate`, `price`, `image`, `imageKtp`, `proposal`, `instagram`, `campaigner`, `dueDate`, `venue`, `target`, `detail`, `percentage`, `approval`, `gift`) VALUES
+(3, 1, 'Seminar', 'Seminar untuk apa?', '2020-12-01', 3, 'aldos.jpg', 'aldos.png', 'document(4).pdf', 'arbisono_', 'Arbisono', '2020-11-01', 'Gelora Bung Karno', 2000000, 'Ini adalah sebuah seminar', 15.4634, 1, 0),
+(4, 1, 'Concert', 'JKT48', '2020-01-01', 150000, 'warkop.jpg', 'warkop.jpg', 'document(4).pdf', 'jkt48', 'naomi', '2020-08-13', 'sakri', 1200000, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 0, 1, 0),
+(5, 1, 'Seminar', 'Malang CTD', '2020-02-29', 50000, 'warkop.jpg', 'warkop.jpg', 'Transkrip Akademik - Vicky Anggara.pdf', 'vckyanggara', 'vicky', '2020-07-24', 'Malang', 600000, 'asd', 0, 1, 1),
+(8, 1, 'Seminar', 'Malang CTD2', '2020-02-29', 50000, 'warkop.jpg', 'warkop.jpg', 'Transkrip Akademik - Vicky Anggara.pdf', 'vckyanggara', 'vicky', '2020-02-28', 'Malang', 2550000, 'jhbhj', 0, 1, 1),
+(9, 1, 'Seminar', 'Malang Go', '2020-03-28', 50000, 'logo.png', 'IMG20181222171611.jpg', 'Semantic Web.pdf', 'vckyanggara', 'vicky', '2020-03-26', 'Malang', 1350000, 'casd', 0, 1, 1),
+(10, 1, 'Seminar', 'Hore', '2020-02-29', 50000, 'ZBrush Document.png', 'DragRace.PNG', 'pra semester 8.pdf', 'vckyanggara', 'vicky', '2020-05-02', 'Malang', 1350000, 'Ini adalah sebuah seminar', 100, 1, 0),
+(13, 1, 'Seminar', 'Malang CTD', '2020-04-25', 50000, 'ZBrush Document.jpg', 'ZBrush Document.png', '402-2a2037b3-2bee-495c-a478-5aa42e254859-08042020-', 'vckyanggara', 'vicky', '2020-09-18', 'Malang', 1350000, 'a', 0, 1, 1),
+(14, 1, 'Seminar', 'Hore', '2020-04-18', 50000, 'ZBrush Document1.jpg', 'ZBrush Document.jpg', '402-2a2037b3-2bee-495c-a478-5aa42e254859-08042020-', 'vckyanggara', 'vicky', '2020-06-06', 'Malang', 0, 'a', 0, 0, 0),
+(15, 1, 'Seminar', 'Malang CTD', '2020-04-11', 50000, 'ZBrush Document.png', 'ZBrush Document.png', '402-2a2037b3-2bee-495c-a478-5aa42e254859-08042020-', 'vckyanggara', 's', '2020-04-24', 'Malang', 2700000, 'd', 0, 0, 0),
+(16, 1, 'Seminar', 'Malang CTDsss', '2020-04-17', 50000, 'Perpus.PNG', 'DragRace.PNG', 'CV Vicky Anggara.pdf', 'vckyanggara', 'vicky', '2020-05-02', 'Malang', 1350000, 'aa', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -99,12 +105,79 @@ CREATE TABLE `gift` (
 --
 
 INSERT INTO `gift` (`id`, `id_campaign`, `image`, `price`, `package_name`, `detail`, `gift_stock`) VALUES
-(1, 3, 'keripik_kentang.jpg', 3200000, 'ewq', 'qwe', 10),
-(2, 3, '228791-Nick-Vujicic-Quote-Do-your-best-and-God-will-do-the-rest.jpg', 20000, '234', 'wer', 14),
-(3, 3, 'logo.png', 2134, 'ads', 'asd', 32),
-(4, 4, 'logo.jpg', 30000, 'Pahe1', 'No detail', 20),
-(5, 5, '1Artboard 1@300x-80.jpg', 30000, 'Pahe 1', 'No detail', 45),
-(6, 5, 'keripik_kentang.jpg', 0, 'No Package', 'Enter the rupiahs as you want', 100);
+(1, 1, 'keripik_kentang.jpg', 3200000, 'ewq', 'qwe', 10),
+(2, 2, 'ZBrush Document.jpg', 20000, '234', 'wer', 14),
+(9, 10, '1.PNG', 80000, 'non', 'nonn', 9),
+(10, 4, '2.PNG', 200000, 'coba', 'no', 2),
+(11, 4, '6.PNG', 20000, 'a', 'a', 1),
+(12, 5, 'keripik_kentang.jpg', 30000, 'Pahe1', 'No detail', 20),
+(13, 8, 'keripik_kentang.jpg', 30000, 'Pahe1', 'No detail', 20),
+(14, 8, 'keripik_kentang.jpg', 30000, 'Pahe2', 'No detail', 20),
+(16, 8, 'keripik_kentang.jpg', 0, 'No Package', 'Enter the rupiahs as you want', 100),
+(17, 9, 'logo.png', 30000, 'paheee', 'No detail', 45),
+(18, 9, 'keripik_kentang.jpg', 0, 'No Package', 'Enter the rupiahs as you want', 100),
+(21, 2, '1Artboard 1@300x-80.jpg', 30000, 'Pahe1', 'No detail', 45),
+(22, 2, 'keripik_kentang.jpg', 0, 'No Package', 'Enter the rupiahs as you want', 100),
+(23, 2, '1Artboard 1@300x-80.jpg', 30000, 'Pahe3asd', 'No detail', 20),
+(24, 2, '1Asset 1@400x.png', 30000, 'sdsd', 'ss', 45),
+(25, 2, '1Asset 1@400x.png', 30000, 's', 's', 45),
+(26, 2, '1Asset 1@400x.png', 30000, 'asas', 'asas', 20),
+(27, 2, 'Class Diagram Skripsi.jpg', 30000, 'Pahe3as', 'ss', 45),
+(28, 4, 'reseach area.jpg', 30000, 's', 'a', 2),
+(29, 4, 'keripik_kentang.jpg', 0, 'No Package', 'Enter the rupiahs as you want', 100),
+(30, 2, 'menambah informasi bootcamp.jpg', 30000, 'Pahe1as', 's', 2),
+(31, 2, 'mendaftar peserta bootcamp dari peserta.jpg', 30000, 'sd', 'd', 45),
+(33, 3, 'keripik_kentang.jpg', 0, 'No Package', 'Enter the rupiahs as you want', 96),
+(34, 3, '1Asset 1@400x.png', 2134, 'ads', 'asd', 26),
+(35, 3, '1Asset 1@400x.png', 2134, 'ads', 'asd', 31),
+(36, 3, 'Class Diagram Skripsi.jpg', 2134, 'ads', 'asd', 32),
+(37, 3, '1Asset 1@400x.png', 2134, 'ads', 'asd', 31),
+(38, 3, '1Asset 1@400x.png', 2134, 'ads', 'asd', 32),
+(39, 3, '1Asset 1@400x.png', 2134, 'ads', 'asd', 32),
+(40, 3, 'CONTOH SEQUENCE DIAGRAM.jpeg', 2134, 'ads', 'asd', 32),
+(41, 3, 'menambah sertifikat bootcamp.jpg', 2134, 'ads', 'asd', 31),
+(42, 13, 'ZBrush Document.png', 30000, 'Pahe1aaaa', 'No detail', 45),
+(43, 13, 'keripik_kentang.jpg', 0, 'No Package', 'Enter the rupiahs as you want', 100),
+(44, 15, '402-2a2037b3-2bee-495c-a478-5aa42e254859-08042020-022458.pdf', 30000, 'Pahe3', 'sad', 45),
+(45, 15, 'keripik_kentang.jpg', 0, 'No Package', 'Enter the rupiahs as you want', 100),
+(46, 15, 'ZBrush Document1.jpg', 30000, 'ass', 'a', 45),
+(47, 2, '402-2a2037b3-2bee-495c-a478-5aa42e254859-08042020-022458.pdf', 2134555, 'Pahe3', 'sad', 20),
+(48, 2, 'ZBrush Document1.jpg', 30000, 'sddacafcfve rr', 'No detail', 20),
+(49, 16, 'DragRace.PNG', 30000, 'Pahe1', 'No detail', 45),
+(50, 16, 'keripik_kentang.jpg', 0, 'No Package', 'Enter the rupiahs as you want', 100);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaction_gift`
+--
+
+CREATE TABLE `transaction_gift` (
+  `id_transaction_gift` int(11) NOT NULL,
+  `id_gift_transaction_gift` int(11) DEFAULT NULL,
+  `order_id_transaction_gift` varchar(50) DEFAULT NULL,
+  `status_code_transaction_gift` int(11) DEFAULT NULL,
+  `transaction_status_transaction_gift` varchar(50) DEFAULT NULL,
+  `id_user_transaction_gift` int(11) DEFAULT NULL,
+  `total_ticket_transaction_gift` int(11) DEFAULT NULL,
+  `price_transaction_gift` int(11) DEFAULT NULL,
+  `total_price_transaction_gift` int(11) DEFAULT NULL,
+  `id_campaign_transaction_gift` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaction_gift`
+--
+
+INSERT INTO `transaction_gift` (`id_transaction_gift`, `id_gift_transaction_gift`, `order_id_transaction_gift`, `status_code_transaction_gift`, `transaction_status_transaction_gift`, `id_user_transaction_gift`, `total_ticket_transaction_gift`, `price_transaction_gift`, `total_price_transaction_gift`, `id_campaign_transaction_gift`) VALUES
+(36, 34, 'G-1587307599', 201, 'pending', 1, 1, 200000, 200000, 3),
+(37, 20, 'G-1587307809', 201, 'pending', 1, 1, 400, 400, 10),
+(38, 34, 'G-1587658723', 201, 'pending', 1, 1, 10000, 10000, 3),
+(39, 37, 'G-1587660483', 201, 'pending', 1, 1, 35000, 35000, 3),
+(40, 34, 'G-1587661889', 201, 'pending', 1, 1, 2134, 2134, 3),
+(41, 34, 'G-1587661960', 201, 'pending', 1, 1, 2134, 2134, 3),
+(42, 32, 'G-1587662020', 201, 'pending', 1, 1, 30000, 30000, 3),
+(43, 32, 'G-1587662079', 201, 'pending', 1, 1, 30000, 30000, 3);
 
 -- --------------------------------------------------------
 
@@ -118,8 +191,19 @@ CREATE TABLE `transaction_ticket` (
   `id_campaign_transaction_ticket` int(11) DEFAULT NULL,
   `order_id_transaction_ticket` varchar(50) DEFAULT NULL,
   `status_code_transaction_ticket` int(11) DEFAULT NULL,
-  `transaction_status_transaction_ticket` varchar(50) DEFAULT NULL
+  `transaction_status_transaction_ticket` varchar(50) DEFAULT NULL,
+  `total_tickets_transaction_ticket` int(11) DEFAULT NULL,
+  `prices_transaction_ticket` int(11) DEFAULT NULL,
+  `total_prices_transaction_ticket` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaction_ticket`
+--
+
+INSERT INTO `transaction_ticket` (`id_transaction_ticket`, `id_user_transaction_ticket`, `id_campaign_transaction_ticket`, `order_id_transaction_ticket`, `status_code_transaction_ticket`, `transaction_status_transaction_ticket`, `total_tickets_transaction_ticket`, `prices_transaction_ticket`, `total_prices_transaction_ticket`) VALUES
+(5, 1, 3, 'C-1587307687', 201, 'pending', 3, 3, 9),
+(6, 1, 10, 'C-1587307762', 201, 'pending', 1, 50000, 50000);
 
 -- --------------------------------------------------------
 
@@ -142,10 +226,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `fullName`, `email`, `phoneNumber`, `password`, `role`, `memberSince`) VALUES
-(1, 'a a', 'a@gmail.com', '0', '0cc175b9c0f1b6a831c399e269772661', 2, 'December 15, 2019'),
-(2, 'b', 'b', '0', '92eb5ffee6ae2fec3ad71c777531578f', 2, 'December 16, 2019'),
-(3, 'vicky anggara', 'vanggara@gmail.com', '089098098098', 'e10adc3949ba59abbe56e057f20f883e', 2, 'December 24, 2019'),
-(4, 'admin', 'admin@gmail.com', '09809879087', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 'February 20, 2020');
+(1, 'a', 'a@gmail.com', '0', '0cc175b9c0f1b6a831c399e269772661', 2, 'December 15, 2019'),
+(2, 'b', 'b@gmail.com', '0', '92eb5ffee6ae2fec3ad71c777531578f', 2, 'December 16, 2019'),
+(4, 'arbisono', 'arbisono.haryaputra@gmail.com', '081234567890', '0cc175b9c0f1b6a831c399e269772661', 2, 'December 31, 2019'),
+(5, 'admin', 'admin@gmail.com', '08908909809', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 'February 11, 2020');
 
 --
 -- Indexes for dumped tables
@@ -170,6 +254,12 @@ ALTER TABLE `gift`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `transaction_gift`
+--
+ALTER TABLE `transaction_gift`
+  ADD PRIMARY KEY (`id_transaction_gift`);
+
+--
 -- Indexes for table `transaction_ticket`
 --
 ALTER TABLE `transaction_ticket`
@@ -189,7 +279,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `campaign`
 --
 ALTER TABLE `campaign`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -201,19 +291,25 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `gift`
 --
 ALTER TABLE `gift`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
+-- AUTO_INCREMENT for table `transaction_gift`
+--
+ALTER TABLE `transaction_gift`
+  MODIFY `id_transaction_gift` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `transaction_ticket`
 --
 ALTER TABLE `transaction_ticket`
-  MODIFY `id_transaction_ticket` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_transaction_ticket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

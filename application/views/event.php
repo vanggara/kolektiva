@@ -84,10 +84,17 @@
                                 <!-- Page Heading -->
                                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                                     <h1 class="h3 mb-2 text-gray-800">Acara</h1>
+                                    <div id="myBtnContainer">
+                                        <button class="btn btn-primary" onclick="window.location.href = '<?php echo base_url() ?>CUser/crownfunding'"> Semua</button>
+                                        <button class="btn btn-primary" onclick="window.location.href = '<?php echo base_url() ?>CUser/search/1'"> Tanpa Imbalan</button>
+                                        <button class="btn btn-primary" onclick="window.location.href = '<?php echo base_url() ?>CUser/search/0'"> Dengan Imbalan</button>
+                                    </div>
                                 </div>
+                                
                                 <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
 
                                 <!-- DataTales Example -->
+                                
                                 <div class="shadow mb-4">
                                     <div class="card-body">
                                             <!-- <div class="form-group">
@@ -98,9 +105,13 @@
                                             <br>
                                             <div class="row">
                                                 <?php foreach ($content->result_array() as $key): ?>
-                                                <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s" onclick="window.location.href = '<?php echo base_url() ?>CUser/contribute/<?php echo $key['id'] ?>'">
+                                                <?php if($key['gift']==1){?>
+                                                    <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s" onclick="window.location.href = '<?php echo base_url() ?>CUser/contribute/<?php echo $key['id'] ?>'">
+                                                <?php } else{?>
+                                                    <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s" onclick="window.location.href = '<?php echo base_url() ?>CUser/contribute2/<?php echo $key['id'] ?>'">
+                                                <?php } ?>
                                                     <!-- Card -->
-                                                    <div class="box" style="width:270px;">
+                                                    <div class="box filterDiv <?php echo $key['gift'] ?>" style="width:270px;">
                                                         <!-- Card image -->
                                                         <img class="card-img-top"
                                                             src="<?php echo base_url('assets/uploads/campaign/')?><?php echo $key['image'] ?>"

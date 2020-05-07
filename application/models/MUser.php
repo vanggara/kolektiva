@@ -381,15 +381,15 @@ class MUser extends CI_Model {
         $this->load->view('dashboard', $data);
     }
     
-    public function pay(){
-        $data = array(
-            'status_code_transaction_gift' => $_POST['status_code'],
-            'transaction_status_transaction_gift' => $_POST['transaction_status'],
-        );
-        $this->db->where('order_id_transaction_gift', $_POST['order_id']);
-        $this->db->update('transaction_gift', $data);
-        redirect('http://kolektiva1.000webhostapp.com/handle_notification.php');
-    }
+    // public function pay(){
+    //     $data = array(
+    //         'status_code_transaction_gift' => $_POST['status_code'],
+    //         'transaction_status_transaction_gift' => $_POST['transaction_status'],
+    //     );
+    //     $this->db->where('order_id_transaction_gift', $_POST['order_id']);
+    //     $this->db->update('transaction_gift', $data);
+    //     redirect('http://kolektiva1.000webhostapp.com/handle_notification.php');
+    // }
     
     public function campaign(){
         $query = $this->db->query("SELECT * from campaign where gift=0 and approval=1 and dueDate > now()");
@@ -397,7 +397,12 @@ class MUser extends CI_Model {
     }
     
     public function crownfunding(){
-        $query = $this->db->query("SELECT * from campaign where gift=1 and approval=1 and dueDate > now()");
+        $query = $this->db->query("SELECT * from campaign where approval=1 and dueDate > now()");
+        return $query;
+    }
+    
+    public function search($isGift){
+        $query = $this->db->query("SELECT * from campaign where gift=".$isGift." and approval=1 and dueDate > now()");
         return $query;
     }
 }
