@@ -48,6 +48,7 @@
               <div class="col-lg-9 col-9 text-left row">
                 <p class="modal-title">Harga: Rp.&nbsp </p>
                 <p class="modal-title" id="modal-price2"></p>
+                <input type="number" class="modal1-title" id="price2" name="price2">
               </div>
               <br>
               <div class="col-lg-9 col-9 text-left row">
@@ -56,56 +57,61 @@
                 <p class="modal-title" id="modal-campaign"></p>
               </div>
               <div class="col-lg-9 col-9 text-left row">
-                <p hidden class="modal-title">Total Bayar: Rp. &nbsp</p>
-                <p hidden class="modal-title" id="total_price2"></p>
+                <p class="modal-title">Total Bayar: Rp. &nbsp</p>
+                <p class="modal-title" id="total_price2"></p>
               </div>
               <hr>
             </div>
-            
-            <!-- <div class="col-lg-12 col-12 text-left row">
-                <p  id="lbl_total_ticket2" class="modal-title">&nbsp Jumlah paket yang dibeli&nbsp </p>
-                <input type="number" class="modal-title" id="total_ticket21" name="quantity21">
-              </div> -->
-            <div class="col-lg-12 col-12 text-center">
+
+            <div class="col-lg-12 col-12 text-left">
+              <div class="col-lg-12 col-12 text-left row">
+                <p id="lbl_total_ticket2" class="modal-title">&nbsp Jumlah paket yang dibeli&nbsp </p>
+                <input type="number" class="modal-title" id="total_ticket2" name="quantity">
+              </div>
+            </div>
+            <!-- <div class="col-lg-3 col-3 text-center">
               <div class="col-lg-12 col-12 text-center">
-                <div class="form-group">
-                  <div class="row">
-                    <label id="lbl_total_ticket2" for="total_ticket2">&nbsp Total Tiket</label>
-                    <!-- <input type="number" class="modal-title" id="total_ticket2" name="quantity"> -->
-                    <select class="form-control" id="total_ticket2" name="quantity">
-                      <option value='1' onclick="cek2()">1</option>
-                      <option value='2' onclick="cek2()">2</option>
-                      <option value='3' onclick="cek2()">3</option>
-                      <option value='4' onclick="cek2()">4</option>
-                      <option value='5' onclick="cek2()">5</option>
-                    </select>
-                    <br>
+                <div class="col-lg-12 col-12 text-center">
+                  <div class="form-group">
+                    <div class="row">
+                      <label id="lbl_total_ticket2" for="total_ticket2">&nbsp Total Tiket</label>
+                      <select class="form-control" id="total_ticket2" name="quantity">
+                        <option value='1' onclick="cek2()">1</option>
+                        <option value='2' onclick="cek2()">2</option>
+                        <option value='3' onclick="cek2()">3</option>
+                        <option value='4' onclick="cek2()">4</option>
+                        <option value='5' onclick="cek2()">5</option>
+                      </select>
+                      <br>
+                    </div>
                   </div>
                 </div>
               </div>
+              <hr>
+            </div> -->
+            <br>
+            <div class="form-group">
+              <div class="row">
+                <input hidden type="text" class="form-control form-control-user" id="emailRsvp2" name="emailRsvp2"
+                  aria-describedby="emailHelp" placeholder="yourEmail@gmail.com" value=<?php echo $_SESSION['email'] ?>>
+                <input hidden type="text" class="form-control form-control-user" type="text" id="gross_amount"
+                  name="gross_amount">
+                <input hidden type="text" class="form-control form-control-user" type="text" id="order_id"
+                  name="order_id">
+                <input hidden type="text" class="form-control form-control-user" type="text" id="name2" name="name">
+                <input hidden type="text" class="form-control form-control-user" type="text" id="first_name"
+                  name="first_name">
+                <input hidden type="text" class="form-control form-control-user" type="text" id="id_gift2"
+                  name="id_gift">
+                <input hidden type="text" class="form-control form-control-user" type="text" id="isCampaign"
+                  name="isCampaign">
+                </p>
+              </div>
             </div>
-            <hr>
-          </div>
-          <br>
-          <div class="form-group">
-            <div class="row">
-              <input  type="text" class="form-control form-control-user" id="emailRsvp2" name="emailRsvp2"
-                aria-describedby="emailHelp" placeholder="yourEmail@gmail.com" value=<?php echo $_SESSION['email'] ?>>
-              <input  type="text" class="form-control form-control-user" type="text" id="gross_amount"
-                name="gross_amount">
-              <input  type="number" class="modal1-title" id="price2" name="price2">
-              <input  type="text" class="form-control form-control-user" type="text" id="order_id" name="order_id">
-              <input  type="text" class="form-control form-control-user" type="text" id="name2" name="name">
-              <input  type="text" class="form-control form-control-user" type="text" id="first_name" name="first_name">
-              <input  type="text" class="form-control form-control-user" type="text" id="id_gift2" name="id_gift">
-              <input  type="text" class="form-control form-control-user" type="text" id="isCampaign" name="isCampaign">
-              </p>
+            <div class="modal-body text-center">
+              <button id="pay-button2" type="submit" class="bg-text-red">Lanjut</button>
             </div>
           </div>
-          <div class="modal-body text-center">
-            <button id="pay-button2" type="submit" class="bg-text-red">Lanjut</button>
-          </div>
-        </div>
       </form>
     </div>
   </div>
@@ -150,33 +156,38 @@
     })
 
     var total_ticket2 = document.getElementById("total_ticket2");
-    if(document.getElementById('modal-price2').innerHTML==''){
+    if (document.getElementById('modal-price2').innerHTML == '') {
       document.getElementById("lbl_total_ticket2").style.visibility = "hidden";
       document.getElementById("modal-price2").style.visibility = "hidden";
-      document.getElementById("price2").style.display  = "block";
+      document.getElementById("price2").style.display = "block";
       $('#total_ticket2').prop('hidden', true);
-      total_ticket2.options[total_ticket2.selectedIndex].value = 1;
-      window.strUser2 = total_ticket2.options[total_ticket2.selectedIndex].value;
+      total_ticket2.value = 1;
+      window.strUser2 = total_ticket2.value;
       window.price2 = document.getElementById("price2").value;
       window.summary2 = price2 * strUser2;
-      $("#price2").bind("input", function() {
+      $("#price2").bind("input", function () {
         document.getElementById('total_price2').innerHTML = $("#price2").val();
         document.getElementById('gross_amount').value = $("#price2").val();
       });
       // document.getElementById('gross_amount').value = window.summary2;
       document.getElementById('total_price2').innerHTML = window.summary2;
       document.getElementById('price2').value = window.price2;
-    }else{
+    } else {
+      $("#total_ticket2").bind("input", function () {
+        window.price2 = document.getElementById('modal-price2').innerHTML;
+        window.strUser2 = total_ticket2.value;
+        window.summary2 = price2 * strUser2;
+        document.getElementById('total_price2').innerHTML = window.summary2;
+        document.getElementById('gross_amount').value = window.summary2;
+      });
       document.getElementById("lbl_total_ticket2").style.visibility = "visible";
       $('#total_ticket2').prop('hidden', false);
-      window.strUser2 = total_ticket2.options[total_ticket2.selectedIndex].value;
+      window.strUser2 = total_ticket2.value;
       document.getElementById("modal-price2").style.visibility = "visible";
       document.getElementById("price2").value = document.getElementById("modal-price2").innerHTML;
-      document.getElementById("price2").style.display  = "none";
+      document.getElementById("price2").style.display = "none";
       window.price2 = document.getElementById("price2").value;
       window.summary2 = price2 * strUser2;
-      document.getElementById('gross_amount').value = window.summary2;
-      document.getElementById('total_price2').innerHTML = window.summary2;
       document.getElementById('price2').value = window.price2;
     }
     window.eventName2 = document.getElementById('modal-packagename').innerHTML;
@@ -184,9 +195,9 @@
     var id_gift2 = document.getElementById('modal-gift').innerHTML;
     var order_id = document.getElementById('modal-packagename').innerHTML;
     var myarr = order_id.split(" ");
-    if(myarr[1]=="Dijawab"){
+    if (myarr[1] == "Dijawab") {
       document.getElementById('order_id').value = 'C-' + Math.round((new Date()).getTime() / 1000);
-    }else{
+    } else {
       document.getElementById('order_id').value = 'G-' + Math.round((new Date()).getTime() / 1000);
     }
     document.getElementById('name2').value = 'Package ' + window.eventName2;
@@ -195,22 +206,22 @@
   });
 
 
-  function cek2() {
-    var id_gift2 = document.getElementById('modal-gift').innerHTML;
-    var total_ticket2 = document.getElementById("total_ticket2");
-    window.price2 = document.getElementById('modal-price2').innerHTML;
-    window.strUser2 = total_ticket2.options[total_ticket2.selectedIndex].value;
-    window.summary2 = price2 * strUser2;
-    window.eventName2 = document.getElementById('modal-packagename').innerHTML;
-    window.fullName2 = document.getElementById('fullName2').innerHTML;
-    document.getElementById('total_price2').innerHTML = window.summary2;
-    document.getElementById('gross_amount').value = window.summary2;
-    document.getElementById('order_id').value = 'C-' + Math.round((new Date()).getTime() / 1000);
-    document.getElementById('name2').value = 'Package ' + window.eventName2;
-    document.getElementById('first_name').value = window.fullName2;
-    document.getElementById('id_gift2').value = id_gift2;
-    document.getElementById('price2').value = window.price2;
-  }
+  // function cek2() {
+  //   var id_gift2 = document.getElementById('modal-gift').innerHTML;
+  //   var total_ticket2 = document.getElementById("total_ticket2");
+  //   window.price2 = document.getElementById('modal-price2').innerHTML;
+  //   window.strUser2 = total_ticket2.options[total_ticket2.selectedIndex].value;
+  //   window.summary2 = price2 * strUser2;
+  //   window.eventName2 = document.getElementById('modal-packagename').innerHTML;
+  //   window.fullName2 = document.getElementById('fullName2').innerHTML;
+  //   document.getElementById('total_price2').innerHTML = window.summary2;
+  //   document.getElementById('gross_amount').value = window.summary2;
+  //   document.getElementById('order_id').value = 'C-' + Math.round((new Date()).getTime() / 1000);
+  //   document.getElementById('name2').value = 'Package ' + window.eventName2;
+  //   document.getElementById('first_name').value = window.fullName2;
+  //   document.getElementById('id_gift2').value = id_gift2;
+  //   document.getElementById('price2').value = window.price2;
+  // }
   $(function () {
     $("#pay-button2").click(function (event) {
       event.preventDefault();

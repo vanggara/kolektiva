@@ -207,7 +207,7 @@ class MUser extends CI_Model {
             $query = $this->db->count_all_results();
             if($query == 1)
             {
-                echo "ok2";
+                // echo "ok2";
                 echo "<script>alert('Transaksi sudah diproses!');</script>";
                 redirect ('home','refresh');
             }
@@ -265,7 +265,7 @@ class MUser extends CI_Model {
                 $update = array(
                     'percentage' => $percent_baru + $persentase
                 );
-                echo var_dump($update);
+                // echo var_dump($update);
                 $this->db->where('id', $_SESSION['idCampaign']);
                 $this->db->update('campaign', $update);
 
