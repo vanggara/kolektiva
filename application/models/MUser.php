@@ -34,6 +34,17 @@ class MUser extends CI_Model {
         $data['content2'] = $this->db->query($query2);
         $this->load->view('contribute2', $data);
     }
+    
+    public function contribute3($id){
+        $_SESSION['idCampaign'] = $id;
+        $query = "SELECT *, (SELECT (SUM(total_price_transaction_gift) * 100)/ (SELECT campaign.target from campaign WHERE campaign.id = ".$id.") FROM transaction_gift WHERE id_campaign_transaction_gift=".$id.") as persentase FROM campaign where id='".$id."';";
+        $query2 = "SELECT gift.image, gift.price, gift.package_name, gift.detail, gift.gift_stock, gift.id, campaign.eventDate, campaign.eventName, campaign.venue from gift JOIN
+        campaign ON campaign.id = gift.id_campaign 
+        WHERE gift.id_campaign = '".$id."';";
+        $data['content'] = $this->db->query($query);
+        $data['content2'] = $this->db->query($query2);
+        $this->load->view('contribute3', $data);
+    }
 
     public function event_list(){
         $query = "SELECT * FROM campaign WHERE approval=1";
@@ -49,7 +60,7 @@ class MUser extends CI_Model {
     }
 
     public function action_add_campaign(){
-        error_reporting(0);
+        // error_reporting(0);
         $category = $_POST['category'];
         $eventName = $_POST['eventName'];
         $eventDate = $_POST['eventDate'];
@@ -61,6 +72,7 @@ class MUser extends CI_Model {
         $campaigner = $_POST['campaigner'];
         $dueDate = $_POST['dueDate'];
         $venue = $_POST['venue'];
+        $alamat = $_POST['alamat'];
         // $target = $_POST['target'];
         $detail = $_POST['detail'];
         $price = $_POST['ticket'];
@@ -88,7 +100,7 @@ class MUser extends CI_Model {
             $target_path_proposal = "assets/uploads/proposal/";    
             $target_path_proposal = $target_path_proposal . basename( $_FILES['pdfProposal']['name']); 
             $file_type_proposal=$_FILES['pdfProposal']['type'];
-            if(isset($_POST['addGift'])){
+            if(isset($_POST['addGift']) || isset($_POST['donasi'])){
                 $gift = 1;
             }else{
                 $gift = 0;
@@ -110,6 +122,7 @@ class MUser extends CI_Model {
                                 'price' => $price,
                                 'instagram' => $instagram,
                                 'campaigner' => $campaigner,
+                                'alamat_penyelenggara' => $alamat,
                                 'dueDate' => $dueDate,
                                 'venue' => $venue,
                                 'target' => 0,
@@ -123,6 +136,8 @@ class MUser extends CI_Model {
                             echo "<script>alert('Saved data success!');</script>";
                             if(isset($_POST['addGift'])){
                                 redirect('add-gift','refresh');
+                            }else if(isset($_POST['donasi'])){
+                                redirect('add-donasi','refresh');
                             }else{
                                 redirect('home','refresh');
                             }
@@ -154,6 +169,17 @@ class MUser extends CI_Model {
             $_SESSION['idCampaign'] = $row->id;
         }
         $this->load->view('add_gift');
+    }
+
+    public function add_donasi(){
+        error_reporting(0);
+        $sql = "SELECT id FROM campaign ORDER BY id DESC LIMIT 1";
+        $query=$this->db->query($sql);
+        foreach ($query->result() as $row)
+        {  
+            $_SESSION['idCampaign'] = $row->id;
+        }
+        $this->load->view('add_donasi');
     }
         
     public function save_ticket_transaction(){
@@ -322,12 +348,8 @@ class MUser extends CI_Model {
                         echo "<script>alert('Saved data success!');</script>";
 
                         if(isset($_POST['addGift'])){
-                            $this->load->model('MUser');
-                            $this->MUser->add_gift_rupiahs($id_campaign);
                             redirect('add-gift','refresh');
                         }else{
-                            $this->load->model('MUser');
-                            $this->MUser->add_gift_rupiahs($id_campaign);
                             redirect('home','refresh');
                         }
                     } else{
@@ -342,25 +364,40 @@ class MUser extends CI_Model {
         }
     }
 
-    public function add_gift_rupiahs($id_campaign){
-        $this->db->where('package_name', 'No Package');
-        $this->db->where('id_campaign', $id_campaign);
-        $this->db->from('gift');
+    
+    public function action_add_donasi(){
+        // error_reporting(0);
+                $image = $_FILES['imgInp']['name'];
+                $detail = $_POST['detail'];
+                $id_campaign = $_SESSION['idCampaign'];
+                                  
+                $target_path = "assets//uploads//gift//";    
+                $target_path = $target_path . basename( $_FILES['imgInp']['name']); 
+                $file_type_image = $_FILES['imgInp']['type'];
+                    
+                if ($file_type_image=="image/jpg" || $file_type_image=="image/png" || $file_type_image=="image/jpeg") {
+                    if(move_uploaded_file($_FILES['imgInp']['tmp_name'], $target_path)) {
+                                          
+                        $datas = array(
+                            'id_campaign' => $id_campaign,
+                            'image' => $image,
+                            'package_name' => "Donasi Tunai",
+                            'detail' => $detail,
+                            'donasi' => 1
+                        );
+                        $this->db->insert('gift', $datas);
+                        
+                        echo "<script>alert('Saved data success!');</script>";
 
-        $query = $this->db->count_all_results();
-        if($query != 1)
-        {
-            $datas = array(
-                'id_campaign' => $id_campaign,
-                'image' => 'keripik_kentang.jpg',
-                'price' => '0',
-                'package_name' => 'No Package',
-                'detail' => 'Enter the rupiahs as you want',
-                'gift_stock' => '100'
-            );
-            $this->db->insert('gift', $datas);
-            
-        }
+                        redirect('home','refresh');
+                    } else{
+                        echo "<script>alert('Failed to save data!');</script>";
+                        redirect('add-donasi','refresh');
+                    }
+                }else{
+                    echo "<script>alert('Only accepts a Image with .JPG, .JPEG, .PNG type!');</script>";
+                    redirect('add-donasi','refresh');
+                }
     }
 
     public function dashboard(){
@@ -373,7 +410,8 @@ class MUser extends CI_Model {
         transaction_ticket.id_user_transaction_ticket=".$_SESSION['idUser'].";";
         $data['ticket'] = $this->db->query($query2);
         
-        $query3 = "SELECT * FROM campaign JOIN transaction_gift ON 
+        $query3 = "SELECT DISTINCT campaign.category, campaign.eventName, campaign.dueDate, campaign.target, campaign.percentage, 
+        transaction_gift.transaction_status_transaction_gift   FROM campaign JOIN transaction_gift ON 
         campaign.id = transaction_gift.id_campaign_transaction_gift WHERE 
         transaction_gift.id_user_transaction_gift=".$_SESSION['idUser'].";";
         $data['gift'] = $this->db->query($query3);
@@ -397,12 +435,12 @@ class MUser extends CI_Model {
     }
     
     public function crownfunding(){
-        $query = $this->db->query("SELECT * from campaign where approval=1 and dueDate > now()");
+        $query = $this->db->query("SELECT DISTINCT gift.donasi, campaign.image, campaign.id, campaign.eventName, campaign.venue from campaign JOIN gift ON campaign.id = gift.id_campaign where approval=1 and dueDate > now()");
         return $query;
     }
     
-    public function search($isGift){
-        $query = $this->db->query("SELECT * from campaign where gift=".$isGift." and approval=1 and dueDate > now()");
+    public function search($donasi){
+        $query = $this->db->query("SELECT DISTINCT gift.donasi, campaign.image, campaign.id, campaign.eventName, campaign.venue from campaign JOIN gift ON campaign.id = gift.id_campaign where gift.donasi=".$donasi." and campaign.approval=1 and campaign.dueDate > now()");
         return $query;
     }
 }

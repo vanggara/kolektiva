@@ -48,7 +48,6 @@
               <div class="col-lg-9 col-9 text-left row">
                 <p class="modal-title">Harga: Rp.&nbsp </p>
                 <p class="modal-title" id="modal-price2"></p>
-                <input type="number" class="modal1-title" id="price2" name="price2">
               </div>
               <br>
               <div class="col-lg-9 col-9 text-left row">
@@ -56,18 +55,23 @@
                 <p hidden class="modal-title" id="modal-gift"></p>
                 <p class="modal-title" id="modal-campaign"></p>
               </div>
-              <hr>
               <div class="col-lg-9 col-9 text-left row">
-                <p class="modal-title">Total Bayar: Rp. &nbsp</p>
-                <p class="modal-title" id="total_price2"></p>
+                <p hidden class="modal-title">Total Bayar: Rp. &nbsp</p>
+                <p hidden class="modal-title" id="total_price2"></p>
               </div>
               <hr>
             </div>
-            <div class="col-lg-3 col-3 text-center">
+            
+            <!-- <div class="col-lg-12 col-12 text-left row">
+                <p  id="lbl_total_ticket2" class="modal-title">&nbsp Jumlah paket yang dibeli&nbsp </p>
+                <input type="number" class="modal-title" id="total_ticket21" name="quantity21">
+              </div> -->
+            <div class="col-lg-12 col-12 text-center">
               <div class="col-lg-12 col-12 text-center">
                 <div class="form-group">
                   <div class="row">
                     <label id="lbl_total_ticket2" for="total_ticket2">&nbsp Total Tiket</label>
+                    <!-- <input type="number" class="modal-title" id="total_ticket2" name="quantity"> -->
                     <select class="form-control" id="total_ticket2" name="quantity">
                       <option value='1' onclick="cek2()">1</option>
                       <option value='2' onclick="cek2()">2</option>
@@ -85,20 +89,21 @@
           <br>
           <div class="form-group">
             <div class="row">
-              <input hidden type="text" class="form-control form-control-user" id="emailRsvp2" name="emailRsvp2"
+              <input  type="text" class="form-control form-control-user" id="emailRsvp2" name="emailRsvp2"
                 aria-describedby="emailHelp" placeholder="yourEmail@gmail.com" value=<?php echo $_SESSION['email'] ?>>
-              <input hidden type="text" class="form-control form-control-user" type="text" id="gross_amount"
+              <input  type="text" class="form-control form-control-user" type="text" id="gross_amount"
                 name="gross_amount">
-              <input hidden type="text" class="form-control form-control-user" type="text" id="order_id" name="order_id">
-              <input hidden type="text" class="form-control form-control-user" type="text" id="name2" name="name">
-              <input hidden type="text" class="form-control form-control-user" type="text" id="first_name" name="first_name">
-              <input hidden type="text" class="form-control form-control-user" type="text" id="id_gift2" name="id_gift">
-              <input hidden type="text" class="form-control form-control-user" type="text" id="isCampaign" name="isCampaign">
+              <input  type="number" class="modal1-title" id="price2" name="price2">
+              <input  type="text" class="form-control form-control-user" type="text" id="order_id" name="order_id">
+              <input  type="text" class="form-control form-control-user" type="text" id="name2" name="name">
+              <input  type="text" class="form-control form-control-user" type="text" id="first_name" name="first_name">
+              <input  type="text" class="form-control form-control-user" type="text" id="id_gift2" name="id_gift">
+              <input  type="text" class="form-control form-control-user" type="text" id="isCampaign" name="isCampaign">
               </p>
             </div>
           </div>
           <div class="modal-body text-center">
-            <button id="pay-button2" type="submit" class="bg-text-red">Buy Now</button>
+            <button id="pay-button2" type="submit" class="bg-text-red">Lanjut</button>
           </div>
         </div>
       </form>

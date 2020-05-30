@@ -116,7 +116,46 @@
                   <?php } ?>
                 </div>
               </div>
-              <p>Akan diadakan pada <?php echo DateTime::createFromFormat('Y-m-d', $key['eventDate'])->format('l'); ?>,
+              <p>Akan diadakan pada <?php 
+              function getDay($date){
+                $datetime = DateTime::createFromFormat('Y-m-d', $date);
+                return $datetime->format('l');
+               }
+               
+               function getHari($date){
+                $day=getDay($date);
+                switch ($day) {
+                 case 'Sunday':
+                  $hari = 'Minggu';
+                  break;
+                 case 'Monday':
+                  $hari = 'Senin';
+                  break;
+                 case 'Tuesday':
+                  $hari = 'Selasa';
+                  break;
+                 case 'Wednesday':
+                  $hari = 'Rabu';
+                  break;
+                 case 'Thursday':
+                  $hari = 'Kamis';
+                  break;
+                 case 'Friday':
+                  $hari = 'Jum\'at';
+                  break;
+                 case 'Saturday':
+                  $hari = 'Sabtu';
+                  break;
+                 default:
+                  $hari = 'Tidak ada';
+                  break;
+                }
+                return $hari;
+               }
+               
+              echo getHari($key['eventDate']); ?>
+              <!-- <?php echo DateTime::createFromFormat('Y-m-d', $key['eventDate'])->format('l'); ?> -->
+              ,
                 <?php echo $key['eventDate'] ?><br>Follow kami di Instagram:
                 <a href="https://www.instagram.com/<?php echo $key['instagram'] ?>"
                   target="_blank">@<?php echo $key['instagram'] ?></a></p>
@@ -173,28 +212,19 @@
     <section id="clients" class="wow fadeInUp">
       <div class="container">
 
-        <div class="owl-carousel clients-carousel">
+        <!-- <div class="owl-carousel clients-carousel"> -->
           <?php foreach ($content2->result_array() as $key):?>
           <div class="row flex-items-xs-middle flex-items-xs-center">
             <div class="card">
               <img style="height: 238px; width: 300px"
                 src='<?php echo base_url('assets/uploads/gift/')?><?php echo $key['image'] ?>' alt="">
-              <p><?php echo rupiah($key['price']) ?></p>
+              <p>Donasi Sesukamu</p>
               <p><?php echo $key['package_name'] ?><br>
                 <?php echo $key['detail'] ?>
               </p>
               <hr>
               <div class="row counters">
-                <div class="col-lg-4 col-4 text-center">
-                  <p><span style="color: #FF7065;font-size: 20px;font-weight:bold"
-                      data-toggle="counter-up"><?php echo $key['gift_stock'] ?></span>
-                    Tersisa</p>
-                </div>
-                <div class="col-lg-8 col-8 text-center">
-                  <?php if ($key['gift_stock'] <= 0) {?>
-                  <button disabled class="btn btn-primary btn-user btn-block">
-                    <a style="color: white;">Terlambat</a></button>
-                  <?php } else{?>
+                <div class="col-lg-12 col-12 text-center">
                   <?php if(isset($_SESSION['login']) && $_SESSION['fullName']){?>
                   <button class="btn btn-primary btn-user btn-block">
                     <a href="#" data-toggle="modal" data-target="#getTicket2" style="color: white;"
@@ -206,14 +236,13 @@
                     <a href="#" data-toggle="modal" style="color: white;" data-target="#sorryModal">Pilih</a>
                   </button>
                   <?php } ?>
-                  <?php } ?>
                 </div>
               </div>
             </div>
           </div>
           <?php endforeach ?>
 
-        </div>
+        <!-- </div> -->
       </div>
 
       </div>

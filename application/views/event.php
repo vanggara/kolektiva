@@ -105,13 +105,13 @@
                                             <br>
                                             <div class="row">
                                                 <?php foreach ($content->result_array() as $key): ?>
-                                                <?php if($key['gift']==1){?>
+                                                <?php if($key['donasi']==1){?>
                                                     <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s" onclick="window.location.href = '<?php echo base_url() ?>CUser/contribute/<?php echo $key['id'] ?>'">
                                                 <?php } else{?>
-                                                    <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s" onclick="window.location.href = '<?php echo base_url() ?>CUser/contribute2/<?php echo $key['id'] ?>'">
+                                                    <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s" onclick="window.location.href = '<?php echo base_url() ?>CUser/contribute3/<?php echo $key['id'] ?>'">
                                                 <?php } ?>
                                                     <!-- Card -->
-                                                    <div class="box filterDiv <?php echo $key['gift'] ?>" style="width:270px;">
+                                                    <div class="box filterDiv <?php echo $key['donasi'] ?>" style="width:270px;">
                                                         <!-- Card image -->
                                                         <img class="card-img-top"
                                                             src="<?php echo base_url('assets/uploads/campaign/')?><?php echo $key['image'] ?>"

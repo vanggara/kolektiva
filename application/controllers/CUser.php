@@ -85,6 +85,16 @@ class CUser extends CI_Controller
         //     redirect('404_override');
         // }
     }
+    
+    public function contribute3($id)
+	{
+        // if(isset($_SESSION['login'])){
+            $this->load->model('MUser');
+            $this->MUser->contribute3($id);
+        // }else{
+        //     redirect('404_override');
+        // }
+    }
 
     public function add_campaign()
 	{
@@ -116,6 +126,16 @@ class CUser extends CI_Controller
         }
     }
     
+	public function add_donasi()
+	{
+        if(isset($_SESSION['login'])){
+            $this->load->model('MUser');
+            $this->MUser->add_donasi();
+        }else{
+            redirect('404_override');
+        }
+    }
+    
 	public function action_add_gift()
 	{
         if(isset($_SESSION['login'])){
@@ -125,6 +145,17 @@ class CUser extends CI_Controller
             redirect('404_override');
         }
     }
+    
+	public function action_add_donasi()
+	{
+        if(isset($_SESSION['login'])){
+            $this->load->model('MUser');
+            $this->MUser->action_add_donasi();
+        }else{
+            redirect('404_override');
+        }
+    }
+
     public function save_ticket_transaction()
 	{
         if(isset($_SESSION['login'])){
@@ -177,11 +208,11 @@ class CUser extends CI_Controller
         // }
     }
     
-    public function search($isGift)
+    public function search($donasi)
 	{
         // if(isset($_SESSION['login'])){
             $this->load->model('MUser');
-            $data['content'] = $this->MUser->search($isGift);
+            $data['content'] = $this->MUser->search($donasi);
             $this->load->view('event', $data);
         // }else{
         //     redirect('404_override');

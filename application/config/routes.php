@@ -61,6 +61,7 @@ $route['dashboard'] = 'CUser/dashboard';
 $route['contribute'] = 'CUser/contribute';
 $route['add-campaign'] = 'CUser/add_campaign';
 $route['add-gift'] = 'CUser/add_gift';
+$route['add-donasi'] = 'CUser/add_donasi';
 $route['save-ticket-transaction'] = 'CUser/save_ticket_transaction';
 
 $route['admin'] = 'CAdmin/login';

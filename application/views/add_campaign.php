@@ -14,7 +14,7 @@
     <!-- Custom fonts for this template-->
     <link href=<?php echo base_url('assets/vendor/fontawesome-free/css/all.min.css')?> rel="stylesheet" type="text/css">
     <link
-        href=<?php echo base_url('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i')?>
+        href='https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i'
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
@@ -69,7 +69,7 @@
                                         action="<?php echo base_url();?>CUser/action_add_campaign">
                                         <div class="form-group">
                                             <div class="row">
-                                                <label for="category">Category</label>
+                                                <label for="category">Kategori</label>
                                                 <select class="form-control " id="category" name="category">
                                                     <?php foreach ($content->result_array() as $key): ?>
                                                     <option><?php echo $key['category_name'] ?></option>
@@ -112,18 +112,6 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
-                                                <label for="ticket">Ticket Price</label>
-                                                <div class="input-group mb-2 mr-sm-2">
-                                                    <div class="input-group-prepend">
-                                                        <div class="input-group-text">Rp </div>
-                                                    </div>
-                                                    <input required type="text" onkeypress="return isNumberKey(event)"
-                                                        class="form-control round-form" name="ticket" id="ticket">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
                                                 <label for="venue">ID Instagram</label>
                                                 <div class="input-group mb-2 mr-sm-2">
                                                     <div class="input-group-prepend">
@@ -137,9 +125,16 @@
 
                                         <div class="form-group">
                                             <div class="row">
-                                                <label for="campaigner">Nama Penyelenggara</label>
+                                                <label for="campaigner">Nama Penyelenggara (Institusi/ Organisasi/ Komunitas)</label>
                                                 <input required type="text" class="form-control" name="campaigner"
                                                     id="campaigner">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label for="alamat">Alamat Penyelenggara</label>
+                                                <input required type="text" class="form-control" name="alamat"
+                                                    id="alamat">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -158,17 +153,44 @@
                                         </div>
                                         <!-- <div class="form-group">
                                             <div class="row">
-                                                <label for="target">Target</label>
-                                                <div class="input-group mb-2 mr-sm-2">
-                                                    <div class="input-group-prepend">
-                                                        <div class="input-group-text">Rp.</div>
-                                                    </div>
-                                                    <input required type="text" onkeypress="return isNumberKey(event)"
-                                                        class="form-control round-form" name="target" id="target">
-                                                </div>
+                                                <label for="venue">Tempat Acara</label>
+                                                <input required type="checkbox" class="form-control" name="venue"
+                                                    id="venue">
                                             </div>
                                         </div> -->
-
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="input-group mb-2 mr-sm-2">
+                                                    <label for="peserta">Pendaftaran Peserta</label>
+                                                    <input type="checkbox" 
+                                                        class="form-control round-form" name="peserta" id="peserta">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row" id="showhide">
+                                                <label for="ticket">Jumlah Tiket</label>
+                                                <div class="input-group mb-2 mr-sm-2">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">Rp </div>
+                                                    </div>
+                                                    <input type="text" onkeypress="return isNumberKey(event)"
+                                                        class="form-control round-form" name="jumlah" id="jumlah">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row" id="showhide2">
+                                                <label for="ticket">Harga Tiket</label>
+                                                <div class="input-group mb-2 mr-sm-2">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">Rp </div>
+                                                    </div>
+                                                    <input type="text" onkeypress="return isNumberKey(event)"
+                                                        class="form-control round-form" name="ticket" id="ticket">
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <label for="detail">Detail</label>
@@ -213,16 +235,22 @@
                                         </div>
                                         <hr>
                                         <div class="row">
-                                            <div class="col-lg-6">
-                                                <button type="submit" name="submit" value="Save"
+                                            <div class="col-lg-4">
+                                                <button type="submit" name="donasi" value="Donasi"
                                                     class="btn btn-primary btn-user btn-block">
-                                                    Simpan
+                                                    Simpan dan Galangan Dana
                                                 </button>
                                             </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-4">
                                                 <button type="submit" name="addGift" value="Add Gift"
                                                     class="btn btn-primary btn-user btn-block">
                                                     Simpan dan Tambah Hadiah
+                                                </button>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <button type="submit" name="submit" value="Save"
+                                                    class="btn btn-primary btn-user btn-block">
+                                                    Simpan
                                                 </button>
                                             </div>
                                         </div>
@@ -249,6 +277,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src=<?php echo base_url('assets/js/sb-admin-2.min.js')?>></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>	
 
     <!--==========================
     Login Section
@@ -266,4 +295,21 @@
     }
 </script>
 
+<script type='text/javascript'>
+$(window).load(function(){
+  $("#showhide").css("display","none");
+  $("#showhide2").css("display","none");
+ 
+$('#peserta').change(function(){
+  if (this.checked) {
+    $('#showhide').fadeIn('slow');
+    $('#showhide2').fadeIn('slow');
+  } 
+  else {
+    $('#showhide').fadeOut('slow');
+    $('#showhide2').fadeOut('slow');
+  }  
+});
+});
+</script>
 </html>

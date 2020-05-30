@@ -115,6 +115,7 @@
                                                                     <th>Batas Tanggal</th>
                                                                     <th>Progress (%)</th>
                                                                     <th>Target</th>
+                                                                    <th>Status</th>
                                                                 </tr>
                                                             </thead>
                                                             <tfoot>
@@ -125,6 +126,7 @@
                                                                     <th>Batas Tanggal</th>
                                                                     <th>Progress (%)</th>
                                                                     <th>Target</th>
+                                                                    <th>Status</th>
                                                                 </tr>
                                                             </tfoot>
                                                             <tbody>
@@ -136,8 +138,13 @@
                                                                     <td><?php echo $key['category'] ?></td>
                                                                     <td><?php echo $key['eventName'] ?></td>
                                                                     <td><?php echo $key['dueDate'] ?></td>
-                                                                    <td><?php echo $key['dueDate'] ?></td>
+                                                                    <td><?php echo $key['percentage'] ?></td>
                                                                     <td><?php echo rupiah($key['target']) ?></td>
+                                                                    <td><?php if($key['approval']==1){
+                                                                        echo "Telah Diverifikasi";
+                                                                        }else{
+                                                                            echo "Menunggu Konfirmasi";
+                                                                        } ?></td>
                                                                 </tr>
                                                                 <?php endforeach ?>
                                                             </tbody>
@@ -215,7 +222,7 @@
                                                                     <td><?php echo $key['category'] ?></td>
                                                                     <td><?php echo $key['eventName'] ?></td>
                                                                     <td><?php echo $key['eventDate'] ?></td>
-                                                                    <td><?php echo $key['venue'] ?></td>
+                                                                    <td><?php echo $key['percentage'] ?></td>
                                                                     <td><?php echo rupiah($key['target']) ?></td>
                                                                     <td><?php echo $key['transaction_status_transaction_gift'] ?></td>
                                                                 </tr>
